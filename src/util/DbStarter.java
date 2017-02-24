@@ -37,7 +37,7 @@ public class DbStarter implements ServletContextListener {
             // defined:
             ServletContext servletContext = servletContextEvent.getServletContext();
             //TODO: ganti url db di production code
-            String url = "jdbc:h2:file:~/pentingsari_db;IFEXISTS=TRUE";
+            String url = "jdbc:h2:file:~/pentingsari_db";
             String user = "root";
             String password = "root";
             conn = DriverManager.getConnection(url, user, password);

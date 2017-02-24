@@ -181,18 +181,8 @@
                             <div class="panel panel-primary">
                                 <div class="panel-heading">Tambah Penyewa Baru</div>
                                 <div class="panel-body">
-                                    <form action="../InsertPenyewa" method="POST" class="form-horizontal" role="form">
-                                        <div class="form-group">
-                                            <label class="col-md-2 col-sm-2 col-xs-12">Event yang Diikuti</label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <select class="form-control" title="Pilih Event yang Diikuti">
-                                                    <option>Belum ada event</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <!-- /.form-group -->
+                                    <form action="../InsertPenyewa" method="POST" class="form-horizontal" role="form" id="addPenyewa">
+                                        
                                         <div class="form-group">
                                             <label class="col-md-2 col-sm-2 col-xs-12">No. Identitas</label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -287,7 +277,7 @@
 
         <!-- jQuery -->
         <script src="../bower_components/jquery/dist/jquery.min.js"></script>
-
+        
         <!-- Bootstrap Core JavaScript -->
         <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
@@ -296,6 +286,8 @@
 
         <!-- Custom Theme JavaScript -->
         <script src="../dist/js/sb-admin-2.js"></script>
+
+        
 
     </body>
 

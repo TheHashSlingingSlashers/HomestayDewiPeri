@@ -180,6 +180,14 @@
                                 <div class="panel-body">
                                     <form class="form-horizontal" role="form">
                                         <div class="form-group">
+                                            <label class="col-md-2 col-sm-2 col-xs-12">Kode Event</label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <input type="text" class="form-control col-md-7 col-xs-12" id="kodeEvent" name="kodeEvent">
+                                            </div>
+                                        </div>
+                                        <!-- /.form-group -->
+                                        
+                                        <div class="form-group">
                                             <label class="col-md-2 col-sm-2 col-xs-12">Nama Event</label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                 <input type="text" class="form-control col-md-7 col-xs-12" id="namaEvent" name="namaEvent">

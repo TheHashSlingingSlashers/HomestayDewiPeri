@@ -175,12 +175,12 @@
 
                     <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                            <form class="form-inline pull-right" role="form">
+                            <form action="../EditEvent" method="POST" class="form-inline pull-right" role="form">
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Kode Event...">
+                                        <input type="text" class="form-control" placeholder="Kode Event..." name="kodeEvent">
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button"> Cari</button>
+                                            <button class="btn btn-default" type="submit"> Cari</button>
                                         </span>
                                     </div>
                                 </div>
@@ -209,6 +209,14 @@
                                             <label class="col-md-2 col-sm-2 col-xs-12">Nama Event</label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                 <input type="text" class="form-control col-md-7 col-xs-12" id="namaEvent">
+                                            </div>
+                                        </div>
+                                        <!-- /.form-group -->
+                                        
+                                        <div class="form-group">
+                                            <label class="col-md-2 col-sm-2 col-xs-12">Penyelenggara</label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <input type="text" class="form-control col-md-7 col-xs-12" id="penyelenggara" name="penyelenggara">
                                             </div>
                                         </div>
                                         <!-- /.form-group -->
