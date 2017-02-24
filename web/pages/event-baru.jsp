@@ -182,7 +182,15 @@
                                         <div class="form-group">
                                             <label class="col-md-2 col-sm-2 col-xs-12">Nama Event</label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <input type="text" class="form-control col-md-7 col-xs-12" id="namaEvent">
+                                                <input type="text" class="form-control col-md-7 col-xs-12" id="namaEvent" name="namaEvent">
+                                            </div>
+                                        </div>
+                                        <!-- /.form-group -->
+                                        
+                                        <div class="form-group">
+                                            <label class="col-md-2 col-sm-2 col-xs-12">Penyelenggara</label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <input type="text" class="form-control col-md-7 col-xs-12" id="penyelenggara" name="penyelenggara">
                                             </div>
                                         </div>
                                         <!-- /.form-group -->
@@ -192,7 +200,7 @@
                                             <div class="col-md-4 col-sm-4 col-xs-12">
                                                 <div class="xdisplay_inputx has-feedback">
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control col-md-7 col-xs-12" id="single_cal3" aria-describedby="inputSuccess2Status">
+                                                        <input type="text" class="form-control col-md-7 col-xs-12" id="single_cal3" aria-describedby="inputSuccess2Status" name="single_cal3">
                                                         <div class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></div>
                                                     </div>
                                                 </div>  
@@ -205,7 +213,7 @@
                                             <div class="col-md-4 col-sm-4 col-xs-12">
                                                 <div class="xdisplay_inputx has-feedback">
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control col-md-7 col-xs-12" id="single_cal2" aria-describedby="inputSuccess2Status">
+                                                        <input type="text" class="form-control col-md-7 col-xs-12" id="single_cal2" aria-describedby="inputSuccess2Status" name="single_cal2">
                                                         <div class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></div>
                                                     </div>
                                                 </div>  
@@ -214,7 +222,7 @@
                                         <!-- /.form-group -->
 
                                         <div class="col-md-offset-2 col-sm-offset-2">
-                                            <button type="button" class="btn btn-labeled btn-success"><span class="btn-label"><i class="glyphicon glyphicon-floppy-disk"></i></span> Simpan</button>    
+                                            <button type="submit" class="btn btn-labeled btn-success"><span class="btn-label"><i class="glyphicon glyphicon-floppy-disk"></i></span> Simpan</button>    
                                         </div>
 
                                     </form>

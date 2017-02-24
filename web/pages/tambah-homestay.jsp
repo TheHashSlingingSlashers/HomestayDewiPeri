@@ -181,29 +181,29 @@
                             <div class="panel panel-primary">
                                 <div class="panel-heading">Tambah Homestay Baru</div>
                                 <div class="panel-body">
-                                    <form class="form-horizontal" role="form">
+                                    <form action="../InsertHomestay" method="POST" class="form-horizontal" role="form">
                                         <div class="form-group">
                                             <label class="col-md-2 col-sm-2 col-xs-12">Kode Homestay</label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <input type="text" class="form-control col-md-7 col-xs-12" id="kodeHomestay">
+                                                <input type="text" class="form-control col-md-7 col-xs-12" id="kodeHomestay" name="kodeHomestay">
                                             </div>
                                         </div>
                                         <!-- /.form-group -->
                                         <div class="form-group">
                                             <label class="col-md-2 col-sm-2 col-xs-12">Nama Pemilik</label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <input type="text" class="form-control col-md-7 col-xs-12" id="namaPemilik">
+                                                <input type="text" class="form-control col-md-7 col-xs-12" id="namaPemilik" name="namaPemilik">
                                             </div>
                                         </div>
                                         <!-- /.form-group -->
                                         <div class="form-group">
                                             <label class="col-md-2 col-sm-2 col-xs-12">Lokasi</label>
                                             <div class="col-md-4 col-sm-4 col-xs-12">
-                                                <select class="form-control" title="Pilih Event yang Diikuti">
-                                                    <option>RT 1</option>
-                                                    <option>RT 2</option>
-                                                    <option>RT 3</option>
-                                                    <option>RT 4</option>
+                                                <select name="lokasi" class="form-control" title="Pilih Event yang Diikuti">
+                                                    <option value="RT 1">RT 1</option>
+                                                    <option value="RT 2">RT 2</option>
+                                                    <option value="RT 3">RT 3</option>
+                                                    <option value="RT 4">RT 4</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -225,19 +225,19 @@
                                         <div class="form-group">
                                             <label class="col-md-2 col-sm-2 col-xs-12">Kapasitas</label>
                                             <div class="col-md-4 col-sm-4 col-xs-12">
-                                                <input type="text" class="form-control" id="kapasitas" name="kapasitas"readonly="readonly">
+                                                <input type="text" class="form-control" id="kapasitas" name="kapasitas" readonly="readonly">
                                             </div>
                                         </div>
                                         <!-- /.form-group -->
                                         <div class="form-group">
                                             <label class="col-md-2 col-sm-2 col-xs-12">Jumlah Toilet</label>
                                             <div class="col-md-4 col-sm-4 col-xs-12">
-                                                <input type="text" class="form-control" id="jumlahToilet">
+                                                <input type="text" class="form-control" id="jumlahToilet" name="jumlahToilet">
                                             </div>
                                         </div>
                                         <!-- /.form-group -->
                                         <div class="col-md-offset-2 col-sm-offset-2">
-                                            <button type="button" class="btn btn-labeled btn-success"><span class="btn-label"><i class="glyphicon glyphicon-floppy-disk"></i></span> Simpan</button>    
+                                            <button type="submit" class="btn btn-labeled btn-success"><span class="btn-label"><i class="glyphicon glyphicon-floppy-disk"></i></span> Simpan</button>    
                                         </div>
 
                                     </form>

@@ -1,6 +1,5 @@
 package util;
 
-import com.sun.istack.internal.NotNull;
 import org.h2.tools.Backup;
 import org.h2.tools.Restore;
 import org.h2.tools.RunScript;
