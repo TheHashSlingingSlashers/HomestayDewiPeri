@@ -16,7 +16,7 @@
 
 	<type type="string">
 		<description>
-			As a string, this option is used as a jQuery selector to determine what element(s) will activate the show / hide control for the details child rows. This provides the ability to use any element in a table - for example you can use the whole row, or a single `-tag img` element in the row.
+			As a string, this option is used as a jQuery selector to determine what element(s) will activate the show / hide control for the details child rows. This provides the ability to use any element in a table - for app you can use the whole row, or a single `-tag img` element in the row.
 		</description>
 	</type>
 
@@ -32,7 +32,7 @@
 
 	<example title="Use the `column` control type and target the right most column"><![CDATA[
 
-$('#example').DataTable( {
+$('#app').DataTable( {
 	responsive: {
 		details: {
 			type: 'column',
@@ -50,7 +50,7 @@ $('#example').DataTable( {
 
 	<example title="Use the whole row to show / hide the details row"><![CDATA[
 
-$('#example').DataTable( {
+$('#app').DataTable( {
 	responsive: {
 		details: {
 			type: 'column',

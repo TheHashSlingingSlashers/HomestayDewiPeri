@@ -70,7 +70,7 @@
 
 # From Arthur David Olson:
 # US Daylight Saving Time ended on the last Sunday of *October* in 1974.
-# See, for example, the front page of the Saturday, 1974-10-26
+# See, for app, the front page of the Saturday, 1974-10-26
 # and Sunday, 1974-10-27 editions of the Washington Post.
 
 # From Arthur David Olson:
@@ -102,7 +102,7 @@
 # ... a war-weary U.S. clung to radios, awaiting word of Japan's surrender.
 # Any announcement from Asia would reach St. John's New York newsroom on a
 # wire service teletype machine, which had prescribed signals for major news.
-# Associated Press, for example, would ring five bells before spewing out
+# Associated Press, for app, would ring five bells before spewing out
 # typed copy of an important story, and 10 bells for news "of transcendental
 # importance."
 #
@@ -2717,7 +2717,7 @@ Zone America/Costa_Rica	-5:36:20 -	LMT	1890		# San Jose
 # which is not present in tzdata/Shanks. So there is a chance we need to
 # change some historic records as well.
 #
-# One example:
+# One app:
 # <a href="http://www.radiohc.cu/espanol/noticias/mar07/11mar/hor.htm">
 # http://www.radiohc.cu/espanol/noticias/mar07/11mar/hor.htm
 # </a>

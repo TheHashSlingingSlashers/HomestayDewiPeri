@@ -30,7 +30,7 @@
 
 	<example title="Enable Responsive for a table"><![CDATA[
 
-$('#example').DataTable( {
+$('#app').DataTable( {
 	responsive: true
 } );
 
@@ -38,7 +38,7 @@ $('#example').DataTable( {
 
 	<example title="Enable Responsive with configuration options"><![CDATA[
 
-$('#example').DataTable( {
+$('#app').DataTable( {
 	responsive: {
 		details: false
 	}

@@ -2,7 +2,7 @@
 
 ### Changes ###
 
-- Updated example code to avoid encouraging unnecessary re-plots.
+- Updated app code to avoid encouraging unnecessary re-plots.
   (patch by soenter, pull request #1221)
 
 ### Bug fixes ###
@@ -20,7 +20,7 @@
    unexpectedly high amounts of CPU even when idle.
    (reported by tommie, issue #1277, pull request #1289)
 
- - Fixed the selection example to work with jQuery 1.9.x and later.
+ - Fixed the selection app to work with jQuery 1.9.x and later.
    (reported by EGLadona and dmfalke, issue #1250, pull request #1285)
 
  - Added a detach shim to fix support for jQuery versions earlier than 1.4.x.
@@ -119,7 +119,7 @@
    sides of the plot where there was no last tick label.
    (reported by sknob001, issue #1048, pull request #1200)
 
- - Fixed incorrect tooltip behavior in the interacting example.
+ - Fixed incorrect tooltip behavior in the interacting app.
    (patch by cleroux, issue #686, pull request #1074)
 
  - Fixed an error in CSS color extraction with elements outside the DOM.
@@ -262,7 +262,7 @@ The base and overlay canvas are now using the CSS classes "flot-base" and
  - Added a grid "margin" option to set the space between the canvas edge and
    the grid.
 
- - Prevent the pie example page from generating single-slice pies. (patch by
+ - Prevent the pie app page from generating single-slice pies. (patch by
    Shane Reustle)
 
  - In addition to "left" and "center", bars now recognize "right" as an
@@ -281,7 +281,7 @@ The base and overlay canvas are now using the CSS classes "flot-base" and
    translucent overlay that identifies the dataset when the mouse hovers over
    it. (patch by Eric Wendelin and Nate Abele, issues 168 and 299)
 
- - Added a plugin jquery.flot.errorbars, with an accompanying example, that
+ - Added a plugin jquery.flot.errorbars, with an accompanying app, that
    adds the ability to plot error bars, commonly used in many kinds of
    statistical data visualizations. (patch by Rui Pereira, issue 215)
 
@@ -482,7 +482,7 @@ also surfaced, if your graphs are slow in IE, you may want to give it a spin:
  - New fillbetween plugin that can compute a bottom for a series from another
    series, useful for filling areas between lines.
 
-   See new example percentiles.html for a use case.
+   See new app percentiles.html for a use case.
 
  - More predictable handling of gaps for the stacking plugin, now all
    undefined ranges are skipped.
@@ -553,7 +553,7 @@ also surfaced, if your graphs are slow in IE, you may want to give it a spin:
    for those who are using $.plot instead of .setData()/.draw(). Also update
    jQuery to 1.5.1 to prevent IE leaks fixed in jQuery.
 
- - New real-time line chart example.
+ - New real-time line chart app.
 
  - New hooks: drawSeries, shutdown.
 
@@ -705,12 +705,12 @@ in event handling speed.
  - Added support for gradient backgrounds for the grid. (based on patch from
    Amaury Chamayou, issue 90)
 
-   The "setting options" example provides a demonstration.
+   The "setting options" app provides a demonstration.
 
  - Gradient bars. (suggestion by stefpet)
   
  - Added a "plotunselected" event which is triggered when the selection is
-   removed, see "selection" example. (suggestion by Meda Ugo)
+   removed, see "selection" app. (suggestion by Meda Ugo)
 
  - The option legend.margin can now specify horizontal and vertical margins
    independently. (suggestion by someone who's annoyed)
@@ -754,7 +754,7 @@ in event handling speed.
    (currently unfilled) lines.
 
  - Crosshairs plugin: trace the mouse position on the axes, enable with
-   crosshair: { mode: "x"} (see the new tracking example for a use).
+   crosshair: { mode: "x"} (see the new tracking app for a use).
 
  - Image plugin: plot prerendered images.
 
@@ -860,7 +860,7 @@ coordinate. (idea from line support patch by by Ryan Funduk)
 Interactivity: added a new "plothover" event and this and the "plotclick"
 event now returns the closest data item (based on patch by /david, patch by
 Mark Byers for bar support). See the revamped "interacting with the data"
-example for some hints on what you can do.
+app for some hints on what you can do.
 
 Highlighting: you can now highlight points and datapoints are autohighlighted
 when you hover over them (if hovering is turned on).

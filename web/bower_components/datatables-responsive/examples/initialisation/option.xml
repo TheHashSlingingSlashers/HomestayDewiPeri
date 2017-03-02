@@ -8,7 +8,7 @@
 <![CDATA[
 
 $(document).ready(function() {
-	$('#example').DataTable( {
+	$('#app').DataTable( {
 		responsive: true
 	} );
 } );

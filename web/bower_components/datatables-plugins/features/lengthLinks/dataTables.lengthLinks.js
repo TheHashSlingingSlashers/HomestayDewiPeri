@@ -18,12 +18,12 @@
  * character option and it uses the `lengthMenu` options of DataTables to
  * determine what to display.
  *
- * @example
+ * @app
  *   $('#myTable').DataTable( {
  *     dom: 'Lfrtip'
  *   } );
  *
- * @example
+ * @app
  *   $('#myTable').DataTable( {
  *     lengthMenu: [ [10, 25, 50, -1], [10, 25, 50, "All"] ]
  *     dom: 'Lfrtip'

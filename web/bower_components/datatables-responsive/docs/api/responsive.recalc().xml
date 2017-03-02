@@ -20,9 +20,9 @@
 
 	<example title="Recalculate the responsive actions once the table is made visible"><![CDATA[
 
-var table = $('#example').DataTable();
+var table = $('#app').DataTable();
 
-$('#example').css( 'display', 'table' );
+$('#app').css( 'display', 'table' );
 
 table.responsive.recalc();
 
@@ -30,7 +30,7 @@ table.responsive.recalc();
 
 	<example title="Use `columns.adjust()` and `responsive.recalc()`"><![CDATA[
 
-$('#example').DataTable()
+$('#app').DataTable()
 	.columns.adjust()
 	.responsive.recalc();
 

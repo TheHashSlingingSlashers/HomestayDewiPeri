@@ -9,8 +9,8 @@
 			<![CDATA[
 			An array of objects, where each object contains two properties that describe each breakpoint:
 
-			* `name` - the breakpoint name allowing class targeting. This can be a single word, or append `\-[a-z]` to provide sub-breakpoints as the default does to allow, for example, tablet, tablet landscape or tablet portrait breakpoints.
-			* `width` - the width (pixels) of the page viewport at which this breakpoint will apply. The value given is the maximum size at which this breakpoint will be applied, and it will be used until the next breakpoint is found. For example, if using the default breakpoints (above), the `tablet-l` breakpoint will be applied for `768 < x <= 1024` (where `x` is the viewport width).
+			* `name` - the breakpoint name allowing class targeting. This can be a single word, or append `\-[a-z]` to provide sub-breakpoints as the default does to allow, for app, tablet, tablet landscape or tablet portrait breakpoints.
+			* `width` - the width (pixels) of the page viewport at which this breakpoint will apply. The value given is the maximum size at which this breakpoint will be applied, and it will be used until the next breakpoint is found. For app, if using the default breakpoints (above), the `tablet-l` breakpoint will be applied for `768 < x <= 1024` (where `x` is the viewport width).
 			]]>
 		</description>
 	</type>
@@ -43,7 +43,7 @@
 
 	<example title="Set custom breakpoints in the DataTables initialisation"><![CDATA[
 
-$('#example').DataTable( {
+$('#app').DataTable( {
 	responsive: {
 		breakpoints: [
 			{ name: 'desktop', width: Infinity },
@@ -65,7 +65,7 @@ $.fn.dataTable.Responsive.breakpoints = [
 	{ name: 'phone',   width: 480 }
 ];
 
-$('#example').DataTable( {
+$('#app').DataTable( {
 	responsive: true
 } );
 
