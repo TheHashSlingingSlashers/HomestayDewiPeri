@@ -153,7 +153,23 @@
                                     </li>
                                 </ul>
                                 <!-- /.nav-second-level -->
-                            </li>                        
+                            </li>
+                            
+                            <li>
+                                <a href="#"><i class="fa fa-suitcase fa-fw" aria-hidden="true"></i> Manajemen Homestay<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="#">Lihat Penyewa Homestay</a>
+                                    </li>
+                                    <li>
+                                        <a href="kelola-penyewa.jsp">Kelola Penyewa Homestay</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Memindah Penyewa Homestay</a>
+                                    </li>
+                                </ul>
+                                <!-- /.nav-second-level -->
+                            </li>
 
                         </ul>
                     </div>

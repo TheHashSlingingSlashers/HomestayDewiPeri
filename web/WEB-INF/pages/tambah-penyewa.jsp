@@ -184,6 +184,17 @@
                                     <form action="../InsertPenyewa" method="POST" class="form-horizontal" role="form" id="addPenyewa">
                                         
                                         <div class="form-group">
+                                        <label class="col-md-2 col-sm-2 col-xs-12">Event yang Diikuti</label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <select class="form-control" title="Pilih Event yang Diikuti">
+                                                    <option>Belum ada event</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!-- /.form-group -->
+                                        <div class="form-group">
                                             <label class="col-md-2 col-sm-2 col-xs-12">No. Identitas</label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                 <input type="text" class="form-control col-md-7 col-xs-12" id="noIdentitas" name="noIdentitas">
