@@ -2,6 +2,7 @@ package app.controller
 
 import app.model.Homestay
 import app.model.Penyewa
+import app.repository.EventDAO
 import app.repository.HomestayDAO
 import app.repository.PenyewaDAO
 import org.springframework.beans.factory.annotation.Autowired
@@ -47,7 +48,7 @@ class PenyewaController {
     @Autowired private lateinit var dao: PenyewaDAO
 
     @RequestMapping(method = arrayOf(GET))
-    fun lihat() = "lihat-penyewa"
+    fun lihat():String = "lihat-penyewa"
 
     @RequestMapping("/new", method = arrayOf(GET))
     fun tambah() = "tambah-penyewa"
@@ -58,3 +59,10 @@ class PenyewaController {
         return "redirect:/penyewa"
     }
 }
+
+
+@Controller @RequestMapping("/event")
+class EventController {
+    @Autowired private lateinit var dao: EventDAO
+}
+

@@ -14,16 +14,16 @@ import java.util.*;
  * Created by ric on 20/02/17.
  */
 @Repository
-public class HomestayDAO {
-    private JdbcTemplate jdbcTemplate;
+public class HomestayDAO extends DAO<Homestay> {
 
     @Autowired
-    public HomestayDAO(JdbcTemplate jdbcTemplate){
-        this.jdbcTemplate = jdbcTemplate;
+    public HomestayDAO(JdbcTemplate jdbcTemplate) {
+        super(jdbcTemplate);
     }
 
     public final Comparator<Homestay> SORT_BY_ID = Comparator.comparing(Homestay::getId);
 
+    @Override
     public List<Homestay> getAll() throws SQLException {
         return jdbcTemplate.query("SELECT * FROM homestay", null, null, (ResultSet rs, int rowNum) -> {
             Homestay h = new Homestay();
@@ -37,14 +37,16 @@ public class HomestayDAO {
         });
     }
 
+    @Override
     public List<Homestay> getAllSortedBy(Comparator<Homestay> sorter) throws SQLException {
         List<Homestay> res = getAll();
         Collections.sort(res, sorter != null ? sorter : SORT_BY_ID);
         return res;
     }
 
+    @Override
     public Homestay getById(String id) throws SQLException {
-        return jdbcTemplate.query("SELECT * FROM HOMESTAY WHERE id=?", new String[]{id}, new int[]{Types.VARCHAR}, rs -> {
+        return jdbcTemplate.query("SELECT * FROM HOMESTAY WHERE id=?", new String[]{id}, new int[]{Types.VARCHAR}, (ResultSet rs) -> {
             if (rs.next()) {
                 Homestay h = new Homestay();
                 h.setId(rs.getString("id"));
@@ -74,6 +76,7 @@ public class HomestayDAO {
 //        return null;
     }
 
+    @Override
     public int insert(Homestay h) throws SQLException {
         String sql = "INSERT INTO HOMESTAY(id,pemilik,LOKASI,JML_KAMAR,JML_BED,JML_WC) VALUES (?,?,?,?,?,?)";
         return jdbcTemplate.update(sql, ps -> {
@@ -126,6 +129,7 @@ public class HomestayDAO {
 //        return r;
     }
 
+    @Override
     public final int deleteById(String id) throws SQLException {
         String sql = "DELETE FROM HOMESTAY WHERE id=?";
         return jdbcTemplate.update(sql, new String[]{id}, new int[]{Types.VARCHAR});
