@@ -1,14 +1,14 @@
 package app.repository;
 
 import app.model.Homestay;
+import java.sql.*;
+import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.*;
 import org.springframework.stereotype.Repository;
 import util.DbStarter;
 
-import java.sql.*;
-import java.util.*;
 
 /**
  * Created by ric on 20/02/17.

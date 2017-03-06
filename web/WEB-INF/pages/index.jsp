@@ -42,10 +42,8 @@
     <body>
 
         <div id="wrapper">
-
             <!-- Navigation -->
             <%@include file="include/navbar.jsp"%>
-
             <!-- Page Content -->
             <div id="page-wrapper">
                 <div class="container-fluid">
