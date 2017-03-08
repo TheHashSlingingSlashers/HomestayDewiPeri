@@ -36,15 +36,12 @@ class SpringWebAppInitializer : AbstractAnnotationConfigDispatcherServletInitial
 @EnableWebMvc
 @ComponentScan("app")
 open class WebConfig : WebMvcConfigurerAdapter() {
-    @Bean open fun viewResolver(): ViewResolver {
-        val res = InternalResourceViewResolver()
-        res.apply {
-            setPrefix("/WEB-INF/pages/")
-            setSuffix(".jsp")
-            setExposeContextBeansAsAttributes(true)
-        }
-        return res
+    @Bean open fun viewResolver(): ViewResolver = InternalResourceViewResolver().apply {
+        setPrefix("/WEB-INF/pages/")
+        setSuffix(".jsp")
+        setExposeContextBeansAsAttributes(true)
     }
+
 
     @Bean
     open fun jdbcTemplate(ds: DataSource) = JdbcTemplate(ds)

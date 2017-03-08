@@ -27,7 +27,7 @@ sourceSets {
         java.srcDir('src/')
         kotlin.srcDir('src/')
     }
-    test{
+    test {
         java.srcDir('test/')
     }
 }
@@ -44,9 +44,10 @@ dependencies {
     compile 'org.springframework:spring-webmvc:4.3.6.RELEASE'
     compile 'org.springframework:spring-jdbc:4.3.6.RELEASE'
     // The production code uses the SLF4J logging API at compile time
-    compile 'org.slf4j:slf4j-api:1.7.21'
+//    compile 'org.slf4j:slf4j-api:1.7.21'
     // https://mvnrepository.com/artifact/com.h2database/h2
     compile 'com.h2database:h2:1.4.193'
+    providedCompile 'javax.servlet:jstl:1.2'
 
     providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
 
@@ -59,7 +60,10 @@ dependencies {
     testCompile 'org.mockito:mockito-core:+'
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
-
+gretty {
+    contextPath = "/"
+    interactiveMode = 'rebuildAndRestartOnKeyPress'
+}
 war {
     webAppDirName = 'web/'
 }
