@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.jdbc.core.ResultSetExtractor
 import org.springframework.stereotype.Controller
+import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.ModelAttribute
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod.GET
@@ -92,7 +93,10 @@ class HomestayController {
     private lateinit var homestayDAO: HomestayDAO
 
     @RequestMapping(method = arrayOf(GET))
-    fun lihat() = "lihat-homestay"
+    fun lihat(model: Model):String {
+        model.addAttribute("listHomestay",homestayDAO.all)
+        return "lihat-homestay"
+    }
 
     @RequestMapping("/new", method = arrayOf(GET))
     fun tambah() = "tambah-homestay"

@@ -399,7 +399,7 @@
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 <script>
     $(document).ready(function () {
-        $('#dataTables-app').DataTable({
+        $('#dataTables-example').DataTable({
             responsive: true
         });
     });
