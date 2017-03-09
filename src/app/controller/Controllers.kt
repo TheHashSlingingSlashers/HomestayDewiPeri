@@ -3,9 +3,11 @@ package app.controller
 import app.model.Event
 import app.model.Homestay
 import app.model.Penyewa
+import app.model.User
 import app.repository.EventDAO
 import app.repository.HomestayDAO
 import app.repository.PenyewaDAO
+import app.repository.UserDAO
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.jdbc.core.ResultSetExtractor
@@ -19,6 +21,7 @@ import java.sql.ResultSet
 import java.sql.Types.VARCHAR
 import java.util.*
 import javax.servlet.http.HttpServletRequest
+import javax.servlet.http.HttpSession
 
 /**
  * Created by ric on 28/02/17.
@@ -31,6 +34,12 @@ private operator fun <E> Enumeration<E>.contains(e: E?): Boolean {
         if (d == e) return true
     }
     return false
+}
+
+fun HttpSession.clearAttributes(){
+    for(attr in attributeNames.iterator()){
+        removeAttribute(attr)
+    }
 }
 
 
@@ -55,16 +64,22 @@ class HomeController {
 
     @RequestMapping("/login", method = arrayOf(POST))
     fun loginSubmit(req: HttpServletRequest, @RequestParam("username") user: String?, @RequestParam("password") pass: String?): String {
-        if (validateLogin(jdbcTemplate, user, pass)) {
+        if (validateLogin( user, pass)) {
             req.session.setAttribute("user", user)
             return "redirect:/"
         } else return "/login"
     }
 
-    private fun validateLogin(template: JdbcTemplate, username: String?, password: String?): Boolean {
+    @RequestMapping("/logout",method= arrayOf(GET))
+    fun logout(req: HttpServletRequest):String{
+        req.session.clearAttributes()
+        return "redirect:/login"
+    }
+
+    private fun validateLogin(username: String?, password: String?): Boolean {
         if (username == null || password == null) return false
-        val sql = "SELECT * FROM pengguna WHERE `username`=? AND `password`=?"
-        return template.query(sql, arrayOf(username, password), intArrayOf(VARCHAR, VARCHAR), ResultSetExtractor(ResultSet::next))
+        val sql = "SELECT * FROM pengguna WHERE `USERNAME`=? AND `PASSWORD`=?"
+        return jdbcTemplate.query(sql, arrayOf(username, password), ResultSetExtractor(ResultSet::next))
     }
 
 }
@@ -87,6 +102,14 @@ class HomestayController {
         homestayDAO.insert(homestay)
         return "redirect:/homestay"
     }
+    @RequestMapping("/edit", method = arrayOf(GET))
+    fun edit() = "edit-homestay"
+
+    @RequestMapping("/edit", method=arrayOf(POST))
+    fun editSubmit(@ModelAttribute h:Homestay):String{
+        homestayDAO.update(h)
+        return "redirect:/homestay"
+    }
 }
 
 @Controller @RequestMapping("/penyewa")
@@ -102,6 +125,14 @@ class PenyewaController {
     @RequestMapping("/new", method = arrayOf(POST))
     fun tambahSubmit(@ModelAttribute p: Penyewa): String {
         dao.insert(p)
+        return "redirect:/penyewa"
+    }
+    @RequestMapping("/edit", method = arrayOf(GET))
+    fun edit() = "edit-penyewa"
+
+    @RequestMapping("/edit", method=arrayOf(POST))
+    fun editSubmit(@ModelAttribute p:Penyewa):String{
+        dao.update(p)
         return "redirect:/penyewa"
     }
 }
@@ -121,6 +152,42 @@ class EventController {
     fun tambahSubmit(@ModelAttribute event: Event): String {
         dao.insert(event)
         return "redirect:/event"
+    }
+
+    @RequestMapping("/edit", method = arrayOf(GET))
+    fun edit() = "edit-event"
+
+    @RequestMapping("/edit", method=arrayOf(POST))
+    fun editSubmit(@ModelAttribute event:Event):String{
+        dao.update(event)
+        return "redirect:/event"
+    }
+}
+
+@Controller @RequestMapping("/pengguna")
+class UserController {
+    @Autowired private lateinit var dao: UserDAO
+
+    @RequestMapping(method = arrayOf(GET))
+    fun lihat() = "lihat-pengguna"
+
+    @RequestMapping("/new", method = arrayOf(GET))
+    fun tambah() = "tambah-pengguna"
+
+    @RequestMapping("/new", method = arrayOf(POST))
+    fun tambahSubmit(@ModelAttribute user: User):String{
+        dao.insert(user)
+        return "redirect:/pengguna"
+    }
+
+    @RequestMapping("/edit", method = arrayOf(GET))
+    fun edit() = "edit-password"
+
+    @RequestMapping("/edit", method=arrayOf(POST))
+    fun editSubmit(@RequestParam("username") user: String?,@RequestParam("password") password: String?):String{
+        val u=User().apply { username=user;this.password=password }
+        dao.update(u)
+        return "redirect:/pengguna"
     }
 }
 

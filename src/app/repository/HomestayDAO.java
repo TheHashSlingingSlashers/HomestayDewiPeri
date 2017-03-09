@@ -9,6 +9,9 @@ import org.springframework.jdbc.core.*;
 import org.springframework.stereotype.Repository;
 import util.DbStarter;
 
+import static java.sql.Types.INTEGER;
+import static java.sql.Types.VARCHAR;
+
 
 /**
  * Created by ric on 20/02/17.
@@ -46,7 +49,7 @@ public class HomestayDAO extends DAO<Homestay> {
 
     @Override
     public Homestay getById(String id) throws SQLException {
-        return jdbcTemplate.query("SELECT * FROM HOMESTAY WHERE id=?", new String[]{id}, new int[]{Types.VARCHAR}, (ResultSet rs) -> {
+        return jdbcTemplate.query("SELECT * FROM HOMESTAY WHERE id=?", new String[]{id}, new int[]{VARCHAR}, (ResultSet rs) -> {
             if (rs.next()) {
                 Homestay h = new Homestay();
                 h.setId(rs.getString("id"));
@@ -132,7 +135,7 @@ public class HomestayDAO extends DAO<Homestay> {
     @Override
     public final int deleteById(String id) throws SQLException {
         String sql = "DELETE FROM HOMESTAY WHERE id=?";
-        return jdbcTemplate.update(sql, new String[]{id}, new int[]{Types.VARCHAR});
+        return jdbcTemplate.update(sql, new String[]{id}, new int[]{VARCHAR});
 //        try (PreparedStatement ps = DbStarter.getConnection().prepareStatement(sql)) {
 //            ps.setString(1, id);
 //            return ps.executeUpdate();
@@ -142,5 +145,17 @@ public class HomestayDAO extends DAO<Homestay> {
 //            e.printStackTrace();
 //            return 0;
 //        }
+    }
+
+    @Override
+    public int update(Homestay h) throws SQLException {
+        return jdbcTemplate.update("UPDATE HOMESTAY SET PEMILIK=?,LOKASI=?,JML_KAMAR=?,JML_BED=?,JML_WC=? WHERE ID=?",
+                new Object[]{h.getPemilik(),
+                        h.getLokasi(),
+                        h.getJumlahKamar(),
+                        h.getJumlahBed(),
+                        h.getJumlahWC(),
+                        h.getId()},
+                new int[]{VARCHAR, VARCHAR, INTEGER, INTEGER, INTEGER, VARCHAR});
     }
 }

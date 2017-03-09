@@ -20,7 +20,6 @@ import static java.sql.Types.VARCHAR;
  */
 @Repository
 public class PenyewaDAO extends DAO<Penyewa> {
-    private JdbcTemplate jdbcTemplate;
 
     @Autowired
     public PenyewaDAO(JdbcTemplate jdbcTemplate) {
@@ -154,5 +153,18 @@ public class PenyewaDAO extends DAO<Penyewa> {
 //            e.printStackTrace();
 //            return -0;
 //        }
+    }
+
+    @Override
+    public int update(Penyewa p) throws SQLException {
+        return jdbcTemplate.update("UPDATE PENYEWA SET NAMA=?,JNS_KELAMIN=?,ALAMAT=?,NO_TELP=?,JNS_MAKANAN=?,MENGINAP=? WHERE  id=?",
+                new Object[]{p.getNama(),
+                        p.getJenisKelamin().name(),
+                        p.getAlamat(),
+                        p.getNoTelp(),
+                        p.getJenisMakanan().name(),
+                        p.isMenginap(),
+                        p.getId()},
+                new int[]{VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR});
     }
 }

@@ -83,12 +83,22 @@ public class EventDAO extends DAO<Event> {
                         new java.sql.Date(obj.getMulai().getTime()),
                         new java.sql.Date(obj.getSelesai().getTime())},
                 new int[]{VARCHAR, VARCHAR, VARCHAR, DATE, DATE}
-                );
+        );
     }
 
     @Override
     public int deleteById(String id) throws SQLException {
         return jdbcTemplate.update("DELETE FROM event WHERE id=?",
                 new Object[]{id}, new int[]{VARCHAR});
+    }
+
+    @Override
+    public int update(Event obj) throws SQLException {
+        return jdbcTemplate.update("UPDATE event SET NAMA_EVENT=?,PENYELENGGARA=?,MULAI_EVENT=?,SELESAI_EVENT=? WHERE ID=?",
+                new Object[]{obj.getNama(),
+                        obj.getPenyelenggara(),
+                        new java.sql.Date(obj.getMulai().getTime()),
+                        new java.sql.Date(obj.getMulai().getTime()), obj.getId()},
+                new int[]{VARCHAR, VARCHAR, DATE, DATE, VARCHAR});
     }
 }

@@ -27,4 +27,6 @@ public abstract class DAO<T> {
     public abstract int insert(T obj) throws SQLException;
 
     public abstract int deleteById(String id) throws SQLException;
+
+    public abstract int update(T obj) throws SQLException;
 }

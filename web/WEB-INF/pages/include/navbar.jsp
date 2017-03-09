@@ -21,7 +21,7 @@
                 <li><a href="#"><i class="fa fa-user fa-fw"></i> Ubah Password Admin</a>
                 </li>
                 <li class="divider"></li>
-                <li><a href="#/login"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                <li><a href="${path}/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                 </li>
             </ul>
             <!-- /.dropdown-user -->
@@ -99,13 +99,13 @@
                             class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="lihat-pengguna.jsp">Lihat Pengguna</a>
+                            <a href="${path}/pengguna">Lihat Pengguna</a>
                         </li>
                         <li>
-                            <a href="tambah-pengguna.jsp">Tambah Pengguna Baru</a>
+                            <a href="${path}/pengguna/new">Tambah Pengguna Baru</a>
                         </li>
                         <li>
-                            <a href="edit-password.jsp">Edit Password Pengguna</a>
+                            <a href="${path}/pengguna/edit">Edit Password Pengguna</a>
                         </li>
                         <li>
                             <a href="hapus-pengguna.jsp">Hapus Pengguna</a>
