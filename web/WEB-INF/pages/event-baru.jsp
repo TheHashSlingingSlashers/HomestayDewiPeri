@@ -44,7 +44,7 @@
                     <div class="panel panel-primary">
                         <div class="panel-heading">Buat Event Baru</div>
                         <div class="panel-body">
-                            <form class="form-horizontal" role="form">
+                            <form method="post" class="form-horizontal" role="form">
                                 <div class="form-group">
                                     <label class="col-md-2 col-sm-2 col-xs-12">Kode Event</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
@@ -130,8 +130,8 @@
 <!-- /#wrapper -->
 <%@include file="include/scripts.jsp" %>
 
-<script src="js/moment/moment.min.js"></script>
-<script src="js/datepicker/daterangepicker.js"></script>
+<script src="${path}/js/moment/moment.min.js"></script>
+<script src="${path}/js/datepicker/daterangepicker.js"></script>
 <script>
     $(document).ready(function () {
 

@@ -1,7 +1,9 @@
 package app.repository;
 
 import app.model.Penyewa;
+import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
@@ -31,6 +33,7 @@ public class PenyewaDAO extends DAO<Penyewa> {
     public static final String COLUMN_ID = "id";
 
     @Override
+    @Bean(value = "listPenyewa",autowire = Autowire.BY_NAME)
     public List<Penyewa> getAll() throws SQLException {
         return jdbcTemplate.query("SELECT * FROM penyewa", (rs, rowNum) -> {
             Penyewa p = new Penyewa();

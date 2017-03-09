@@ -50,7 +50,7 @@
                     <div class="panel panel-primary">
                         <div class="panel-heading">Tambah Homestay Baru</div>
                         <div class="panel-body">
-                            <form action="../InsertHomestay" method="POST" class="form-horizontal" role="form">
+                            <form  method="POST" class="form-horizontal" role="form">
                                 <div class="form-group">
                                     <label class="col-md-2 col-sm-2 col-xs-12">Kode Homestay</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">

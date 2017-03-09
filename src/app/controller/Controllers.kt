@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod.POST
 import org.springframework.web.bind.annotation.RequestParam
 import java.sql.ResultSet
 import java.sql.Types.VARCHAR
+import java.text.SimpleDateFormat
 import java.util.*
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpSession
@@ -93,8 +94,7 @@ class HomestayController {
     private lateinit var homestayDAO: HomestayDAO
 
     @RequestMapping(method = arrayOf(GET))
-    fun lihat(model: Model):String {
-        model.addAttribute("listHomestay",homestayDAO.all)
+    fun lihat():String {
         return "lihat-homestay"
     }
 
@@ -121,7 +121,9 @@ class PenyewaController {
     @Autowired private lateinit var dao: PenyewaDAO
 
     @RequestMapping(method = arrayOf(GET))
-    fun lihat(): String = "lihat-penyewa"
+    fun lihat(): String {
+        return "lihat-penyewa"
+    }
 
     @RequestMapping("/new", method = arrayOf(GET))
     fun tambah() = "tambah-penyewa"
@@ -147,7 +149,11 @@ class EventController {
     @Autowired private lateinit var dao: EventDAO
 
     @RequestMapping(method = arrayOf(GET))
-    fun lihat() = "lihat-event"
+    fun lihat(model:Model):String {
+//        model.addAttribute("listEvent", dao.all)
+        model.addAttribute("formatter",SimpleDateFormat("d-m-Y"))
+        return "lihat-event"
+    }
 
     @RequestMapping("/new", method = arrayOf(GET))
     fun tambah() = "event-baru"

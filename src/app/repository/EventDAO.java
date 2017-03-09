@@ -1,7 +1,9 @@
 package app.repository;
 
 import app.model.Event;
+import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -33,6 +35,7 @@ public class EventDAO extends DAO<Event> {
     }
 
     @Override
+    @Bean(value = "listEvent",autowire = Autowire.BY_NAME)
     public List<Event> getAll() throws SQLException {
         return jdbcTemplate.query("SELECT * FROM event", (rs, row) -> {
             Event e = new Event();

@@ -1,7 +1,9 @@
 package app.repository;
 
 import app.model.User;
+import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -25,6 +27,7 @@ public class UserDAO extends DAO<User> {
     }
 
     @Override
+    @Bean(value = "listPengguna",autowire = Autowire.BY_NAME)
     public List<User> getAll() throws SQLException {
         return jdbcTemplate.query("select * from pengguna", (rs, row) -> {
             User u = new User();

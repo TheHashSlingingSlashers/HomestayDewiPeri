@@ -3,7 +3,10 @@ package app.repository;
 import app.model.Homestay;
 import java.sql.*;
 import java.util.*;
+
+import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.*;
 import org.springframework.stereotype.Repository;
@@ -27,6 +30,7 @@ public class HomestayDAO extends DAO<Homestay> {
     public final Comparator<Homestay> SORT_BY_ID = Comparator.comparing(Homestay::getId);
 
     @Override
+    @Bean(value = "listHomestay",autowire = Autowire.BY_NAME)
     public List<Homestay> getAll() throws SQLException {
         return jdbcTemplate.query("SELECT * FROM homestay", null, null, (ResultSet rs, int rowNum) -> {
             Homestay h = new Homestay();

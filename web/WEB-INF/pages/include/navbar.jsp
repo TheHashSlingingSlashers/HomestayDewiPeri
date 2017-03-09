@@ -38,7 +38,6 @@
                             class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-
                             <a href="${path}/event">Lihat Event</a>
                         </li>
                         <li>
