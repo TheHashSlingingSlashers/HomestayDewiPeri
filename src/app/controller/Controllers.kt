@@ -152,8 +152,8 @@ class EventController {
 
     @RequestMapping(method = arrayOf(GET))
     fun lihat(model: Model): String {
-//        model.addAttribute("listEvent", dao.all)
-        model.addAttribute("formatter", SimpleDateFormat("d-m-Y"))
+        model.addAttribute("listEvent", dao.all)
+        model.addAttribute("formatter", SimpleDateFormat("dd-MM-Y"))
         return "lihat-event"
     }
 

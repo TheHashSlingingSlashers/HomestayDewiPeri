@@ -35,7 +35,6 @@ public class EventDAO extends DAO<Event> {
     }
 
     @Override
-    @Bean(value = "listEvent",autowire = Autowire.BY_NAME)
     public List<Event> getAll() throws SQLException {
         return jdbcTemplate.query("SELECT * FROM event", (rs, row) -> {
             Event e = new Event();

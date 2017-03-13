@@ -36,7 +36,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Penyewa</h1>
+                    <h1 class="page-header"><i class="fa fa-user" aria-hidden="true"></i> Penyewa</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -138,8 +138,8 @@
                                 </div>
                                 <!-- /.form-group -->
                                 <div class="col-md-offset-2 col-sm-offset-2">
-                                    <button type="submit" class="btn btn-labeled btn-success"><span class="btn-label"><i
-                                            class="glyphicon glyphicon-floppy-disk"></i></span> Simpan
+                                    &nbsp;<button type="submit" class="btn btn-labeled btn-success"><span class="btn-label"><i
+                                            class="glyphicon glyphicon-floppy-disk"></i></span> Save
                                     </button>
                                 </div>
 

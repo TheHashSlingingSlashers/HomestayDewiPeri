@@ -38,63 +38,15 @@
                 </li>
 
                 <li>
-                    <a href="#"><i class="fa fa-users fa-fw" aria-hidden="true"></i> Penyewa<span
-                            class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="${path}/penyewa">Lihat Penyewa</a>
-                        </li>
-                        <li>
-                            <a href="${path}/penyewa/new">Tambah Penyewa Baru</a>
-                        </li>
-                        <li>
-                            <a href="${path}/penyewa/edit">Edit Penyewa</a>
-                        </li>
-                        <li>
-                            <a href="#hapus-penyewa.jsp">Hapus Penyewa</a>
-                        </li>
-                    </ul>
-                    <!-- /.nav-second-level -->
+                    <a href="${path}/penyewa"><i class="fa fa-users fa-fw" aria-hidden="true"></i> Penyewa</a>
                 </li>
 
                 <li>
-                    <a href="#"><i class="fa fa-home fa-fw" aria-hidden="true"></i> Homestay<span
-                            class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="${path}/homestay">Lihat Homestay</a>
-                        </li>
-                        <li>
-                            <a href="${path}/homestay/new">Tambah Homestay Baru</a>
-                        </li>
-                        <li>
-                            <a href="${path}/homestay/edit">Edit Homestay</a>
-                        </li>
-                        <li>
-                            <a href="#hapus-homestay.jsp">Hapus Homestay</a>
-                        </li>
-                    </ul>
-                    <!-- /.nav-second-level -->
+                    <a href="${path}/homestay"><i class="fa fa-home fa-fw" aria-hidden="true"></i> Homestay</a>
                 </li>
 
                 <li>
-                    <a href="#"><i class="fa fa-user fa-fw" aria-hidden="true"></i> Manajemen Pengguna<span
-                            class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="${path}/pengguna">Lihat Pengguna</a>
-                        </li>
-                        <li>
-                            <a href="${path}/pengguna/new">Tambah Pengguna Baru</a>
-                        </li>
-                        <li>
-                            <a href="${path}/pengguna/edit">Edit Password Pengguna</a>
-                        </li>
-                        <li>
-                            <a href="hapus-pengguna.jsp">Hapus Pengguna</a>
-                        </li>
-                    </ul>
-                    <!-- /.nav-second-level -->
+                    <a href="${path}/pengguna"><i class="fa fa-user fa-fw" aria-hidden="true"></i> Manajemen Pengguna</a>
                 </li>
 
                 <li>
