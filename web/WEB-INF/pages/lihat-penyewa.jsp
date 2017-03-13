@@ -30,7 +30,7 @@
 
     <!-- Navigation -->
     <%@include file="include/navbar.jsp" %>
-
+    <%@page import="app.model.Penyewa.Sex" %>
     <!-- Page Content -->
     <div id="page-wrapper">
         <div class="container-fluid">
@@ -53,21 +53,37 @@
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                     <tr>
-                                        <th>No Daftar</th>
                                         <th>No ID</th>
                                         <th>Nama</th>
                                         <th>Gender</th>
                                         <th>Alamat</th>
                                         <th>Telp</th>
                                         <th>Makanan</th>
-                                        <th>Ket</th>
+                                        <th>Menginap</th>
                                         <th>Event</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <c:forEach items="${listPenyewa}" var="p">
                                         <tr>
-                                            <td>${p.}</td>
+                                            <td>${p.id}</td>
+                                            <td>${p.nama}</td>
+                                            <td>
+                                                <c:choose>
+                                                    <c:when test="${p.jenisKelamin==Sex.L}">Laki-laki</c:when>
+                                                    <c:when test="${p.jenisKelamin==P}">Perempuan</c:when>
+                                                </c:choose>
+                                            </td>
+                                            <td>${p.alamat}</td>
+                                            <td>${p.noTelp}</td>
+                                            <td>
+                                                <c:choose>
+                                                    <c:when test="${p.jenisMakanan==vege}">Vegetarian</c:when>
+                                                    <c:when test="${p.jenisKelamin==nonvege}">Non-vegetarian</c:when>
+                                                </c:choose>
+                                            </td>
+                                            <td><input type="checkbox" disabled="disabled" value="${p.menginap}"/></td>
+                                            <td>&nbsp;</td>
                                         </tr>
                                     </c:forEach>
                                     </tbody>
