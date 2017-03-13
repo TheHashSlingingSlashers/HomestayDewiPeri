@@ -72,7 +72,7 @@ $.plot($("#placeholder"), data, options);
 Here, data is an array of data series and options is an object with
 settings if you want to customize the plot. Take a look at the
 examples for some ideas of what to put in or look at the 
-[API reference](API.md). Here's a quick app that'll draw a line 
+[API reference](API.md). Here's a quick example that'll draw a line 
 from (0, 0) to (1, 1):
 
 ```js
@@ -97,7 +97,7 @@ is pretty looks.
 
 ## Notes about the examples ##
 
-In order to have a useful, functional app of time-series plots using time
+In order to have a useful, functional example of time-series plots using time
 zones, date.js from [timezone-js][timezone-js] (released under the Apache 2.0
 license) and the [Olson][olson] time zone database (released to the public
 domain) have been included in the examples directory.  They are used in

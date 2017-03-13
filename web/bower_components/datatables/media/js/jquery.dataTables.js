@@ -75,17 +75,17 @@
 	 *    are defined by {@link DataTable.defaults}
 	 *  @requires jQuery 1.7+
 	 *
-	 *  @app
+	 *  @example
 	 *    // Basic initialisation
 	 *    $(document).ready( function {
-	 *      $('#app').dataTable();
+	 *      $('#example').dataTable();
 	 *    } );
 	 *
-	 *  @app
+	 *  @example
 	 *    // Initialisation with configuration options - in this case, disable
 	 *    // pagination and sorting.
 	 *    $(document).ready( function {
-	 *      $('#app').dataTable( {
+	 *      $('#example').dataTable( {
 	 *        "paginate": false,
 	 *        "sort": false
 	 *      } );
@@ -368,7 +368,7 @@
 	/**
 	 * Convert from camel case parameters to Hungarian, based on a Hungarian map
 	 * created by _fnHungarianMap.
-	 *  @param {object} src The app.model object which holds all parameters that can be
+	 *  @param {object} src The model object which holds all parameters that can be
 	 *    mapped.
 	 *  @param {object} user The object to convert from camel case to Hungarian.
 	 *  @param {boolean} force When set to `true`, properties which already have a
@@ -4623,7 +4623,7 @@
 	
 			/* Do the sort - here we want multi-column sorting based on a given data source (column)
 			 * and sorting function (from oSort) in a certain direction. It's reasonably complex to
-			 * follow on it's own, but this is what we want (app two column sorting):
+			 * follow on it's own, but this is what we want (example two column sorting):
 			 *  fnLocalSorting = function(a,b){
 			 *    var iTest;
 			 *    iTest = oSort['string-asc']('data11', 'data12');
@@ -5263,7 +5263,7 @@
 	/**
 	 * Fire callback functions and trigger events. Note that the loop over the
 	 * callback array store is done backwards! Further note that you do not want to
-	 * fire off triggers in time sensitive applications (for app cell creation)
+	 * fire off triggers in time sensitive applications (for example cell creation)
 	 * as its slow.
 	 *  @param {object} settings dataTables settings object
 	 *  @param {string} callbackArr Name of the array storage for the callbacks in
@@ -5381,17 +5381,17 @@
 		 *  @dtopt API
 		 *  @deprecated Since v1.10
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready(function() {
-		 *      var oTable = $('#app').dataTable();
+		 *      var oTable = $('#example').dataTable();
 		 *
 		 *      // Highlight every second row
 		 *      oTable.$('tr:odd').css('backgroundColor', 'blue');
 		 *    } );
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready(function() {
-		 *      var oTable = $('#app').dataTable();
+		 *      var oTable = $('#example').dataTable();
 		 *
 		 *      // Filter to rows with 'Webkit' in them, add a background colour and then
 		 *      // remove the filter, thus highlighting the 'Webkit' rows only.
@@ -5431,9 +5431,9 @@
 		 *  @dtopt API
 		 *  @deprecated Since v1.10
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready(function() {
-		 *      var oTable = $('#app').dataTable();
+		 *      var oTable = $('#example').dataTable();
 		 *
 		 *      // Get the data from the first row in the table
 		 *      var data = oTable._('tr:first');
@@ -5442,9 +5442,9 @@
 		 *      alert( "First cell is: "+data[0] );
 		 *    } );
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready(function() {
-		 *      var oTable = $('#app').dataTable();
+		 *      var oTable = $('#example').dataTable();
 		 *
 		 *      // Filter to 'Webkit' and get all data for
 		 *      oTable.fnFilter('Webkit');
@@ -5498,16 +5498,16 @@
 		 *  @dtopt API
 		 *  @deprecated Since v1.10
 		 *
-		 *  @app
+		 *  @example
 		 *    // Global var for counter
 		 *    var giCount = 2;
 		 *
 		 *    $(document).ready(function() {
-		 *      $('#app').dataTable();
+		 *      $('#example').dataTable();
 		 *    } );
 		 *
 		 *    function fnClickAddRow() {
-		 *      $('#app').dataTable().fnAddData( [
+		 *      $('#example').dataTable().fnAddData( [
 		 *        giCount+".1",
 		 *        giCount+".2",
 		 *        giCount+".3",
@@ -5538,14 +5538,14 @@
 		 * This function will make DataTables recalculate the column sizes, based on the data
 		 * contained in the table and the sizes applied to the columns (in the DOM, CSS or
 		 * through the sWidth parameter). This can be useful when the width of the table's
-		 * parent element changes (for app a window resize).
+		 * parent element changes (for example a window resize).
 		 *  @param {boolean} [bRedraw=true] Redraw the table or not, you will typically want to
 		 *  @dtopt API
 		 *  @deprecated Since v1.10
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready(function() {
-		 *      var oTable = $('#app').dataTable( {
+		 *      var oTable = $('#example').dataTable( {
 		 *        "sScrollY": "200px",
 		 *        "bPaginate": false
 		 *      } );
@@ -5577,9 +5577,9 @@
 		 *  @dtopt API
 		 *  @deprecated Since v1.10
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready(function() {
-		 *      var oTable = $('#app').dataTable();
+		 *      var oTable = $('#example').dataTable();
 		 *
 		 *      // Immediately 'nuke' the current rows (perhaps waiting for an Ajax callback...)
 		 *      oTable.fnClearTable();
@@ -5603,12 +5603,12 @@
 		 *  @dtopt API
 		 *  @deprecated Since v1.10
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready(function() {
 		 *      var oTable;
 		 *
 		 *      // 'open' an information row when a row is clicked on
-		 *      $('#app tbody tr').click( function () {
+		 *      $('#example tbody tr').click( function () {
 		 *        if ( oTable.fnIsOpen(this) ) {
 		 *          oTable.fnClose( this );
 		 *        } else {
@@ -5616,7 +5616,7 @@
 		 *        }
 		 *      } );
 		 *
-		 *      oTable = $('#app').dataTable();
+		 *      oTable = $('#example').dataTable();
 		 *    } );
 		 */
 		this.fnClose = function( nTr )
@@ -5635,9 +5635,9 @@
 		 *  @dtopt API
 		 *  @deprecated Since v1.10
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready(function() {
-		 *      var oTable = $('#app').dataTable();
+		 *      var oTable = $('#example').dataTable();
 		 *
 		 *      // Immediately remove the first row
 		 *      oTable.fnDeleteRow( 0 );
@@ -5671,10 +5671,10 @@
 		 *  @dtopt API
 		 *  @deprecated Since v1.10
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready(function() {
-		 *      // This app is fairly pointless in reality, but shows how fnDestroy can be used
-		 *      var oTable = $('#app').dataTable();
+		 *      // This example is fairly pointless in reality, but shows how fnDestroy can be used
+		 *      var oTable = $('#example').dataTable();
 		 *      oTable.fnDestroy();
 		 *    } );
 		 */
@@ -5690,11 +5690,11 @@
 		 *  @dtopt API
 		 *  @deprecated Since v1.10
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready(function() {
-		 *      var oTable = $('#app').dataTable();
+		 *      var oTable = $('#example').dataTable();
 		 *
-		 *      // Re-draw the table - you wouldn't want to do it here, but it's an app :-)
+		 *      // Re-draw the table - you wouldn't want to do it here, but it's an example :-)
 		 *      oTable.fnDraw();
 		 *    } );
 		 */
@@ -5717,9 +5717,9 @@
 		 *  @dtopt API
 		 *  @deprecated Since v1.10
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready(function() {
-		 *      var oTable = $('#app').dataTable();
+		 *      var oTable = $('#example').dataTable();
 		 *
 		 *      // Sometime later - filter...
 		 *      oTable.fnFilter( 'test string' );
@@ -5755,10 +5755,10 @@
 		 *  @dtopt API
 		 *  @deprecated Since v1.10
 		 *
-		 *  @app
+		 *  @example
 		 *    // Row data
 		 *    $(document).ready(function() {
-		 *      oTable = $('#app').dataTable();
+		 *      oTable = $('#example').dataTable();
 		 *
 		 *      oTable.$('tr').click( function () {
 		 *        var data = oTable.fnGetData( this );
@@ -5766,10 +5766,10 @@
 		 *      } );
 		 *    } );
 		 *
-		 *  @app
+		 *  @example
 		 *    // Individual cell data
 		 *    $(document).ready(function() {
-		 *      oTable = $('#app').dataTable();
+		 *      oTable = $('#example').dataTable();
 		 *
 		 *      oTable.$('td').click( function () {
 		 *        var sData = oTable.fnGetData( this );
@@ -5803,9 +5803,9 @@
 		 *  @dtopt API
 		 *  @deprecated Since v1.10
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready(function() {
-		 *      var oTable = $('#app').dataTable();
+		 *      var oTable = $('#example').dataTable();
 		 *
 		 *      // Get the nodes from the table
 		 *      var nNodes = oTable.fnGetNodes( );
@@ -5831,9 +5831,9 @@
 		 *  @dtopt API
 		 *  @deprecated Since v1.10
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready(function() {
-		 *      $('#app tbody td').click( function () {
+		 *      $('#example tbody td').click( function () {
 		 *        // Get the position of the current data from the node
 		 *        var aPos = oTable.fnGetPosition( this );
 		 *
@@ -5846,7 +5846,7 @@
 		 *      } );
 		 *
 		 *      // Init DataTables
-		 *      oTable = $('#app').dataTable();
+		 *      oTable = $('#example').dataTable();
 		 *    } );
 		 */
 		this.fnGetPosition = function( node )
@@ -5877,12 +5877,12 @@
 		 *  @dtopt API
 		 *  @deprecated Since v1.10
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready(function() {
 		 *      var oTable;
 		 *
 		 *      // 'open' an information row when a row is clicked on
-		 *      $('#app tbody tr').click( function () {
+		 *      $('#example tbody tr').click( function () {
 		 *        if ( oTable.fnIsOpen(this) ) {
 		 *          oTable.fnClose( this );
 		 *        } else {
@@ -5890,7 +5890,7 @@
 		 *        }
 		 *      } );
 		 *
-		 *      oTable = $('#app').dataTable();
+		 *      oTable = $('#example').dataTable();
 		 *    } );
 		 */
 		this.fnIsOpen = function( nTr )
@@ -5902,7 +5902,7 @@
 		/**
 		 * This function will place a new row directly after a row which is currently
 		 * on display on the page, with the HTML contents that is passed into the
-		 * function. This can be used, for app, to ask for confirmation that a
+		 * function. This can be used, for example, to ask for confirmation that a
 		 * particular record should be deleted.
 		 *  @param {node} nTr The table row to 'open'
 		 *  @param {string|node|jQuery} mHtml The HTML to put into the row
@@ -5913,12 +5913,12 @@
 		 *  @dtopt API
 		 *  @deprecated Since v1.10
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready(function() {
 		 *      var oTable;
 		 *
 		 *      // 'open' an information row when a row is clicked on
-		 *      $('#app tbody tr').click( function () {
+		 *      $('#example tbody tr').click( function () {
 		 *        if ( oTable.fnIsOpen(this) ) {
 		 *          oTable.fnClose( this );
 		 *        } else {
@@ -5926,7 +5926,7 @@
 		 *        }
 		 *      } );
 		 *
-		 *      oTable = $('#app').dataTable();
+		 *      oTable = $('#example').dataTable();
 		 *    } );
 		 */
 		this.fnOpen = function( nTr, mHtml, sClass )
@@ -5949,9 +5949,9 @@
 		 *  @dtopt API
 		 *  @deprecated Since v1.10
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready(function() {
-		 *      var oTable = $('#app').dataTable();
+		 *      var oTable = $('#example').dataTable();
 		 *      oTable.fnPageChange( 'next' );
 		 *    } );
 		 */
@@ -5973,9 +5973,9 @@
 		 *  @dtopt API
 		 *  @deprecated Since v1.10
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready(function() {
-		 *      var oTable = $('#app').dataTable();
+		 *      var oTable = $('#example').dataTable();
 		 *
 		 *      // Hide the second column after initialisation
 		 *      oTable.fnSetColumnVis( 1, false );
@@ -5998,12 +5998,12 @@
 		 *  @dtopt API
 		 *  @deprecated Since v1.10
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready(function() {
-		 *      var oTable = $('#app').dataTable();
+		 *      var oTable = $('#example').dataTable();
 		 *      var oSettings = oTable.fnSettings();
 		 *
-		 *      // Show an app parameter from the settings
+		 *      // Show an example parameter from the settings
 		 *      alert( oSettings._iDisplayStart );
 		 *    } );
 		 */
@@ -6020,9 +6020,9 @@
 		 *  @dtopt API
 		 *  @deprecated Since v1.10
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready(function() {
-		 *      var oTable = $('#app').dataTable();
+		 *      var oTable = $('#example').dataTable();
 		 *
 		 *      // Sort immediately with columns 0 and 1
 		 *      oTable.fnSort( [ [0,'asc'], [1,'asc'] ] );
@@ -6042,9 +6042,9 @@
 		 *  @dtopt API
 		 *  @deprecated Since v1.10
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready(function() {
-		 *      var oTable = $('#app').dataTable();
+		 *      var oTable = $('#example').dataTable();
 		 *
 		 *      // Sort on column 1, when 'sorter' is clicked on
 		 *      oTable.fnSortListener( document.getElementById('sorter'), 1 );
@@ -6071,9 +6071,9 @@
 		 *  @dtopt API
 		 *  @deprecated Since v1.10
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready(function() {
-		 *      var oTable = $('#app').dataTable();
+		 *      var oTable = $('#example').dataTable();
 		 *      oTable.fnUpdate( 'Example update', 0, 0 ); // Single cell
 		 *      oTable.fnUpdate( ['a', 'b', 'c', 'd', 'e'], $('tbody tr')[0] ); // Row
 		 *    } );
@@ -6111,9 +6111,9 @@
 		 *  @dtopt API
 		 *  @deprecated Since v1.10
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready(function() {
-		 *      var oTable = $('#app').dataTable();
+		 *      var oTable = $('#example').dataTable();
 		 *      alert( oTable.fnVersionCheck( '1.9.0' ) );
 		 *    } );
 		 */
@@ -6737,7 +6737,7 @@
 	 * Additionally the API is designed to allow you to easily work with the data in
 	 * the tables, retrieving and manipulating it as required. This is done by
 	 * presenting the API class as an array like interface. The contents of the
-	 * array depend upon the actions requested by each method (for app
+	 * array depend upon the actions requested by each method (for example
 	 * `rows().nodes()` will return an array of nodes, while `rows().data()` will
 	 * return an array of objects or arrays depending upon your table's
 	 * configuration). The API object has a number of array like methods (`push`,
@@ -6746,7 +6746,7 @@
 	 *
 	 * Most methods (those which return an Api instance) are chainable, which means
 	 * the return from a method call also has all of the methods available that the
-	 * top level object had. For app, these two calls are equivalent:
+	 * top level object had. For example, these two calls are equivalent:
 	 *
 	 *     // Not chained
 	 *     api.row.add( {...} );
@@ -6767,15 +6767,15 @@
 	 *   * `object` - DataTables settings object
 	 * @param {array} [data] Data to initialise the Api instance with.
 	 *
-	 * @app
+	 * @example
 	 *   // Direct initialisation during DataTables construction
-	 *   var api = $('#app').DataTable();
+	 *   var api = $('#example').DataTable();
 	 *
-	 * @app
+	 * @example
 	 *   // Initialisation using a DataTables jQuery object
-	 *   var api = $('#app').dataTable().api();
+	 *   var api = $('#example').dataTable().api();
 	 *
-	 * @app
+	 * @example
 	 *   // Initialisation as a constructor
 	 *   var api = new $.fn.DataTable.Api( 'table.dataTable' );
 	 */
@@ -7264,7 +7264,7 @@
 	 * @name    DataTable.Api#tables
 	 * @param {string|integer} [selector] Selector to pick which tables the iterator
 	 *   should operate on. If not given, all tables in the current context are
-	 *   used. This can be given as a jQuery selector (for app `':gt(0)'`) to
+	 *   used. This can be given as a jQuery selector (for example `':gt(0)'`) to
 	 *   select multiple tables or as an integer to select a single table.
 	 * @returns {DataTable.Api} Returns a new API instance if a selector is given.
 	 */
@@ -7388,7 +7388,7 @@
 	 *  * `start` - Display index for the first record shown on the current page
 	 *  * `end` - Display index for the last record shown on the current page
 	 *  * `length` - Display length (number of records). Note that generally `start
-	 *    + length = end`, but this is not always true, for app if there are
+	 *    + length = end`, but this is not always true, for example if there are
 	 *    only 2 records to show on the final page, with a length of 10.
 	 *  * `recordsTotal` - Full data set length
 	 *  * `recordsDisplay` - Data set length once the current filtering criterion
@@ -8941,7 +8941,7 @@
 	 *  @static
 	 *  @dtopt API-Static
 	 *
-	 *  @app
+	 *  @example
 	 *    alert( $.fn.dataTable.versionCheck( '1.9.0' ) );
 	 */
 	DataTable.versionCheck = DataTable.fnVersionCheck = function( version )
@@ -8977,9 +8977,9 @@
 	 *  @static
 	 *  @dtopt API-Static
 	 *
-	 *  @app
-	 *    if ( ! $.fn.DataTable.isDataTable( '#app' ) ) {
-	 *      $('#app').dataTable();
+	 *  @example
+	 *    if ( ! $.fn.DataTable.isDataTable( '#example' ) ) {
+	 *      $('#example').dataTable();
 	 *    }
 	 */
 	DataTable.isDataTable = DataTable.fnIsDataTable = function ( table )
@@ -9011,7 +9011,7 @@
 	 *  @static
 	 *  @dtopt API-Static
 	 *
-	 *  @app
+	 *  @example
 	 *    $.each( $.fn.dataTable.tables(true), function () {
 	 *      $(table).DataTable().columns.adjust();
 	 *    } );
@@ -9075,7 +9075,7 @@
 	 * either the 1.9 style Hungarian notation, or the 1.10+ style camelCase
 	 * parameters.
 	 *
-	 *  @param {object} src The app.model object which holds all parameters that can be
+	 *  @param {object} src The model object which holds all parameters that can be
 	 *    mapped.
 	 *  @param {object} user The object to convert from camel case to Hungarian.
 	 *  @param {boolean} force When set to `true`, properties which already have a
@@ -9228,7 +9228,7 @@
 					.removeClass( classes.sTable );
 	
 				// If the were originally stripe classes - then we add them back here.
-				// Note this is not fool proof (for app if not all rows had stripe
+				// Note this is not fool proof (for example if not all rows had stripe
 				// classes - but it's a good effort without getting carried away
 				ien = settings.asDestroyStripes.length;
 	
@@ -9493,7 +9493,7 @@
 		/**
 		 * A list of the columns that sorting should occur on when this column
 		 * is sorted. That this property is an array allows multi-column sorting
-		 * to be defined for a column (for app first name / last name columns
+		 * to be defined for a column (for example first name / last name columns
 		 * would benefit from this). The values are integers pointing to the
 		 * columns to be sorted on (typically it will be a single integer pointing
 		 * at itself, but that doesn't need to be the case).
@@ -9551,7 +9551,7 @@
 		/**
 		 * Developer definable function that is called whenever a cell is created (Ajax source,
 		 * etc) or processed for input (DOM source). This can be used as a compliment to mRender
-		 * allowing you to modify the DOM element (add background colour for app) when the
+		 * allowing you to modify the DOM element (add background colour for example) when the
 		 * element is available.
 		 *  @type function
 		 *  @param {element} nTd The TD node that has been created
@@ -9741,17 +9741,17 @@
 		 * An array of data to use for the table, passed in at initialisation which
 		 * will be used in preference to any data which is already in the DOM. This is
 		 * particularly useful for constructing tables purely in Javascript, for
-		 * app with a custom Ajax call.
+		 * example with a custom Ajax call.
 		 *  @type array
 		 *  @default null
 		 *
 		 *  @dtopt Option
 		 *  @name DataTable.defaults.data
 		 *
-		 *  @app
+		 *  @example
 		 *    // Using a 2D array data source
 		 *    $(document).ready( function () {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "data": [
 		 *          ['Trident', 'Internet Explorer 4.0', 'Win 95+', 4, 'X'],
 		 *          ['Trident', 'Internet Explorer 5.0', 'Win 95+', 5, 'C'],
@@ -9766,10 +9766,10 @@
 		 *      } );
 		 *    } );
 		 *
-		 *  @app
+		 *  @example
 		 *    // Using an array of objects as a data source (`data`)
 		 *    $(document).ready( function () {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "data": [
 		 *          {
 		 *            "engine":   "Trident",
@@ -9811,17 +9811,17 @@
 		 *  @dtopt Option
 		 *  @name DataTable.defaults.order
 		 *
-		 *  @app
+		 *  @example
 		 *    // Sort by 3rd column first, and then 4th column
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "order": [[2,'asc'], [3,'desc']]
 		 *      } );
 		 *    } );
 		 *
 		 *    // No initial sorting
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "order": []
 		 *      } );
 		 *    } );
@@ -9842,9 +9842,9 @@
 		 *  @dtopt Option
 		 *  @name DataTable.defaults.orderFixed
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "orderFixed": [[0,'asc']]
 		 *      } );
 		 *    } )
@@ -9930,38 +9930,38 @@
 		 *  @name DataTable.defaults.ajax
 		 *  @since 1.10.0
 		 *
-		 * @app
+		 * @example
 		 *   // Get JSON data from a file via Ajax.
 		 *   // Note DataTables expects data in the form `{ data: [ ...data... ] }` by default).
-		 *   $('#app').dataTable( {
+		 *   $('#example').dataTable( {
 		 *     "ajax": "data.json"
 		 *   } );
 		 *
-		 * @app
+		 * @example
 		 *   // Get JSON data from a file via Ajax, using `dataSrc` to change
 		 *   // `data` to `tableData` (i.e. `{ tableData: [ ...data... ] }`)
-		 *   $('#app').dataTable( {
+		 *   $('#example').dataTable( {
 		 *     "ajax": {
 		 *       "url": "data.json",
 		 *       "dataSrc": "tableData"
 		 *     }
 		 *   } );
 		 *
-		 * @app
+		 * @example
 		 *   // Get JSON data from a file via Ajax, using `dataSrc` to read data
 		 *   // from a plain array rather than an array in an object
-		 *   $('#app').dataTable( {
+		 *   $('#example').dataTable( {
 		 *     "ajax": {
 		 *       "url": "data.json",
 		 *       "dataSrc": ""
 		 *     }
 		 *   } );
 		 *
-		 * @app
+		 * @example
 		 *   // Manipulate the data returned from the server - add a link to data
 		 *   // (note this can, should, be done using `render` for the column - this
-		 *   // is just a simple app of how the data can be manipulated).
-		 *   $('#app').dataTable( {
+		 *   // is just a simple example of how the data can be manipulated).
+		 *   $('#example').dataTable( {
 		 *     "ajax": {
 		 *       "url": "data.json",
 		 *       "dataSrc": function ( json ) {
@@ -9973,9 +9973,9 @@
 		 *     }
 		 *   } );
 		 *
-		 * @app
+		 * @example
 		 *   // Add data to the request
-		 *   $('#app').dataTable( {
+		 *   $('#example').dataTable( {
 		 *     "ajax": {
 		 *       "url": "data.json",
 		 *       "data": function ( d ) {
@@ -9986,19 +9986,19 @@
 		 *     }
 		 *   } );
 		 *
-		 * @app
+		 * @example
 		 *   // Send request as POST
-		 *   $('#app').dataTable( {
+		 *   $('#example').dataTable( {
 		 *     "ajax": {
 		 *       "url": "data.json",
 		 *       "type": "POST"
 		 *     }
 		 *   } );
 		 *
-		 * @app
+		 * @example
 		 *   // Get the data from localStorage (could interface with a form for
 		 *   // adding, editing and removing rows).
-		 *   $('#app').dataTable( {
+		 *   $('#example').dataTable( {
 		 *     "ajax": function (data, callback, settings) {
 		 *       callback(
 		 *         JSON.parse( localStorage.getItem('dataTablesData') )
@@ -10025,9 +10025,9 @@
 		 *  @dtopt Option
 		 *  @name DataTable.defaults.lengthMenu
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
 		 *      } );
 		 *    } );
@@ -10083,9 +10083,9 @@
 		 *  @dtopt Option
 		 *  @name DataTable.defaults.searchCols
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "searchCols": [
 		 *          null,
 		 *          { "search": "My filter" },
@@ -10109,9 +10109,9 @@
 		 *  @dtopt Option
 		 *  @name DataTable.defaults.stripeClasses
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "stripeClasses": [ 'strip1', 'strip2', 'strip3' ]
 		 *      } );
 		 *    } )
@@ -10129,9 +10129,9 @@
 		 *  @dtopt Features
 		 *  @name DataTable.defaults.autoWidth
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready( function () {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "autoWidth": false
 		 *      } );
 		 *    } );
@@ -10151,9 +10151,9 @@
 		 *  @dtopt Features
 		 *  @name DataTable.defaults.deferRender
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "ajax": "sources/arrays.txt",
 		 *        "deferRender": true
 		 *      } );
@@ -10173,15 +10173,15 @@
 		 *  @dtopt Options
 		 *  @name DataTable.defaults.destroy
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "srollY": "200px",
 		 *        "paginate": false
 		 *      } );
 		 *
 		 *      // Some time later....
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "filter": false,
 		 *        "destroy": true
 		 *      } );
@@ -10204,9 +10204,9 @@
 		 *  @dtopt Features
 		 *  @name DataTable.defaults.searching
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready( function () {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "searching": false
 		 *      } );
 		 *    } );
@@ -10224,9 +10224,9 @@
 		 *  @dtopt Features
 		 *  @name DataTable.defaults.info
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready( function () {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "info": false
 		 *      } );
 		 *    } );
@@ -10244,9 +10244,9 @@
 		 *  @dtopt Features
 		 *  @name DataTable.defaults.jQueryUI
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "jQueryUI": true
 		 *      } );
 		 *    } );
@@ -10263,9 +10263,9 @@
 		 *  @dtopt Features
 		 *  @name DataTable.defaults.lengthChange
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready( function () {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "lengthChange": false
 		 *      } );
 		 *    } );
@@ -10281,9 +10281,9 @@
 		 *  @dtopt Features
 		 *  @name DataTable.defaults.paging
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready( function () {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "paging": false
 		 *      } );
 		 *    } );
@@ -10302,9 +10302,9 @@
 		 *  @dtopt Features
 		 *  @name DataTable.defaults.processing
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready( function () {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "processing": true
 		 *      } );
 		 *    } );
@@ -10326,7 +10326,7 @@
 		 *  @dtopt Options
 		 *  @name DataTable.defaults.retrieve
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready( function() {
 		 *      initTable();
 		 *      tableActions();
@@ -10334,7 +10334,7 @@
 		 *
 		 *    function initTable ()
 		 *    {
-		 *      return $('#app').dataTable( {
+		 *      return $('#example').dataTable( {
 		 *        "scrollY": "200px",
 		 *        "paginate": false,
 		 *        "retrieve": true
@@ -10363,9 +10363,9 @@
 		 *  @dtopt Options
 		 *  @name DataTable.defaults.scrollCollapse
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "scrollY": "200",
 		 *        "scrollCollapse": true
 		 *      } );
@@ -10385,9 +10385,9 @@
 		 *  @dtopt Server-side
 		 *  @name DataTable.defaults.serverSide
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready( function () {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "serverSide": true,
 		 *        "ajax": "xhr.php"
 		 *      } );
@@ -10405,9 +10405,9 @@
 		 *  @dtopt Features
 		 *  @name DataTable.defaults.ordering
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready( function () {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "ordering": false
 		 *      } );
 		 *    } );
@@ -10424,10 +10424,10 @@
 		 *  @dtopt Options
 		 *  @name DataTable.defaults.orderMulti
 		 *
-		 *  @app
+		 *  @example
 		 *    // Disable multiple column sorting ability
 		 *    $(document).ready( function () {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "orderMulti": false
 		 *      } );
 		 *    } );
@@ -10445,9 +10445,9 @@
 		 *  @dtopt Options
 		 *  @name DataTable.defaults.orderCellsTop
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "orderCellsTop": true
 		 *      } );
 		 *    } );
@@ -10467,9 +10467,9 @@
 		 *  @dtopt Features
 		 *  @name DataTable.defaults.orderClasses
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready( function () {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "orderClasses": false
 		 *      } );
 		 *    } );
@@ -10492,9 +10492,9 @@
 		 *  @dtopt Features
 		 *  @name DataTable.defaults.stateSave
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready( function () {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "stateSave": true
 		 *      } );
 		 *    } );
@@ -10514,9 +10514,9 @@
 		 *  @dtopt Callbacks
 		 *  @name DataTable.defaults.createdRow
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "createdRow": function( row, data, dataIndex ) {
 		 *          // Bold the grade for all 'A' grade browsers
 		 *          if ( data[4] == "A" )
@@ -10539,9 +10539,9 @@
 		 *  @dtopt Callbacks
 		 *  @name DataTable.defaults.drawCallback
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "drawCallback": function( settings ) {
 		 *          alert( 'DataTables has redrawn the table' );
 		 *        }
@@ -10567,9 +10567,9 @@
 		 *  @dtopt Callbacks
 		 *  @name DataTable.defaults.footerCallback
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "footerCallback": function( tfoot, data, start, end, display ) {
 		 *          tfoot.getElementsByTagName('th')[0].innerHTML = "Starting index is "+start;
 		 *        }
@@ -10593,11 +10593,11 @@
 		 *  @dtopt Callbacks
 		 *  @name DataTable.defaults.formatNumber
 		 *
-		 *  @app
+		 *  @example
 		 *    // Format a number using a single quote for the separator (note that
 		 *    // this can also be done with the language.thousands option)
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "formatNumber": function ( toFormat ) {
 		 *          return toFormat.toString().replace(
 		 *            /\B(?=(\d{3})+(?!\d))/g, "'"
@@ -10631,9 +10631,9 @@
 		 *  @dtopt Callbacks
 		 *  @name DataTable.defaults.headerCallback
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "fheaderCallback": function( head, data, start, end, display ) {
 		 *          head.getElementsByTagName('th')[0].innerHTML = "Displaying "+(end-start)+" records";
 		 *        }
@@ -10663,8 +10663,8 @@
 		 *  @dtopt Callbacks
 		 *  @name DataTable.defaults.infoCallback
 		 *
-		 *  @app
-		 *    $('#app').dataTable( {
+		 *  @example
+		 *    $('#example').dataTable( {
 		 *      "infoCallback": function( settings, start, end, max, total, pre ) {
 		 *        return start +" to "+ end;
 		 *      }
@@ -10686,9 +10686,9 @@
 		 *  @dtopt Callbacks
 		 *  @name DataTable.defaults.initComplete
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "initComplete": function(settings, json) {
 		 *          alert( 'DataTables has finished its initialisation.' );
 		 *        }
@@ -10710,9 +10710,9 @@
 		 *  @dtopt Callbacks
 		 *  @name DataTable.defaults.preDrawCallback
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "preDrawCallback": function( settings ) {
 		 *          if ( $('#test').val() == 1 ) {
 		 *            return false;
@@ -10738,9 +10738,9 @@
 		 *  @dtopt Callbacks
 		 *  @name DataTable.defaults.rowCallback
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "rowCallback": function( row, data, displayIndex, displayIndexFull ) {
 		 *          // Bold the grade for all 'A' grade browsers
 		 *          if ( data[4] == "A" ) {
@@ -10759,7 +10759,7 @@
 		 *
 		 * This parameter allows you to override the default function which obtains
 		 * the data from the server so something more suitable for your application.
-		 * For app you could use POST data, or pull information from a Gears or
+		 * For example you could use POST data, or pull information from a Gears or
 		 * AIR database.
 		 *  @type function
 		 *  @member
@@ -10784,7 +10784,7 @@
 		 * superseded by that provided through `ajax`, which should be used instead.
 		 *
 		 *  It is often useful to send extra data to the server when making an Ajax
-		 * request - for app custom filtering information, and this callback
+		 * request - for example custom filtering information, and this callback
 		 * function makes it trivial to send extra information to the server. The
 		 * passed in parameter is the data set that has been constructed by
 		 * DataTables, and you can add to this or modify it as you require.
@@ -10818,9 +10818,9 @@
 		 *  @dtopt Callbacks
 		 *  @name DataTable.defaults.stateLoadCallback
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "stateSave": true,
 		 *        "stateLoadCallback": function (settings) {
 		 *          var o;
@@ -10865,10 +10865,10 @@
 		 *  @dtopt Callbacks
 		 *  @name DataTable.defaults.stateLoadParams
 		 *
-		 *  @app
+		 *  @example
 		 *    // Remove a saved filter, so filtering is never loaded
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "stateSave": true,
 		 *        "stateLoadParams": function (settings, data) {
 		 *          data.oSearch.sSearch = "";
@@ -10876,10 +10876,10 @@
 		 *      } );
 		 *    } );
 		 *
-		 *  @app
+		 *  @example
 		 *    // Disallow state loading by returning false
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "stateSave": true,
 		 *        "stateLoadParams": function (settings, data) {
 		 *          return false;
@@ -10900,10 +10900,10 @@
 		 *  @dtopt Callbacks
 		 *  @name DataTable.defaults.stateLoaded
 		 *
-		 *  @app
+		 *  @example
 		 *    // Show an alert with the filtering value that was saved
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "stateSave": true,
 		 *        "stateLoaded": function (settings, data) {
 		 *          alert( 'Saved filter was: '+data.oSearch.sSearch );
@@ -10926,9 +10926,9 @@
 		 *  @dtopt Callbacks
 		 *  @name DataTable.defaults.stateSaveCallback
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "stateSave": true,
 		 *        "stateSaveCallback": function (settings, data) {
 		 *          // Send an Ajax request to the server with the state object
@@ -10966,10 +10966,10 @@
 		 *  @dtopt Callbacks
 		 *  @name DataTable.defaults.stateSaveParams
 		 *
-		 *  @app
+		 *  @example
 		 *    // Remove a saved filter, so filtering is never saved
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "stateSave": true,
 		 *        "stateSaveParams": function (settings, data) {
 		 *          data.oSearch.sSearch = "";
@@ -10990,9 +10990,9 @@
 		 *  @dtopt Options
 		 *  @name DataTable.defaults.stateDuration
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "stateDuration": 60*60*24; // 1 day
 		 *      } );
 		 *    } )
@@ -11018,20 +11018,20 @@
 		 *  @dtopt Options
 		 *  @name DataTable.defaults.deferLoading
 		 *
-		 *  @app
+		 *  @example
 		 *    // 57 records available in the table, no filtering applied
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "serverSide": true,
 		 *        "ajax": "scripts/server_processing.php",
 		 *        "deferLoading": 57
 		 *      } );
 		 *    } );
 		 *
-		 *  @app
+		 *  @example
 		 *    // 57 records after filtering, 100 without filtering (an initial filter applied)
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "serverSide": true,
 		 *        "ajax": "scripts/server_processing.php",
 		 *        "deferLoading": [ 57, 100 ],
@@ -11054,9 +11054,9 @@
 		 *  @dtopt Options
 		 *  @name DataTable.defaults.pageLength
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "pageLength": 50
 		 *      } );
 		 *    } )
@@ -11075,9 +11075,9 @@
 		 *  @dtopt Options
 		 *  @name DataTable.defaults.displayStart
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "displayStart": 20
 		 *      } );
 		 *    } )
@@ -11098,9 +11098,9 @@
 		 *  @dtopt Options
 		 *  @name DataTable.defaults.tabIndex
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "tabIndex": 1
 		 *      } );
 		 *    } );
@@ -11145,9 +11145,9 @@
 				 *  @dtopt Language
 				 *  @name DataTable.defaults.language.aria.sortAscending
 				 *
-				 *  @app
+				 *  @example
 				 *    $(document).ready( function() {
-				 *      $('#app').dataTable( {
+				 *      $('#example').dataTable( {
 				 *        "language": {
 				 *          "aria": {
 				 *            "sortAscending": " - click/return to sort ascending"
@@ -11168,9 +11168,9 @@
 				 *  @dtopt Language
 				 *  @name DataTable.defaults.language.aria.sortDescending
 				 *
-				 *  @app
+				 *  @example
 				 *    $(document).ready( function() {
-				 *      $('#app').dataTable( {
+				 *      $('#example').dataTable( {
 				 *        "language": {
 				 *          "aria": {
 				 *            "sortDescending": " - click/return to sort descending"
@@ -11198,9 +11198,9 @@
 				 *  @dtopt Language
 				 *  @name DataTable.defaults.language.paginate.first
 				 *
-				 *  @app
+				 *  @example
 				 *    $(document).ready( function() {
-				 *      $('#app').dataTable( {
+				 *      $('#example').dataTable( {
 				 *        "language": {
 				 *          "paginate": {
 				 *            "first": "First page"
@@ -11221,9 +11221,9 @@
 				 *  @dtopt Language
 				 *  @name DataTable.defaults.language.paginate.last
 				 *
-				 *  @app
+				 *  @example
 				 *    $(document).ready( function() {
-				 *      $('#app').dataTable( {
+				 *      $('#example').dataTable( {
 				 *        "language": {
 				 *          "paginate": {
 				 *            "last": "Last page"
@@ -11244,9 +11244,9 @@
 				 *  @dtopt Language
 				 *  @name DataTable.defaults.language.paginate.next
 				 *
-				 *  @app
+				 *  @example
 				 *    $(document).ready( function() {
-				 *      $('#app').dataTable( {
+				 *      $('#example').dataTable( {
 				 *        "language": {
 				 *          "paginate": {
 				 *            "next": "Next page"
@@ -11267,9 +11267,9 @@
 				 *  @dtopt Language
 				 *  @name DataTable.defaults.language.paginate.previous
 				 *
-				 *  @app
+				 *  @example
 				 *    $(document).ready( function() {
-				 *      $('#app').dataTable( {
+				 *      $('#example').dataTable( {
 				 *        "language": {
 				 *          "paginate": {
 				 *            "previous": "Previous page"
@@ -11292,9 +11292,9 @@
 			 *  @dtopt Language
 			 *  @name DataTable.defaults.language.emptyTable
 			 *
-			 *  @app
+			 *  @example
 			 *    $(document).ready( function() {
-			 *      $('#app').dataTable( {
+			 *      $('#example').dataTable( {
 			 *        "language": {
 			 *          "emptyTable": "No data available in table"
 			 *        }
@@ -11324,9 +11324,9 @@
 			 *  @dtopt Language
 			 *  @name DataTable.defaults.language.info
 			 *
-			 *  @app
+			 *  @example
 			 *    $(document).ready( function() {
-			 *      $('#app').dataTable( {
+			 *      $('#example').dataTable( {
 			 *        "language": {
 			 *          "info": "Showing page _PAGE_ of _PAGES_"
 			 *        }
@@ -11345,9 +11345,9 @@
 			 *  @dtopt Language
 			 *  @name DataTable.defaults.language.infoEmpty
 			 *
-			 *  @app
+			 *  @example
 			 *    $(document).ready( function() {
-			 *      $('#app').dataTable( {
+			 *      $('#example').dataTable( {
 			 *        "language": {
 			 *          "infoEmpty": "No entries to show"
 			 *        }
@@ -11367,9 +11367,9 @@
 			 *  @dtopt Language
 			 *  @name DataTable.defaults.language.infoFiltered
 			 *
-			 *  @app
+			 *  @example
 			 *    $(document).ready( function() {
-			 *      $('#app').dataTable( {
+			 *      $('#example').dataTable( {
 			 *        "language": {
 			 *          "infoFiltered": " - filtering from _MAX_ records"
 			 *        }
@@ -11390,9 +11390,9 @@
 			 *  @dtopt Language
 			 *  @name DataTable.defaults.language.infoPostFix
 			 *
-			 *  @app
+			 *  @example
 			 *    $(document).ready( function() {
-			 *      $('#app').dataTable( {
+			 *      $('#example').dataTable( {
 			 *        "language": {
 			 *          "infoPostFix": "All records shown are derived from real information."
 			 *        }
@@ -11420,9 +11420,9 @@
 			 *  @dtopt Language
 			 *  @name DataTable.defaults.language.decimal
 			 *
-			 *  @app
+			 *  @example
 			 *    $(document).ready( function() {
-			 *      $('#app').dataTable( {
+			 *      $('#example').dataTable( {
 			 *        "language": {
 			 *          "decimal": ","
 			 *          "thousands": "."
@@ -11444,9 +11444,9 @@
 			 *  @dtopt Language
 			 *  @name DataTable.defaults.language.thousands
 			 *
-			 *  @app
+			 *  @example
 			 *    $(document).ready( function() {
-			 *      $('#app').dataTable( {
+			 *      $('#example').dataTable( {
 			 *        "language": {
 			 *          "thousands": "'"
 			 *        }
@@ -11467,20 +11467,20 @@
 			 *  @dtopt Language
 			 *  @name DataTable.defaults.language.lengthMenu
 			 *
-			 *  @app
+			 *  @example
 			 *    // Language change only
 			 *    $(document).ready( function() {
-			 *      $('#app').dataTable( {
+			 *      $('#example').dataTable( {
 			 *        "language": {
 			 *          "lengthMenu": "Display _MENU_ records"
 			 *        }
 			 *      } );
 			 *    } );
 			 *
-			 *  @app
+			 *  @example
 			 *    // Language and options change
 			 *    $(document).ready( function() {
-			 *      $('#app').dataTable( {
+			 *      $('#example').dataTable( {
 			 *        "language": {
 			 *          "lengthMenu": 'Display <select>'+
 			 *            '<option value="10">10</option>'+
@@ -11509,9 +11509,9 @@
 			 *  @dtopt Language
 			 *  @name DataTable.defaults.language.loadingRecords
 			 *
-			 *  @app
+			 *  @example
 			 *    $(document).ready( function() {
-			 *      $('#app').dataTable( {
+			 *      $('#example').dataTable( {
 			 *        "language": {
 			 *          "loadingRecords": "Please wait - loading..."
 			 *        }
@@ -11530,9 +11530,9 @@
 			 *  @dtopt Language
 			 *  @name DataTable.defaults.language.processing
 			 *
-			 *  @app
+			 *  @example
 			 *    $(document).ready( function() {
-			 *      $('#app').dataTable( {
+			 *      $('#example').dataTable( {
 			 *        "language": {
 			 *          "processing": "DataTables is currently busy"
 			 *        }
@@ -11554,20 +11554,20 @@
 			 *  @dtopt Language
 			 *  @name DataTable.defaults.language.search
 			 *
-			 *  @app
+			 *  @example
 			 *    // Input text box will be appended at the end automatically
 			 *    $(document).ready( function() {
-			 *      $('#app').dataTable( {
+			 *      $('#example').dataTable( {
 			 *        "language": {
 			 *          "search": "Filter records:"
 			 *        }
 			 *      } );
 			 *    } );
 			 *
-			 *  @app
+			 *  @example
 			 *    // Specify where the filter should appear
 			 *    $(document).ready( function() {
-			 *      $('#app').dataTable( {
+			 *      $('#example').dataTable( {
 			 *        "language": {
 			 *          "search": "Apply filter _INPUT_ to table"
 			 *        }
@@ -11594,16 +11594,16 @@
 			 * It must store the URL of the language file, which is in a JSON format,
 			 * and the object has the same properties as the oLanguage object in the
 			 * initialiser object (i.e. the above parameters). Please refer to one of
-			 * the app language files to see how this works in action.
+			 * the example language files to see how this works in action.
 			 *  @type string
 			 *  @default <i>Empty string - i.e. disabled</i>
 			 *
 			 *  @dtopt Language
 			 *  @name DataTable.defaults.language.url
 			 *
-			 *  @app
+			 *  @example
 			 *    $(document).ready( function() {
-			 *      $('#app').dataTable( {
+			 *      $('#example').dataTable( {
 			 *        "language": {
 			 *          "url": "http://www.sprymedia.co.uk/dataTables/lang.txt"
 			 *        }
@@ -11623,9 +11623,9 @@
 			 *  @dtopt Language
 			 *  @name DataTable.defaults.language.zeroRecords
 			 *
-			 *  @app
+			 *  @example
 			 *    $(document).ready( function() {
-			 *      $('#app').dataTable( {
+			 *      $('#example').dataTable( {
 			 *        "language": {
 			 *          "zeroRecords": "No records to display"
 			 *        }
@@ -11650,9 +11650,9 @@
 		 *  @dtopt Options
 		 *  @name DataTable.defaults.search
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "search": {"search": "Initial search"}
 		 *      } );
 		 *    } )
@@ -11703,7 +11703,7 @@
 		/**
 		 * This initialisation variable allows you to specify exactly where in the
 		 * DOM you want DataTables to inject the various controls it adds to the page
-		 * (for app you might want the pagination controls at the top of the
+		 * (for example you might want the pagination controls at the top of the
 		 * table). DIV elements (with or without a custom class) can also be added to
 		 * aid styling. The follow syntax is used:
 		 *   <ul>
@@ -11744,9 +11744,9 @@
 		 *  @dtopt Options
 		 *  @name DataTable.defaults.dom
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "dom": '&lt;"top"i&gt;rt&lt;"bottom"flp&gt;&lt;"clear"&gt;'
 		 *      } );
 		 *    } );
@@ -11764,9 +11764,9 @@
 		 *  @dtopt Options
 		 *  @name DataTable.defaults.searchDelay
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "searchDelay": 200
 		 *      } );
 		 *    } )
@@ -11791,9 +11791,9 @@
 		 *  @dtopt Options
 		 *  @name DataTable.defaults.pagingType
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "pagingType": "full_numbers"
 		 *      } );
 		 *    } )
@@ -11815,9 +11815,9 @@
 		 *  @dtopt Features
 		 *  @name DataTable.defaults.scrollX
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "scrollX": true,
 		 *        "scrollCollapse": true
 		 *      } );
@@ -11828,7 +11828,7 @@
 	
 		/**
 		 * This property can be used to force a DataTable to use more width than it
-		 * might otherwise do when x-scrolling is enabled. For app if you have a
+		 * might otherwise do when x-scrolling is enabled. For example if you have a
 		 * table which requires to be well spaced, this parameter is useful for
 		 * "over-sizing" the table, and thus forcing scrolling. This property can by
 		 * any CSS unit, or a number (in which case it will be treated as a pixel
@@ -11839,9 +11839,9 @@
 		 *  @dtopt Options
 		 *  @name DataTable.defaults.scrollXInner
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "scrollX": "100%",
 		 *        "scrollXInner": "110%"
 		 *      } );
@@ -11863,9 +11863,9 @@
 		 *  @dtopt Features
 		 *  @name DataTable.defaults.scrollY
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "scrollY": "200px",
 		 *        "paginate": false
 		 *      } );
@@ -11895,7 +11895,7 @@
 		/**
 		 * DataTables makes use of renderers when displaying HTML elements for
 		 * a table. These renderers can be added or modified by plug-ins to
-		 * generate suitable mark-up for a site. For app the Bootstrap
+		 * generate suitable mark-up for a site. For example the Bootstrap
 		 * integration plug-in for DataTables uses a paging button renderer to
 		 * display pagination buttons in the mark-up required by Bootstrap.
 		 *
@@ -11926,7 +11926,7 @@
 	
 	
 	/*
-	 * Developer note - See note in app.model.defaults.js about the use of Hungarian
+	 * Developer note - See note in model.defaults.js about the use of Hungarian
 	 * notation and camel case.
 	 */
 	
@@ -11938,7 +11938,7 @@
 		/**
 		 * Define which column(s) an order will occur on for this column. This
 		 * allows a column's ordering to take multiple columns into account when
-		 * doing a sort or use the data from a different column. For app first
+		 * doing a sort or use the data from a different column. For example first
 		 * name / last name columns make sense to do a multi-column sort over the
 		 * two columns.
 		 *  @type array|int
@@ -11947,10 +11947,10 @@
 		 *  @name DataTable.defaults.column.orderData
 		 *  @dtopt Columns
 		 *
-		 *  @app
+		 *  @example
 		 *    // Using `columnDefs`
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "columnDefs": [
 		 *          { "orderData": [ 0, 1 ], "targets": [ 0 ] },
 		 *          { "orderData": [ 1, 0 ], "targets": [ 1 ] },
@@ -11959,10 +11959,10 @@
 		 *      } );
 		 *    } );
 		 *
-		 *  @app
+		 *  @example
 		 *    // Using `columns`
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "columns": [
 		 *          { "orderData": [ 0, 1 ] },
 		 *          { "orderData": [ 1, 0 ] },
@@ -11987,10 +11987,10 @@
 		 *  @name DataTable.defaults.column.orderSequence
 		 *  @dtopt Columns
 		 *
-		 *  @app
+		 *  @example
 		 *    // Using `columnDefs`
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "columnDefs": [
 		 *          { "orderSequence": [ "asc" ], "targets": [ 1 ] },
 		 *          { "orderSequence": [ "desc", "asc", "asc" ], "targets": [ 2 ] },
@@ -11999,10 +11999,10 @@
 		 *      } );
 		 *    } );
 		 *
-		 *  @app
+		 *  @example
 		 *    // Using `columns`
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "columns": [
 		 *          null,
 		 *          { "orderSequence": [ "asc" ] },
@@ -12024,19 +12024,19 @@
 		 *  @name DataTable.defaults.column.searchable
 		 *  @dtopt Columns
 		 *
-		 *  @app
+		 *  @example
 		 *    // Using `columnDefs`
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "columnDefs": [
 		 *          { "searchable": false, "targets": [ 0 ] }
 		 *        ] } );
 		 *    } );
 		 *
-		 *  @app
+		 *  @example
 		 *    // Using `columns`
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "columns": [
 		 *          { "searchable": false },
 		 *          null,
@@ -12057,19 +12057,19 @@
 		 *  @name DataTable.defaults.column.orderable
 		 *  @dtopt Columns
 		 *
-		 *  @app
+		 *  @example
 		 *    // Using `columnDefs`
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "columnDefs": [
 		 *          { "orderable": false, "targets": [ 0 ] }
 		 *        ] } );
 		 *    } );
 		 *
-		 *  @app
+		 *  @example
 		 *    // Using `columns`
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "columns": [
 		 *          { "orderable": false },
 		 *          null,
@@ -12090,19 +12090,19 @@
 		 *  @name DataTable.defaults.column.visible
 		 *  @dtopt Columns
 		 *
-		 *  @app
+		 *  @example
 		 *    // Using `columnDefs`
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "columnDefs": [
 		 *          { "visible": false, "targets": [ 0 ] }
 		 *        ] } );
 		 *    } );
 		 *
-		 *  @app
+		 *  @example
 		 *    // Using `columns`
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "columns": [
 		 *          { "visible": false },
 		 *          null,
@@ -12118,7 +12118,7 @@
 		/**
 		 * Developer definable function that is called whenever a cell is created (Ajax source,
 		 * etc) or processed for input (DOM source). This can be used as a compliment to mRender
-		 * allowing you to modify the DOM element (add background colour for app) when the
+		 * allowing you to modify the DOM element (add background colour for example) when the
 		 * element is available.
 		 *  @type function
 		 *  @param {element} td The TD node that has been created
@@ -12130,9 +12130,9 @@
 		 *  @name DataTable.defaults.column.createdCell
 		 *  @dtopt Columns
 		 *
-		 *  @app
+		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "columnDefs": [ {
 		 *          "targets": [3],
 		 *          "createdCell": function (td, cellData, rowData, row, col) {
@@ -12168,17 +12168,17 @@
 		 *   DataTables reads the data from the source object:
 		 *    * `.` - Dotted Javascript notation. Just as you use a `.` in
 		 *      Javascript to read from nested objects, so to can the options
-		 *      specified in `data`. For app: `browser.version` or
+		 *      specified in `data`. For example: `browser.version` or
 		 *      `browser.name`. If your object parameter name contains a period, use
 		 *      `\\` to escape it - i.e. `first\\.name`.
 		 *    * `[]` - Array notation. DataTables can automatically combine data
 		 *      from and array source, joining the data with the characters provided
-		 *      between the two brackets. For app: `name[, ]` would provide a
+		 *      between the two brackets. For example: `name[, ]` would provide a
 		 *      comma-space separated list from the source array. If no characters
 		 *      are provided between the brackets, the original array source is
 		 *      returned.
 		 *    * `()` - Function notation. Adding `()` to the end of a parameter will
-		 *      execute a function of the name given. For app: `browser()` for a
+		 *      execute a function of the name given. For example: `browser()` for a
 		 *      simple function on the data source, `browser.version()` for a
 		 *      function in a nested property or even `browser().version` to get an
 		 *      object property if the function called returns an object. Note that
@@ -12224,7 +12224,7 @@
 		 *  @name DataTable.defaults.column.data
 		 *  @dtopt Columns
 		 *
-		 *  @app
+		 *  @example
 		 *    // Read table data from objects
 		 *    // JSON structure for each row:
 		 *    //   {
@@ -12235,7 +12235,7 @@
 		 *    //      "grade": {value}
 		 *    //   }
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "ajaxSource": "sources/objects.txt",
 		 *        "columns": [
 		 *          { "data": "engine" },
@@ -12247,7 +12247,7 @@
 		 *      } );
 		 *    } );
 		 *
-		 *  @app
+		 *  @example
 		 *    // Read information from deeply nested objects
 		 *    // JSON structure for each row:
 		 *    //   {
@@ -12261,7 +12261,7 @@
 		 *    //      ]
 		 *    //   }
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "ajaxSource": "sources/deep.txt",
 		 *        "columns": [
 		 *          { "data": "engine" },
@@ -12273,11 +12273,11 @@
 		 *      } );
 		 *    } );
 		 *
-		 *  @app
+		 *  @example
 		 *    // Using `data` as a function to provide different information for
 		 *    // sorting, filtering and display. In this case, currency (price)
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "columnDefs": [ {
 		 *          "targets": [ 0 ],
 		 *          "data": function ( source, type, val ) {
@@ -12301,10 +12301,10 @@
 		 *      } );
 		 *    } );
 		 *
-		 *  @app
+		 *  @example
 		 *    // Using default content
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "columnDefs": [ {
 		 *          "targets": [ 0 ],
 		 *          "data": null,
@@ -12313,10 +12313,10 @@
 		 *      } );
 		 *    } );
 		 *
-		 *  @app
+		 *  @example
 		 *    // Using array notation - outputting a list from an array
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "columnDefs": [ {
 		 *          "targets": [ 0 ],
 		 *          "data": "name[, ]"
@@ -12344,17 +12344,17 @@
 		 *   DataTables reads the data from the source object:
 		 *    * `.` - Dotted Javascript notation. Just as you use a `.` in
 		 *      Javascript to read from nested objects, so to can the options
-		 *      specified in `data`. For app: `browser.version` or
+		 *      specified in `data`. For example: `browser.version` or
 		 *      `browser.name`. If your object parameter name contains a period, use
 		 *      `\\` to escape it - i.e. `first\\.name`.
 		 *    * `[]` - Array notation. DataTables can automatically combine data
 		 *      from and array source, joining the data with the characters provided
-		 *      between the two brackets. For app: `name[, ]` would provide a
+		 *      between the two brackets. For example: `name[, ]` would provide a
 		 *      comma-space separated list from the source array. If no characters
 		 *      are provided between the brackets, the original array source is
 		 *      returned.
 		 *    * `()` - Function notation. Adding `()` to the end of a parameter will
-		 *      execute a function of the name given. For app: `browser()` for a
+		 *      execute a function of the name given. For example: `browser()` for a
 		 *      simple function on the data source, `browser.version()` for a
 		 *      function in a nested property or even `browser().version` to get an
 		 *      object property if the function called returns an object.
@@ -12384,10 +12384,10 @@
 		 *  @name DataTable.defaults.column.render
 		 *  @dtopt Columns
 		 *
-		 *  @app
+		 *  @example
 		 *    // Create a comma separated list from an array of objects
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "ajaxSource": "sources/deep.txt",
 		 *        "columns": [
 		 *          { "data": "engine" },
@@ -12400,10 +12400,10 @@
 		 *      } );
 		 *    } );
 		 *
-		 *  @app
+		 *  @example
 		 *    // Execute a function to obtain data
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "columnDefs": [ {
 		 *          "targets": [ 0 ],
 		 *          "data": null, // Use the full data source object for the renderer's source
@@ -12412,7 +12412,7 @@
 		 *      } );
 		 *    } );
 		 *
-		 *  @app
+		 *  @example
 		 *    // As an object, extracting different data for the different types
 		 *    // This would be used with a data source such as:
 		 *    //   { "phone": 5552368, "phone_filter": "5552368 555-2368", "phone_display": "555-2368" }
@@ -12420,7 +12420,7 @@
 		 *    // (which has both forms) is used for filtering for if a user inputs either format, while
 		 *    // the formatted phone number is the one that is shown in the table.
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "columnDefs": [ {
 		 *          "targets": [ 0 ],
 		 *          "data": null, // Use the full data source object for the renderer's source
@@ -12433,10 +12433,10 @@
 		 *      } );
 		 *    } );
 		 *
-		 *  @app
+		 *  @example
 		 *    // Use as a function to create a link from the data source
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "columnDefs": [ {
 		 *          "targets": [ 0 ],
 		 *          "data": "download_link",
@@ -12460,10 +12460,10 @@
 		 *  @name DataTable.defaults.column.cellType
 		 *  @dtopt Columns
 		 *
-		 *  @app
+		 *  @example
 		 *    // Make the first column use TH cells
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "columnDefs": [ {
 		 *          "targets": [ 0 ],
 		 *          "cellType": "th"
@@ -12482,20 +12482,20 @@
 		 *  @name DataTable.defaults.column.class
 		 *  @dtopt Columns
 		 *
-		 *  @app
+		 *  @example
 		 *    // Using `columnDefs`
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "columnDefs": [
 		 *          { "class": "my_class", "targets": [ 0 ] }
 		 *        ]
 		 *      } );
 		 *    } );
 		 *
-		 *  @app
+		 *  @example
 		 *    // Using `columns`
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "columns": [
 		 *          { "class": "my_class" },
 		 *          null,
@@ -12524,10 +12524,10 @@
 		 *  @name DataTable.defaults.column.contentPadding
 		 *  @dtopt Columns
 		 *
-		 *  @app
+		 *  @example
 		 *    // Using `columns`
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "columns": [
 		 *          null,
 		 *          null,
@@ -12552,10 +12552,10 @@
 		 *  @name DataTable.defaults.column.defaultContent
 		 *  @dtopt Columns
 		 *
-		 *  @app
+		 *  @example
 		 *    // Using `columnDefs`
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "columnDefs": [
 		 *          {
 		 *            "data": null,
@@ -12566,10 +12566,10 @@
 		 *      } );
 		 *    } );
 		 *
-		 *  @app
+		 *  @example
 		 *    // Using `columns`
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "columns": [
 		 *          null,
 		 *          null,
@@ -12598,10 +12598,10 @@
 		 *  @name DataTable.defaults.column.name
 		 *  @dtopt Columns
 		 *
-		 *  @app
+		 *  @example
 		 *    // Using `columnDefs`
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "columnDefs": [
 		 *          { "name": "engine", "targets": [ 0 ] },
 		 *          { "name": "browser", "targets": [ 1 ] },
@@ -12612,10 +12612,10 @@
 		 *      } );
 		 *    } );
 		 *
-		 *  @app
+		 *  @example
 		 *    // Using `columns`
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "columns": [
 		 *          { "name": "engine" },
 		 *          { "name": "browser" },
@@ -12640,10 +12640,10 @@
 		 *  @name DataTable.defaults.column.orderDataType
 		 *  @dtopt Columns
 		 *
-		 *  @app
+		 *  @example
 		 *    // Using `columnDefs`
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "columnDefs": [
 		 *          { "orderDataType": "dom-text", "targets": [ 2, 3 ] },
 		 *          { "type": "numeric", "targets": [ 3 ] },
@@ -12653,10 +12653,10 @@
 		 *      } );
 		 *    } );
 		 *
-		 *  @app
+		 *  @example
 		 *    // Using `columns`
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "columns": [
 		 *          null,
 		 *          null,
@@ -12680,20 +12680,20 @@
 		 *  @name DataTable.defaults.column.title
 		 *  @dtopt Columns
 		 *
-		 *  @app
+		 *  @example
 		 *    // Using `columnDefs`
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "columnDefs": [
 		 *          { "title": "My column title", "targets": [ 0 ] }
 		 *        ]
 		 *      } );
 		 *    } );
 		 *
-		 *  @app
+		 *  @example
 		 *    // Using `columns`
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "columns": [
 		 *          { "title": "My column title" },
 		 *          null,
@@ -12712,7 +12712,7 @@
 		 * ordered. Four types (string, numeric, date and html (which will strip
 		 * HTML tags before ordering)) are currently available. Note that only date
 		 * formats understood by Javascript's Date() object will be accepted as type
-		 * date. For app: "Mar 26, 2008 5:03 PM". May take the values: 'string',
+		 * date. For example: "Mar 26, 2008 5:03 PM". May take the values: 'string',
 		 * 'numeric', 'date' or 'html' (by default). Further types can be adding
 		 * through plug-ins.
 		 *  @type string
@@ -12721,20 +12721,20 @@
 		 *  @name DataTable.defaults.column.type
 		 *  @dtopt Columns
 		 *
-		 *  @app
+		 *  @example
 		 *    // Using `columnDefs`
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "columnDefs": [
 		 *          { "type": "html", "targets": [ 0 ] }
 		 *        ]
 		 *      } );
 		 *    } );
 		 *
-		 *  @app
+		 *  @example
 		 *    // Using `columns`
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "columns": [
 		 *          { "type": "html" },
 		 *          null,
@@ -12759,20 +12759,20 @@
 		 *  @name DataTable.defaults.column.width
 		 *  @dtopt Columns
 		 *
-		 *  @app
+		 *  @example
 		 *    // Using `columnDefs`
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "columnDefs": [
 		 *          { "width": "20%", "targets": [ 0 ] }
 		 *        ]
 		 *      } );
 		 *    } );
 		 *
-		 *  @app
+		 *  @example
 		 *    // Using `columns`
 		 *    $(document).ready( function() {
-		 *      $('#app').dataTable( {
+		 *      $('#example').dataTable( {
 		 *        "columns": [
 		 *          { "width": "20%" },
 		 *          null,
@@ -13726,7 +13726,7 @@
 	 * This namespace acts as a collection area for plug-ins that can be used to
 	 * extend DataTables capabilities. Indeed many of the build in methods
 	 * use this method to provide their own capabilities (sorting methods for
-	 * app).
+	 * example).
 	 *
 	 * Note that this namespace is aliased to `jQuery.fn.dataTableExt` for legacy
 	 * reasons
@@ -13797,13 +13797,13 @@
 		 * 
 		 * * {node|null} The element which contains your feature. Note that the
 		 *   return may also be void if your plug-in does not require to inject any
-		 *   DOM elements into DataTables control (`dom`) - for app this might
+		 *   DOM elements into DataTables control (`dom`) - for example this might
 		 *   be useful when developing a plug-in which allows table control via
 		 *   keyboard entry
 		 *
 		 *  @type array
 		 *
-		 *  @app
+		 *  @example
 		 *    $.fn.dataTable.ext.features.push( {
 		 *      "fnInit": function( oSettings ) {
 		 *        return new TableTools( { "oDTSettings": oSettings } );
@@ -13846,8 +13846,8 @@
 		 *  @type array
 		 *  @default []
 		 *
-		 *  @app
-		 *    // The following app shows custom search being applied to the
+		 *  @example
+		 *    // The following example shows custom search being applied to the
 		 *    // fourth column (i.e. the data[3] index) based on two input values
 		 *    // from the end-user, matching the data in a certain range.
 		 *    $.fn.dataTable.ext.search.push(
@@ -13881,7 +13881,7 @@
 		 * The `selector` option can be used to extend the options available for the
 		 * selector modifier options (`selector-modifier` object data type) that
 		 * each of the three built in selector types offer (row, column and cell +
-		 * their plural counterparts). For app the Select extension uses this
+		 * their plural counterparts). For example the Select extension uses this
 		 * mechanism to provide an option to select only rows, columns and cells
 		 * that have been marked as selected by the end user (`{selected: true}`),
 		 * which can be used in conjunction with the existing built in selector
@@ -13976,7 +13976,7 @@
 		 *  @type object
 		 *  @default {}
 		 *
-		 *  @app
+		 *  @example
 		 *    // Show previous, next and current page buttons only
 		 *    $.fn.dataTableExt.oPagination.current = function ( page, pages ) {
 		 *      return [ 'previous', page, 'next' ];
@@ -14000,7 +14000,7 @@
 		 * order a column, but is necessarily therefore more complex.
 		 * 
 		 * This type of ordering is useful if you want to do ordering based on data
-		 * live from the DOM (for app the contents of an 'input' element) rather
+		 * live from the DOM (for example the contents of an 'input' element) rather
 		 * than just the static string that DataTables knows of.
 		 * 
 		 * The way these plug-ins work is that you create an array of the values you
@@ -14022,7 +14022,7 @@
 		 *
 		 *  @type array
 		 *
-		 *  @app
+		 *  @example
 		 *    // Ordering using `input` node values
 		 *    $.fn.dataTable.ext.order['dom-text'] = function  ( settings, col )
 		 *    {
@@ -14056,7 +14056,7 @@
 			 *
 		     *  1. `{*}` Data from the column cell to be analysed
 		     *  2. `{settings}` DataTables settings object. This can be used to
-		     *     perform context specific type detection - for app detection
+		     *     perform context specific type detection - for example detection
 		     *     based on language settings such as using a comma for a decimal
 		     *     place. Generally speaking the options from the settings will not
 		     *     be required
@@ -14068,7 +14068,7 @@
 			 *
 			 *  @type array
 			 *
-			 *  @app
+			 *  @example
 			 *    // Currency type detection plug-in:
 			 *    $.fn.dataTable.ext.type.detect.push(
 			 *      function ( data, settings ) {
@@ -14092,7 +14092,7 @@
 			 * Type based search formatting.
 			 *
 			 * The type based searching functions can be used to pre-format the
-			 * data to be search on. For app, it can be used to strip HTML
+			 * data to be search on. For example, it can be used to strip HTML
 			 * tags or to de-format telephone numbers for numeric only searching.
 			 *
 			 * Note that is a search is not defined for a column of a given type,
@@ -14119,7 +14119,7 @@
 			 *  @type object
 			 *  @default {}
 			 *
-			 *  @app
+			 *  @example
 			 *    $.fn.dataTable.ext.type.search['title-numeric'] = function ( d ) {
 			 *      return d.replace(/\n/g," ").replace( /<.*?>/g, "" );
 			 *    }
@@ -14171,7 +14171,7 @@
 			 *  @type object
 			 *  @default {}
 			 *
-			 *  @app
+			 *  @example
 			 *    // Numeric ordering of formatted numbers with a pre-formatter
 			 *    $.extend( $.fn.dataTable.ext.type.order, {
 			 *      "string-pre": function(x) {
@@ -14180,7 +14180,7 @@
 			 *      }
 			 *    } );
 			 *
-			 *  @app
+			 *  @example
 			 *    // Case-sensitive string ordering, with no pre-formatting method
 			 *    $.extend( $.fn.dataTable.ext.order, {
 			 *      "string-case-asc": function(x,y) {
@@ -14551,7 +14551,7 @@
 	
 	
 	
-	// Built in type detection. See app.model.ext.aTypes for information about
+	// Built in type detection. See model.ext.aTypes for information about
 	// what is required from this methods.
 	$.extend( DataTable.ext.type.detect, [
 		// Plain numbers - first since V8 detects some plain numbers as dates
@@ -14606,7 +14606,7 @@
 	
 	
 	
-	// Filter formatting functions. See app.model.ext.ofnSearch for information about
+	// Filter formatting functions. See model.ext.ofnSearch for information about
 	// what is required from these methods.
 	// 
 	// Note that additional search methods are added for the html numbers and
@@ -14843,7 +14843,7 @@
 	 * * `text` - Escape HTML to help prevent XSS attacks. It has no optional
 	 *   parameters.
 	 *
-	 * @app
+	 * @example
 	 *   // Column definition using the number renderer
 	 *   {
 	 *     data: "salary",
@@ -15154,13 +15154,13 @@
 	 *  @param {object} o DataTables settings object {@link DataTable.models.oSettings}
 	 *  @param {object} json JSON returned from the server
 	 *
-	 *  @app
+	 *  @example
 	 *     // Use a custom property returned from the server in another DOM element
 	 *     $('#table').dataTable().on('xhr.dt', function (e, settings, json) {
 	 *       $('#status').html( json.status );
 	 *     } );
 	 *
-	 *  @app
+	 *  @example
 	 *     // Pre-process the data returned from the server
 	 *     $('#table').dataTable().on('xhr.dt', function (e, settings, json) {
 	 *       for ( var i=0, ien=json.aaData.length ; i<ien ; i++ ) {

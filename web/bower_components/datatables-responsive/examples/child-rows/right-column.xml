@@ -6,7 +6,7 @@
 <![CDATA[
 
 $(document).ready(function() {
-	$('#app').DataTable( {
+	$('#example').DataTable( {
 		responsive: {
 			details: {
 				type: 'column',
@@ -30,7 +30,7 @@ $(document).ready(function() {
 
 When using the `column` child row control type, Responsive has the ability to use any column or element as the show / hide control for the row details. This is provided through the `r-init responsive.details.target` option, which can be either a column index, or a jQuery selector.
 
-This app shows the last column in the table being used as the control column.
+This example shows the last column in the table being used as the control column.
 
 ]]></info>
 

@@ -55,7 +55,7 @@
                                     <label class="col-md-2 col-sm-2 col-xs-12">Kode Homestay</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" class="form-control col-md-7 col-xs-12" id="kodeHomestay"
-                                               name="kodeHomestay">
+                                               name="id" required>
                                     </div>
                                 </div>
                                 <!-- /.form-group -->
@@ -63,7 +63,7 @@
                                     <label class="col-md-2 col-sm-2 col-xs-12">Nama Pemilik</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" class="form-control col-md-7 col-xs-12" id="namaPemilik"
-                                               name="namaPemilik">
+                                               name="pemilik" required>
                                     </div>
                                 </div>
                                 <!-- /.form-group -->
@@ -82,7 +82,7 @@
                                 <div class="form-group">
                                     <label class="col-md-2 col-sm-2 col-xs-12">Jumlah Kamar</label>
                                     <div class="col-md-4 col-sm-4 col-xs-12">
-                                        <input type="text" class="form-control" id="jumlahKamar" name="jumlahKamar">
+                                        <input type="text" class="form-control" id="jumlahKamar" name="jumlahKamar" required>
                                     </div>
                                 </div>
                                 <!-- /.form-group -->
@@ -90,7 +90,7 @@
                                     <label class="col-md-2 col-sm-2 col-xs-12">Jumlah Tempat Tidur</label>
                                     <div class="col-md-4 col-sm-4 col-xs-12">
                                         <input type="text" class="form-control" id="jumlahTempatTidur"
-                                               name="jumlahTempatTidur">
+                                               name="jumlahBed" required>
                                     </div>
                                 </div>
                                 <!-- /.form-group -->
@@ -105,7 +105,7 @@
                                 <div class="form-group">
                                     <label class="col-md-2 col-sm-2 col-xs-12">Jumlah Toilet</label>
                                     <div class="col-md-4 col-sm-4 col-xs-12">
-                                        <input type="text" class="form-control" id="jumlahToilet" name="jumlahToilet">
+                                        <input type="text" class="form-control" id="jumlahToilet" name="jumlahWC" required>
                                     </div>
                                 </div>
                                 <!-- /.form-group -->

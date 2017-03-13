@@ -131,6 +131,23 @@
 </div>
 <!-- /#wrapper -->
 <%@include file="include/scripts.jsp" %>
+<script>
+    $(document).ready(function() {
+        var password = document.getElementById("password2")
+            , confirm_password = document.getElementById("password3");
+
+        function validatePassword() {
+            if (password.value != confirm_password.value) {
+                confirm_password.setCustomValidity("Passwords Don't Match");
+            } else {
+                confirm_password.setCustomValidity('');
+            }
+        }
+
+        password.onchange = validatePassword;
+        confirm_password.onkeyup = validatePassword;
+    });
+</script>
 
 </body>
 

@@ -24,7 +24,7 @@ In its simplest case, DataTables can be initialised with a single line of Javasc
 $('table').dataTable();
 ```
 
-where the jQuery selector is used to obtain a reference to the table you want to enhance with DataTables. Optional configuration parameters can be passed in to DataTables to have it perform certain actions by using a configuration object as the parameter passed in to the DataTables constructor. For app:
+where the jQuery selector is used to obtain a reference to the table you want to enhance with DataTables. Optional configuration parameters can be passed in to DataTables to have it perform certain actions by using a configuration object as the parameter passed in to the DataTables constructor. For example:
 
 ```js
 $('table').dataTable( {

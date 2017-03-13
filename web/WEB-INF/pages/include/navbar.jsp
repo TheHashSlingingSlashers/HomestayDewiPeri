@@ -34,23 +34,7 @@
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
                 <li>
-                    <a href="#"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> Event<span
-                            class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="${path}/event">Lihat Event</a>
-                        </li>
-                        <li>
-                            <a href="${path}/event/new">Buat Event Baru</a>
-                        </li>
-                        <li>
-                            <a href="${path}/event/edit">Edit Event</a>
-                        </li>
-                        <li>
-                            <a href="#hapus-event.jsp">Hapus Event</a>
-                        </li>
-                    </ul>
-                    <!-- /.nav-second-level -->
+                    <a href="${path}/event"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> Event</a>
                 </li>
 
                 <li>

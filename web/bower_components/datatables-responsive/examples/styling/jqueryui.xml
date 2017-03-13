@@ -6,7 +6,7 @@
 <![CDATA[
 
 $(document).ready(function() {
-	$('#app').DataTable();
+	$('#example').DataTable();
 } );
 
 ]]>
@@ -16,7 +16,7 @@ $(document).ready(function() {
 
 <info><![CDATA[
 
-This app shows DataTables and Responsive being used with [jQuery UI](http://jqueryui.com/) providing the base styling information.
+This example shows DataTables and Responsive being used with [jQuery UI](http://jqueryui.com/) providing the base styling information.
 
 ]]></info>
 

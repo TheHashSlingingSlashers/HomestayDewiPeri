@@ -47,19 +47,19 @@
                             <div class="panel panel-primary">
                                 <div class="panel-heading">Tambah Pengguna Baru</div>
                                 <div class="panel-body">
-                                    <form class="form-horizontal" role="form">
+                                    <form class="form-horizontal" role="form" method="get">
 
                                         <div class="form-group">
                                             <label class="col-md-2 col-sm-2 col-xs-12">No. Identitas</label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <input type="text" class="form-control" id="noIdentias">
+                                                <input type="text" class="form-control" id="noIdentias" required>
                                             </div>
                                         </div>
                                         <!-- /.form-group -->                                    
                                         <div class="form-group">
                                             <label class="col-md-2 col-sm-2 col-xs-12">Nama</label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <input type="text" class="form-control" id="nama">
+                                                <input type="text" class="form-control" id="nama" required>
                                             </div>
                                         </div>
                                         <!-- /.form-group -->
@@ -67,11 +67,11 @@
                                             <label class="col-md-2 col-sm-2 col-xs-12">Jenis Kelamin</label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                 <div class="radio radio-inline radio-primary">
-                                                    <input type="radio" name="sexRadio" id="inlineRadio1" value="option1">
+                                                    <input type="radio" name="sexRadio" id="inlineRadio1" value="option1" class="sr-only" required>
                                                     <label for="inlineRadio1">Laki-laki</label>
                                                 </div>
                                                 <div class="radio radio-inline radio-primary">
-                                                    <input type="radio" name="sexRadio" id="inlineRadio2" value="option2">
+                                                    <input type="radio" name="sexRadio" id="inlineRadio2" value="option2" class="sr-only" required>
                                                     <label for="inlineRadio2">Perempuan</label>
                                                 </div>
                                             </div>
@@ -92,7 +92,7 @@
                                         <div class="form-group">
                                             <label class="col-md-2 col-sm-2 col-xs-12">Username</label>
                                             <div class="col-md-4 col-sm-4 col-xs-12">
-                                                <input type="text" class="form-control" id="username">
+                                                <input type="text" class="form-control" id="username" required>
                                             </div>
                                         </div>
                                         <!-- /.form-group -->
@@ -100,7 +100,7 @@
                                             <label class="col-md-2 col-sm-2 col-xs-12">Password</label>
                                             <div class="col-md-4 col-sm-4 col-xs-12">
                                                 <div class="input-group">
-                                                    <input type="password" class="form-control" id="password1">
+                                                    <input type="password" class="form-control" name="password" id="password1" required>
                                                     <div class="input-group-addon"><span class="glyphicon glyphicon-eye-close"></span></div>
                                                 </div>    
                                             </div>
@@ -110,7 +110,7 @@
                                             <label class="col-md-2 col-sm-2 col-xs-12">Ulangi Password</label>
                                             <div class="col-md-4 col-sm-4 col-xs-12">
                                                 <div class="input-group">
-                                                    <input type="password" class="form-control" id="password2">    
+                                                    <input type="password" class="form-control" id="password2" required>
                                                     <div class="input-group-addon"><span class="glyphicon glyphicon-eye-close"></span></div>
                                                 </div>
                                             </div>
@@ -118,7 +118,7 @@
                                         <!-- /.form-group -->
 
                                         <div class="col-md-offset-2 col-sm-offset-2">
-                                            <button type="button" class="btn btn-labeled btn-success"><span class="btn-label"><i class="glyphicon glyphicon-floppy-disk"></i></span> Simpan</button>    
+                                            &nbsp;<button type="submit" class="btn btn-labeled btn-success"><span class="btn-label"><i class="glyphicon glyphicon-floppy-disk"></i></span> Save</button>
                                         </div>
 
                                     </form>
@@ -140,6 +140,24 @@
         </div>
         <!-- /#wrapper -->
         <%@include file="include/scripts.jsp" %>
+
+        <script>
+            $(document).ready(function() {
+                var password = document.getElementById("password1")
+                    , confirm_password = document.getElementById("password2");
+
+                function validatePassword() {
+                    if (password.value != confirm_password.value) {
+                        confirm_password.setCustomValidity("Passwords Don't Match");
+                    } else {
+                        confirm_password.setCustomValidity('');
+                    }
+                }
+
+                password.onchange = validatePassword;
+                confirm_password.onkeyup = validatePassword;
+            });
+        </script>
 
     </body>
 

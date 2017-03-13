@@ -742,7 +742,7 @@
      * Raphael.fn
      [ property (object) ]
      **
-     * You can add your own method to the canvas. For app if you want to draw a pie chart,
+     * You can add your own method to the canvas. For example if you want to draw a pie chart,
      * you can create your own pie chart function and ship it as a Raphaël plugin. To do this
      * you need to extend the `Raphael.fn` object. You should modify the `fn` object before a
      * Raphaël instance is created, otherwise it will take no effect. Please note that the
@@ -3771,7 +3771,7 @@
      | var c = paper.path("M10 10L90 90");
      | // draw a diagonal line:
      | // move to 10,10, line to 90,90
-     * For app of path strings, check out these icons: http://raphaeljs.com/icons/
+     * For example of path strings, check out these icons: http://raphaeljs.com/icons/
     \*/
     paperproto.path = function (pathString) {
         pathString && !R.is(pathString, string) && !R.is(pathString[0], array) && (pathString += E);
@@ -6627,9 +6627,9 @@
      * Each letter is a command. There are four commands: `t` is for translate, `r` is for rotate, `s` is for
      * scale and `m` is for matrix.
      *
-     * There are also alternative “absolute” translation, rotation and scale: `T`, `R` and `S`. They will not take previous transformation into account. For app, `...T100,0` will always move element 100 px horisontally, while `...t100,0` could move it vertically if there is `r90` before. Just compare results of `r90t100,0` and `r90T100,0`.
+     * There are also alternative “absolute” translation, rotation and scale: `T`, `R` and `S`. They will not take previous transformation into account. For example, `...T100,0` will always move element 100 px horisontally, while `...t100,0` could move it vertically if there is `r90` before. Just compare results of `r90t100,0` and `r90T100,0`.
      *
-     * So, the app line above could be read like “translate by 100, 100; rotate 30° around 100, 100; scale twice around 100, 100;
+     * So, the example line above could be read like “translate by 100, 100; rotate 30° around 100, 100; scale twice around 100, 100;
      * rotate 45° around centre; scale 1.5 times relative to centre”. As you can see rotate and scale commands have origin
      * coordinates as optional parameters, the default is the centre point of the element.
      * Matrix accepts six parameters.
@@ -6815,10 +6815,10 @@
      o x (number)
      o y (number)
      > Gradients
-     * Linear gradient format: “`‹angle›-‹colour›[-‹colour›[:‹offset›]]*-‹colour›`”, app: “`90-#fff-#000`” – 90°
+     * Linear gradient format: “`‹angle›-‹colour›[-‹colour›[:‹offset›]]*-‹colour›`”, example: “`90-#fff-#000`” – 90°
      * gradient from white to black or “`0-#fff-#f00:20-#000`” – 0° gradient from white via red (at 20%) to black.
      *
-     * radial gradient: “`r[(‹fx›, ‹fy›)]‹colour›[-‹colour›[:‹offset›]]*-‹colour›`”, app: “`r#fff-#000`” –
+     * radial gradient: “`r[(‹fx›, ‹fy›)]‹colour›[-‹colour›[:‹offset›]]*-‹colour›`”, example: “`r#fff-#000`” –
      * gradient from white to black or “`r(0.25, 0.75)#fff-#000`” – gradient from white to black with focus point
      * at 0.25, 0.75. Focus point coordinates are in 0..1 range. Radial gradients can only be applied to circles and ellipses.
      > Path String

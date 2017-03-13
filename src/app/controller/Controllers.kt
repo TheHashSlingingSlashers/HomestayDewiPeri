@@ -156,7 +156,7 @@ class EventController {
     }
 
     @RequestMapping("/new", method = arrayOf(GET))
-    fun tambah() = "event-baru"
+    fun tambah() = "tambah-event"
 
     @RequestMapping("/new", method = arrayOf(POST))
     fun tambahSubmit(@ModelAttribute event: Event): String {

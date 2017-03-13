@@ -37,7 +37,7 @@
         ONREADYSTATECHANGE = "onreadystatechange",
         REMOVEEVENTLISTENER = "removeEventListener",
 
-        // W3C Event app.model
+        // W3C Event model
         w3c = ADDEVENTLISTENER in doc,
         top = FALSE,
 
@@ -109,7 +109,7 @@
         // A fallback to window.onload, that will always work
         win[ADDEVENTLISTENER]( LOAD, completed, FALSE );
 
-    // If IE event app.model is used
+    // If IE event model is used
     } else {
         // Ensure firing before onload, maybe late but safe also for iframes
         doc[ATTACHEVENT]( ONREADYSTATECHANGE, completed );

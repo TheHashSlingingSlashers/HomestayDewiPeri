@@ -1,7 +1,7 @@
 {
   "adjoining-classes": false,
   "box-sizing": false,
-  "box-app.model": false,
+  "box-model": false,
   "compatible-vendor-prefixes": false,
   "floats": false,
   "font-sizes": false,

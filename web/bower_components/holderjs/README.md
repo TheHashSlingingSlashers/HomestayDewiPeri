@@ -157,7 +157,7 @@ You can use Holder in different areas on different images with custom themes:
 
 ```js
 Holder.run({
-  domain: app,
+  domain: "example.com",
   themes: {
     "simple": {
       background: "#fff",
