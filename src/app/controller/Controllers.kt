@@ -1,9 +1,5 @@
 package app.controller
 
-import app.model.Event
-import app.model.Homestay
-import app.model.Penyewa
-import app.model.User
 import app.repository.EventDAO
 import app.repository.HomestayDAO
 import app.repository.PenyewaDAO
@@ -13,36 +9,15 @@ import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.jdbc.core.ResultSetExtractor
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
-import org.springframework.web.bind.annotation.ModelAttribute
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod.GET
 import org.springframework.web.bind.annotation.RequestMethod.POST
 import org.springframework.web.bind.annotation.RequestParam
 import java.sql.ResultSet
-import java.sql.Types.VARCHAR
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.servlet.http.HttpServletRequest
-import javax.servlet.http.HttpSession
-
-/**
- * Created by ric on 28/02/17.
- */
-
-private operator fun <E> Enumeration<E>.contains(e: E?): Boolean {
-    if (e == null) return false
-    while (hasMoreElements()) {
-        val d = nextElement()
-        if (d == e) return true
-    }
-    return false
-}
-
-fun HttpSession.clearAttributes() {
-    for (attr in attributeNames.iterator()) {
-        removeAttribute(attr)
-    }
-}
 
 
 @Controller
@@ -102,16 +77,36 @@ class HomestayController {
     fun tambah() = "tambah-homestay"
 
     @RequestMapping("/new", method = arrayOf(POST))
-    fun tambahSubmit(@ModelAttribute homestay: Homestay): String {
+    fun tambahSubmit(req: HttpServletRequest): String {
+        val homestay = homestay {
+            id = req["id"]
+            pemilik = req["pemilik"]
+            lokasi = req["lokasi"]
+            jumlahKamar = req["jumlahKamar"]?.toInt() ?: 0
+            jumlahBed = req["jumlahBed"]?.toInt() ?: 0
+            jumlahWC = req["jumlahWC"]?.toInt() ?: 0
+        }
         homestayDAO.insert(homestay)
         return "redirect:/homestay"
     }
 
-    @RequestMapping("/edit", method = arrayOf(GET))
-    fun edit() = "edit-homestay"
+    @RequestMapping("/edit/{id}", method = arrayOf(GET))
+    fun edit(@PathVariable("id") id: String, model: Model): String {
+        val h = homestayDAO.getById(id)
+        model.addAttribute("homestay", h)
+        return "edit-homestay"
+    }
 
-    @RequestMapping("/edit", method = arrayOf(POST))
-    fun editSubmit(@ModelAttribute h: Homestay): String {
+    @RequestMapping("/edit/{id}", method = arrayOf(POST))
+    fun editSubmit(@PathVariable id: String, req: HttpServletRequest): String {
+        val h = homestay {
+            this.id = id
+            pemilik = req["pemilik"]
+            lokasi = req["lokasi"]
+            jumlahKamar = req["jumlahKamar"]?.toInt() ?: 0
+            jumlahBed = req["jumlahBed"]?.toInt() ?: 0
+            jumlahWC = req["jumlahWC"]?.toInt() ?: 0
+        }
         homestayDAO.update(h)
         return "redirect:/homestay"
     }
@@ -130,16 +125,38 @@ class PenyewaController {
     fun tambah() = "tambah-penyewa"
 
     @RequestMapping("/new", method = arrayOf(POST))
-    fun tambahSubmit(@ModelAttribute p: Penyewa): String {
+    fun tambahSubmit(req: HttpServletRequest): String {
+        val p = penyewa {
+            id = req["id"]
+            nama = req["nama"]
+            alamat = req["alamat"]
+            noTelp = req["noTelp"]
+            setJenisKelamin(req["jenisKelamin"])
+            setJenisMakanan(req["jenisMakanan"])
+            isMenginap = req["menginap"]?.toBoolean() ?: false
+        }
         dao.insert(p)
         return "redirect:/penyewa"
     }
 
-    @RequestMapping("/edit", method = arrayOf(GET))
-    fun edit() = "edit-penyewa"
+    @RequestMapping("/edit/{id}", method = arrayOf(GET))
+    fun edit(@PathVariable("id") id: String, model: Model): String {
+        val p = dao.getById(id)
+        model.addAttribute("penyewa", p)
+        return "edit-penyewa"
+    }
 
-    @RequestMapping("/edit", method = arrayOf(POST))
-    fun editSubmit(@ModelAttribute p: Penyewa): String {
+    @RequestMapping("/edit/{id}", method = arrayOf(POST))
+    fun editSubmit(@PathVariable("id") id:String,req:HttpServletRequest): String {
+        val p= penyewa {
+            this.id = id
+            nama = req["nama"]
+            alamat = req["alamat"]
+            noTelp = req["noTelp"]
+            setJenisKelamin(req["jenisKelamin"])
+            setJenisMakanan(req["jenisMakanan"])
+            isMenginap = req["menginap"]?.toBoolean() ?: false
+        }
         dao.update(p)
         return "redirect:/penyewa"
     }
@@ -162,8 +179,8 @@ class EventController {
 
     @RequestMapping("/new", method = arrayOf(POST))
     fun tambahSubmit(req: HttpServletRequest): String {
-        val event = Event().apply {
-            id = req.getParameter("id") ?: ""
+        val event = event {
+            id = req["id"] ?: ""
             nama = req.getParameter("nama") ?: ""
             penyelenggara = req.getParameter("penyelenggara") ?: ""
             if (req.getParameter("mulai") != null) {
@@ -181,11 +198,30 @@ class EventController {
         return "redirect:/event"
     }
 
-    @RequestMapping("/edit", method = arrayOf(GET))
-    fun edit() = "edit-event"
+    @RequestMapping("/edit/{id}", method = arrayOf(GET))
+    fun edit(@PathVariable("id") id:String,model:Model):String{
+        val event = dao.getById(id)
+        model.addAttribute("event",event)
+        return "edit-event"
+    }
 
-    @RequestMapping("/edit", method = arrayOf(POST))
-    fun editSubmit(@ModelAttribute event: Event): String {
+    @RequestMapping("/edit/{id}", method = arrayOf(POST))
+    fun editSubmit(@PathVariable("id") id:String,req:HttpServletRequest): String {
+        val event= event {
+            this.id = id
+            nama = req.getParameter("nama") ?: ""
+            penyelenggara = req.getParameter("penyelenggara") ?: ""
+            if (req.getParameter("mulai") != null) {
+                setMulai(req.getParameter("mulai"))
+            } else {
+                mulai = Date()
+            }
+            if (req.getParameter("selesai") != null) {
+                setSelesai(req.getParameter("selesai"))
+            } else {
+                selesai = Date()
+            }
+        }
         dao.update(event)
         return "redirect:/event"
     }
@@ -202,7 +238,12 @@ class UserController {
     fun tambah() = "tambah-pengguna"
 
     @RequestMapping("/new", method = arrayOf(POST))
-    fun tambahSubmit(@ModelAttribute user: User): String {
+    fun tambahSubmit(req: HttpServletRequest): String {
+        val user = user {
+            username = req["username"]
+            password = req["password"]
+            role = req["role"]
+        }
         dao.insert(user)
         return "redirect:/pengguna"
     }
@@ -212,7 +253,7 @@ class UserController {
 
     @RequestMapping("/edit", method = arrayOf(POST))
     fun editSubmit(@RequestParam("username") user: String?, @RequestParam("password") password: String?): String {
-        val u = User().apply { username = user;this.password = password }
+        val u = user { username = user;this.password = password }
         dao.update(u)
         return "redirect:/pengguna"
     }
