@@ -45,9 +45,14 @@
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
-                    <a type="button" href="${path}/penyewa/new" data-toggle="tooltip" data-placement="top" title="Add Penyewa" class="btn btn-primary" ><i class="fa fa-plus" aria-hidden="true"></i></a>
-                    &nbsp;<a type="button" href="${path}/penyewa/edit" data-toggle="tooltip" data-placement="top" title="Edit Penyewa" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                    &nbsp;<button type="button" id="button" data-toggle="tooltip" data-placement="top" title="Delete Penyewa" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    <a type="button" href="${path}/penyewa/new" data-toggle="tooltip" data-placement="top"
+                       title="Add Penyewa" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                    &nbsp;<a type="button" href="${path}/penyewa/edit" data-toggle="tooltip" data-placement="top"
+                             title="Edit Penyewa" class="btn btn-warning"><i class="fa fa-pencil-square-o"
+                                                                             aria-hidden="true"></i></a>
+                    &nbsp;
+                    <button type="button" id="button" data-toggle="tooltip" data-placement="top" title="Delete Penyewa"
+                            class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             &nbsp;
@@ -58,7 +63,7 @@
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                     <tr>
-                                        <th> </th>
+                                        <th></th>
                                         <th>No ID</th>
                                         <th>Nama</th>
                                         <th>Gender</th>
@@ -74,25 +79,20 @@
                                         <tr>
                                             <td>
                                                 <div class="checkbox checkbox-primary">
-                                                    <input type="checkbox" class="styled styled-primary case" name="case[]" id="singleCheckbox" value="option2">
+                                                    <input type="checkbox" class="styled styled-primary case"
+                                                           name="case[]" id="singleCheckbox" value="option2">
                                                     <label></label>
                                                 </div>
                                             </td>
                                             <td>${p.id}</td>
                                             <td>${p.nama}</td>
                                             <td>
-                                                <c:choose>
-                                                    <c:when test="${p.jenisKelamin==Sex.L}">Laki-laki</c:when>
-                                                    <c:when test="${p.jenisKelamin==P}">Perempuan</c:when>
-                                                </c:choose>
+                                                    ${p.jenisKelamin}
                                             </td>
                                             <td>${p.alamat}</td>
                                             <td>${p.noTelp}</td>
                                             <td>
-                                                <c:choose>
-                                                    <c:when test="${p.jenisMakanan==vege}">Vegetarian</c:when>
-                                                    <c:when test="${p.jenisKelamin==nonvege}">Non-vegetarian</c:when>
-                                                </c:choose>
+                                                    ${p.jenisMakanan}
                                             </td>
                                             <td><input type="checkbox" disabled="disabled" value="${p.menginap}"/></td>
                                             <td>&nbsp;</td>
@@ -122,16 +122,19 @@
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 <script>
     $(document).ready(function () {
-        $('input[type="checkbox"]').on('change', function() {
+        function myfunc(ele) {
+            var values = new Array();
+            $.each($("input[name='case[]']:checked").closest("td").siblings("td"),
+                function () {
+                    values.push($(this).text());
+                }
+            );
+        }
+
+        $('input[type="checkbox"]').on('change', function () {
             $('input[type="checkbox"]').not(this).prop('checked', false);
         });
-    })
-</script>
-
-<script>
-    $(document).ready(function() {
-
-        $('#dataTables-example tr').click(function(event) {
+        $('#dataTables-example tr').click(function (event) {
             $(this).toggleClass('selected');
             if (event.target.type !== 'checkbox') {
                 $(':checkbox', this).trigger('click');
@@ -144,26 +147,7 @@
 
         $('a').tooltip();
         $('#button').tooltip();
-    });
-</script>
-
-<script>
-    $(document).ready(function () {
-        function myfunc(ele) {
-
-            var values = new Array();
-            $.each($("input[name='case[]']:checked").closest("td").siblings("td"),
-                function () {
-                    values.push($(this).text());
-                });
-
-            alert("val---" + values.join (", "));
-        }
-
-
-        $(document).ready(function() {
-            $("input.case").click(myfunc);
-        });
+        $("input.case").click(myfunc);
     })
 </script>
 

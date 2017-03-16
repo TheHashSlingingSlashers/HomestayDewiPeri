@@ -47,16 +47,17 @@
                     <div class="panel panel-primary">
                         <div class="panel-heading">Tambah Penyewa Baru</div>
                         <div class="panel-body">
-                            <form action="../InsertPenyewa" method="POST" class="form-horizontal" role="form"
+                            <form method="POST" class="form-horizontal" role="form"
                                   id="addPenyewa">
 
                                 <div class="form-group">
                                     <label class="col-md-2 col-sm-2 col-xs-12">Event yang Diikuti</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <select class="form-control" title="Pilih Event yang Diikuti">
-                                            <option>Belum ada event</option>
-                                            <option>2</option>
-                                            <option>3</option>
+                                            <c:forEach items="${listEvent}" var="e">
+                                                <option value="${e.id}">${e.nama}</option>
+                                            </c:forEach>
+
                                         </select>
                                     </div>
                                 </div>
@@ -81,11 +82,11 @@
                                     <label class="col-md-2 col-sm-2 col-xs-12">Jenis Kelamin</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <div class="radio radio-inline radio-primary">
-                                            <input type="radio" name="jenisKelamin" id="inlineRadio1" value="Laki-laki" class="sr-only" required>
+                                            <input type="radio" name="jenisKelamin" id="inlineRadio1" value="L" class="sr-only" required>
                                             <label for="inlineRadio1">Laki-laki</label>
                                         </div>
                                         <div class="radio radio-inline radio-primary">
-                                            <input type="radio" name="jenisKelamin" id="inlineRadio2" value="Perempuan" class="sr-only" required>
+                                            <input type="radio" name="jenisKelamin" id="inlineRadio2" value="P" class="sr-only" required>
                                             <label for="inlineRadio2">Perempuan</label>
                                         </div>
                                     </div>
@@ -111,12 +112,12 @@
                                     <label class="col-md-2 col-sm-2 col-xs-12">Jenis Makanan</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <div class="radio radio-inline radio-primary">
-                                            <input type="radio" name="jenisMakanan" id="inlineRadio3" value="Vegetarian" class="sr-only" required>
+                                            <input type="radio" name="jenisMakanan" id="inlineRadio3" value="vege" class="sr-only" required>
                                             <label for="inlineRadio3">Vegetarian</label>
                                         </div>
                                         <div class="radio radio-inline radio-primary">
                                             <input type="radio" name="jenisMakanan" id="inlineRadio4"
-                                                   value="Non Vegetarian" class="sr-only" required>
+                                                   value="nonvege" class="sr-only" required>
                                             <label for="inlineRadio4">Non Vegetarian</label>
                                         </div>
                                     </div>
@@ -126,12 +127,12 @@
                                     <label class="col-md-2 col-sm-2 col-xs-12">Keterangan</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <div class="radio radio-inline radio-primary">
-                                            <input type="radio" name="menginap" id="inlineRadio5" value="Menginap" class="sr-only" required>
+                                            <input type="radio" name="menginap" id="inlineRadio5" value="true" class="sr-only" required>
                                             <label for="inlineRadio5">Menginap&nbsp</label>
                                         </div>
                                         <div class="radio radio-inline radio-primary">
                                             <input type="radio" name="menginap" id="inlineRadio6"
-                                                   value="Tidak Menginap" class="sr-only" required>
+                                                   value="false" class="sr-only" required>
                                             <label for="inlineRadio6">Tidak Menginap</label>
                                         </div>
                                     </div>

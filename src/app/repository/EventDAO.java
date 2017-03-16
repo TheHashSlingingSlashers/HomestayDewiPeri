@@ -29,6 +29,8 @@ public class EventDAO extends DAO<Event> {
     public static final String COLUMN_MULAI_EVENT = "mulai_event";
     public static final String COLUMN_SELESAI_EVENT = "selesai_event";
 
+
+
     @Autowired
     public EventDAO(JdbcTemplate template) {
         super(template);

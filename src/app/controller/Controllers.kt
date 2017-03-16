@@ -115,14 +115,20 @@ class HomestayController {
 @Controller @RequestMapping("/penyewa")
 class PenyewaController {
     @Autowired private lateinit var dao: PenyewaDAO
-
+//    @Autowired private lateinit var eventDAO: EventDAO
     @RequestMapping(method = arrayOf(GET))
-    fun lihat(): String {
+    fun lihat(model: Model): String {
+        val listPenyewa = dao.all
+        model.addAttribute("listPenyewa", listPenyewa)
         return "lihat-penyewa"
     }
 
     @RequestMapping("/new", method = arrayOf(GET))
-    fun tambah() = "tambah-penyewa"
+    fun tambah(model: Model, @Autowired eventDAO: EventDAO): String {
+        val listEvent = eventDAO.all
+        model.addAttribute("listEvent", listEvent)
+        return "tambah-penyewa"
+    }
 
     @RequestMapping("/new", method = arrayOf(POST))
     fun tambahSubmit(req: HttpServletRequest): String {
@@ -147,8 +153,8 @@ class PenyewaController {
     }
 
     @RequestMapping("/edit/{id}", method = arrayOf(POST))
-    fun editSubmit(@PathVariable("id") id:String,req:HttpServletRequest): String {
-        val p= penyewa {
+    fun editSubmit(@PathVariable("id") id: String, req: HttpServletRequest): String {
+        val p = penyewa {
             this.id = id
             nama = req["nama"]
             alamat = req["alamat"]
@@ -199,15 +205,15 @@ class EventController {
     }
 
     @RequestMapping("/edit/{id}", method = arrayOf(GET))
-    fun edit(@PathVariable("id") id:String,model:Model):String{
+    fun edit(@PathVariable("id") id: String, model: Model): String {
         val event = dao.getById(id)
-        model.addAttribute("event",event)
+        model.addAttribute("event", event)
         return "edit-event"
     }
 
     @RequestMapping("/edit/{id}", method = arrayOf(POST))
-    fun editSubmit(@PathVariable("id") id:String,req:HttpServletRequest): String {
-        val event= event {
+    fun editSubmit(@PathVariable("id") id: String, req: HttpServletRequest): String {
+        val event = event {
             this.id = id
             nama = req.getParameter("nama") ?: ""
             penyelenggara = req.getParameter("penyelenggara") ?: ""

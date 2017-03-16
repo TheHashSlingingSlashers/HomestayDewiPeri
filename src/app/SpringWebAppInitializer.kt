@@ -1,5 +1,6 @@
 package app
 
+import app.repository.EventDAO
 import org.h2.tools.RunScript
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.ComponentScan
@@ -68,6 +69,8 @@ open class WebConfig : WebMvcConfigurerAdapter() {
     override fun configureDefaultServletHandling(configurer: DefaultServletHandlerConfigurer) {
         configurer.enable()
     }
+
+    @Bean open fun eventDAO(): EventDAO = EventDAO(jdbcTemplate(dataSource()))
 }
 
 @Configuration
