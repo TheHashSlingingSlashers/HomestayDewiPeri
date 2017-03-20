@@ -121,8 +121,8 @@
     function addEvent() {
         window.location='${path}/event/new';
     }
-    function editEvent(){
-        window.location='${path}/event/edit';
+    function editEvent(id){
+        window.location='${path}/event/edit/'+id;
     }
 
     $(document).ready(function() {
@@ -162,13 +162,15 @@
 <script>
     $(document).ready(function () {
         function myfunc(ele) {
-
+            var id=$("input[name='case[]']:checked").closest("td").siblings("td")[0].innerHTML;
             var values = new Array();
             $.each($("input[name='case[]']:checked").closest("td").siblings("td"),
                 function () {
                     values.push($(this).text());
                 });
-
+            $("#btnEdit").on("click",function(){
+                window.location='${path}/event/edit/'+id;
+            })
 //            alert("val---" + values.join (", "));
         }
         $(document).ready(function() {
