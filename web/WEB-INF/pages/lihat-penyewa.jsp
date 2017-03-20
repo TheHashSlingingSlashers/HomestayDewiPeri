@@ -145,8 +145,6 @@
             responsive: true
         });
 
-        $('a').tooltip();
-        $('#button').tooltip();
         $("input.case").click(myfunc);
 
         $('#btnAdd').tooltip();

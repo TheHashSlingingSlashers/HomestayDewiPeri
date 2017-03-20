@@ -148,7 +148,7 @@
 
 //            alert("val---" + values.join (", "));
         }
-        
+
         $(document).ready(function() {
             $("input.case").click(myfunc);
         });
