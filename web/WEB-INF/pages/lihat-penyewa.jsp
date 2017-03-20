@@ -81,18 +81,12 @@
                                             <td>${p.id}</td>
                                             <td>${p.nama}</td>
                                             <td>
-                                                <c:choose>
-                                                    <c:when test="${p.jenisKelamin==Sex.L}">Laki-laki</c:when>
-                                                    <c:when test="${p.jenisKelamin==P}">Perempuan</c:when>
-                                                </c:choose>
+                                                    ${p.jenisKelamin}
                                             </td>
                                             <td>${p.alamat}</td>
                                             <td>${p.noTelp}</td>
                                             <td>
-                                                <c:choose>
-                                                    <c:when test="${p.jenisMakanan==vege}">Vegetarian</c:when>
-                                                    <c:when test="${p.jenisKelamin==nonvege}">Non-vegetarian</c:when>
-                                                </c:choose>
+                                                    ${p.jenisMakanan}
                                             </td>
                                             <td><input type="checkbox" disabled="disabled" value="${p.menginap}"/></td>
                                             <td>&nbsp;</td>
@@ -121,22 +115,40 @@
 
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 <script>
-    $(document).ready(function () {
-        $('input[type="checkbox"]').on('change', function() {
-            $('input[type="checkbox"]').not(this).prop('checked', false);
-        });
-    })
-</script>
-
-<script>
     function addHs() {
         window.location='${path}/penyewa/new';
     }
     function editHs(){
         window.location='${path}/penyewa/edit';
     }
+    $(document).ready(function () {
+        function myfunc(ele) {
+            var values = new Array();
+            $.each($("input[name='case[]']:checked").closest("td").siblings("td"),
+                function () {
+                    values.push($(this).text());
+                }
+            );
+        }
 
-    $(document).ready(function() {
+        $('input[type="checkbox"]').on('change', function () {
+            $('input[type="checkbox"]').not(this).prop('checked', false);
+        });
+        $('#dataTables-example tr').click(function (event) {
+            $(this).toggleClass('selected');
+            if (event.target.type !== 'checkbox') {
+                $(':checkbox', this).trigger('click');
+            }
+        });
+
+        $('#dataTables-example').DataTable({
+            responsive: true
+        });
+
+        $('a').tooltip();
+        $('#button').tooltip();
+        $("input.case").click(myfunc);
+
         $('#btnAdd').tooltip();
         $('.singleCheckbox').click(function () {
             if ($(this).is(':checked')) {
@@ -147,43 +159,6 @@
                 $('#btnDelete').attr('disabled', true);
                 $('#btnEdit').attr('disabled', true);
             }
-        });
-    });
-
-</script>
-
-<script>
-    $(document).ready(function() {
-
-        $('#dataTables-example tr').click(function(event) {
-            $(this).toggleClass('selected');
-            if (event.target.type !== 'checkbox') {
-                $(':checkbox', this).trigger('click');
-            }
-        });
-
-        $('#dataTables-example').DataTable({
-            responsive: true
-        });
-    });
-</script>
-
-<script>
-    $(document).ready(function () {
-        function myfunc(ele) {
-
-            var values = new Array();
-            $.each($("input[name='case[]']:checked").closest("td").siblings("td"),
-                function () {
-                    values.push($(this).text());
-                });
-
-            alert("val---" + values.join (", "));
-        }
-
-
-        $(document).ready(function() {
-            $("input.case").click(myfunc);
         });
     })
 </script>
