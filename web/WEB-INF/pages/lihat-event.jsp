@@ -46,9 +46,9 @@
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
-                    <a type="button" href="${path}/event/new" data-toggle="tooltip" data-placement="top" title="Add Event" class="btn btn-primary" ><i class="fa fa-plus" aria-hidden="true"></i></a>
-                    &nbsp;<a type="button" href="${path}/event/edit" data-toggle="tooltip" data-placement="top" title="Edit Event" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                    &nbsp;<button type="button" id="button" data-toggle="tooltip" data-placement="top" title="Delete Event" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    <button type="button" id="btnAdd" onclick="addEvent();" data-toggle="tooltip" data-placement="top" title="Add Event" class="btn btn-primary" ><i class="fa fa-plus" aria-hidden="true"></i></button>
+                    &nbsp;<button type="button" id="btnEdit" onclick="editEvent();" data-toggle="tooltip" data-placement="top" title="Edit Event" class="btn btn-warning" disabled><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                    &nbsp;<button type="button" id="btnDelete" href="#" data-toggle="tooltip" data-placement="top" title="Delete Event" class="btn btn-danger" disabled><i class="fa fa-trash" aria-hidden="true"></i></button>
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             &nbsp;
@@ -73,7 +73,7 @@
                                         <tr>
                                             <td>
                                                 <div class="checkbox checkbox-primary">
-                                                    <input type="checkbox" class="styled styled-primary case" name="case[]" id="singleCheckbox" value="option2">
+                                                    <input type="checkbox" class="styled styled-primary case singleCheckbox" name="case[]" id="singleCheckbox" value="option2">
                                                     <label></label>
                                                 </div>
                                             </td>
@@ -118,6 +118,30 @@
 </script>
 
 <script>
+    function addEvent() {
+        window.location='${path}/event/new';
+    }
+    function editEvent(){
+        window.location='${path}/event/edit';
+    }
+
+    $(document).ready(function() {
+        $('#btnAdd').tooltip();
+        $('.singleCheckbox').click(function () {
+            if ($(this).is(':checked')) {
+                $('#btnDelete').removeAttr('disabled');
+                $('#btnEdit').removeAttr('disabled');
+                $('[data-toggle="tooltip"]').tooltip();
+            } else {
+                $('#btnDelete').attr('disabled', true);
+                $('#btnEdit').attr('disabled', true);
+            }
+        });
+    });
+
+</script>
+
+<script>
     $(document).ready(function() {
 
         $('#dataTables-example tr').click(function(event) {
@@ -131,8 +155,7 @@
             responsive: true
         });
 
-        $('a').tooltip();
-        $('#button').tooltip();
+
     });
 </script>
 
@@ -146,14 +169,14 @@
                     values.push($(this).text());
                 });
 
-            alert("val---" + values.join (", "));
+//            alert("val---" + values.join (", "));
         }
-
-
         $(document).ready(function() {
             $("input.case").click(myfunc);
         });
-    })
+    });
+
+
 </script>
 
 <script>
@@ -176,6 +199,8 @@
         } );
     } );
 </script>
+
+
 
 </body>
 

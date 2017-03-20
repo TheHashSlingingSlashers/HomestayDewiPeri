@@ -45,9 +45,9 @@
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
-                    <a type="button" href="${path}/penyewa/new" data-toggle="tooltip" data-placement="top" title="Add Penyewa" class="btn btn-primary" ><i class="fa fa-plus" aria-hidden="true"></i></a>
-                    &nbsp;<a type="button" href="${path}/penyewa/edit" data-toggle="tooltip" data-placement="top" title="Edit Penyewa" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                    &nbsp;<button type="button" id="button" data-toggle="tooltip" data-placement="top" title="Delete Penyewa" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    <button type="button" id="btnAdd" onclick="addPenyewa();" data-toggle="tooltip" data-placement="top" title="Add Penyewa" class="btn btn-primary" ><i class="fa fa-plus" aria-hidden="true"></i></button>
+                    &nbsp;<button type="button" id="btnEdit" onclick="editPenyewa();" data-toggle="tooltip" data-placement="top" title="Edit Penyewa" class="btn btn-warning" disabled><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                    &nbsp;<button type="button" id="btnDelete" href="#" data-toggle="tooltip" data-placement="top" title="Delete Penyewa" class="btn btn-danger" disabled><i class="fa fa-trash" aria-hidden="true"></i></button>
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             &nbsp;
@@ -74,7 +74,7 @@
                                         <tr>
                                             <td>
                                                 <div class="checkbox checkbox-primary">
-                                                    <input type="checkbox" class="styled styled-primary case" name="case[]" id="singleCheckbox" value="option2">
+                                                    <input type="checkbox" class="styled styled-primary case singleCheckbox" name="case[]" id="singleCheckbox" value="option2">
                                                     <label></label>
                                                 </div>
                                             </td>
@@ -129,6 +129,30 @@
 </script>
 
 <script>
+    function addHs() {
+        window.location='${path}/penyewa/new';
+    }
+    function editHs(){
+        window.location='${path}/penyewa/edit';
+    }
+
+    $(document).ready(function() {
+        $('#btnAdd').tooltip();
+        $('.singleCheckbox').click(function () {
+            if ($(this).is(':checked')) {
+                $('#btnDelete').removeAttr('disabled');
+                $('#btnEdit').removeAttr('disabled');
+                $('[data-toggle="tooltip"]').tooltip();
+            } else {
+                $('#btnDelete').attr('disabled', true);
+                $('#btnEdit').attr('disabled', true);
+            }
+        });
+    });
+
+</script>
+
+<script>
     $(document).ready(function() {
 
         $('#dataTables-example tr').click(function(event) {
@@ -141,9 +165,6 @@
         $('#dataTables-example').DataTable({
             responsive: true
         });
-
-        $('a').tooltip();
-        $('#button').tooltip();
     });
 </script>
 

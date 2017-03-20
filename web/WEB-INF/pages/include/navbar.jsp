@@ -66,6 +66,10 @@
                     <!-- /.nav-second-level -->
                 </li>
 
+                <li>
+                    <a href="#"><i class="fa fa-bar-chart fa-fw" aria-hidden="true"></i> Statistik</a>
+                </li>
+
             </ul>
         </div>
         <!-- /.sidebar-collapse -->

@@ -46,7 +46,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <a type="button" href="${path}/pengguna/new" data-toggle="tooltip" data-placement="top" title="Add Pengguna" class="btn btn-primary" ><i class="fa fa-plus" aria-hidden="true"></i></a>
-                    &nbsp;<button type="button" id="button" data-toggle="tooltip" data-placement="top" title="Delete Pengguna" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    &nbsp;<button type="button" id="btnDelete" href="#" data-toggle="tooltip" data-placement="top" title="Delete Pengguna" class="btn btn-danger" disabled><i class="fa fa-trash" aria-hidden="true"></i></button>
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             &nbsp;
@@ -67,7 +67,7 @@
                                         <tr>
                                             <td>
                                                 <div class="checkbox checkbox-primary">
-                                                    <input type="checkbox" class="styled styled-primary case" name="case[]" id="singleCheckbox" value="option2">
+                                                    <input type="checkbox" class="styled styled-primary case singleCheckbox" name="case[]" id="singleCheckbox" value="option2">
                                                     <label></label>
                                                 </div>
                                             </td>
@@ -107,6 +107,21 @@
 
 <script>
     $(document).ready(function() {
+        $('#btnAdd').tooltip();
+        $('.singleCheckbox').click(function () {
+            if ($(this).is(':checked')) {
+                $('#btnDelete').removeAttr('disabled');
+                $('[data-toggle="tooltip"]').tooltip();
+            } else {
+                $('#btnDelete').attr('disabled', true);
+            }
+        });
+    });
+
+</script>
+
+    <script>
+    $(document).ready(function() {
 
         $('#dataTables-example tr').click(function(event) {
             $(this).toggleClass('selected');
@@ -118,9 +133,6 @@
         $('#dataTables-example').DataTable({
             responsive: true
         });
-
-        $('a').tooltip();
-        $('#button').tooltip();
     });
 </script>
 
@@ -134,10 +146,9 @@
                     values.push($(this).text());
                 });
 
-            alert("val---" + values.join (", "));
+//            alert("val---" + values.join (", "));
         }
-
-
+        
         $(document).ready(function() {
             $("input.case").click(myfunc);
         });
