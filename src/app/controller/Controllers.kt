@@ -58,7 +58,6 @@ class HomeController {
         val sql = "SELECT * FROM pengguna WHERE `USERNAME`=? AND `PASSWORD`=?"
         return jdbcTemplate.query(sql, arrayOf(username, password), ResultSetExtractor(ResultSet::next))
     }
-
 }
 
 

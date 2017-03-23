@@ -41,82 +41,7 @@
                             <div class="panel panel-primary">
                                 <div class="panel-heading">Tambah Pengguna Baru</div>
                                 <div class="panel-body">
-                                    <form class="form-horizontal" role="form" method="get">
-
-                                        <div class="form-group">
-                                            <label class="col-md-2 col-sm-2 col-xs-12">No. Identitas</label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <input type="text" class="form-control" id="noIdentias" required>
-                                            </div>
-                                        </div>
-                                        <!-- /.form-group -->
-                                        <div class="form-group">
-                                            <label class="col-md-2 col-sm-2 col-xs-12">Nama</label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <input type="text" class="form-control" id="nama" required>
-                                            </div>
-                                        </div>
-                                        <!-- /.form-group -->
-                                        <div class="form-group">
-                                            <label class="col-md-2 col-sm-2 col-xs-12">Jenis Kelamin</label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <div class="radio radio-inline radio-primary">
-                                                    <input type="radio" name="sexRadio" id="inlineRadio1" value="option1" class="sr-only" required>
-                                                    <label for="inlineRadio1">Laki-laki</label>
-                                                </div>
-                                                <div class="radio radio-inline radio-primary">
-                                                    <input type="radio" name="sexRadio" id="inlineRadio2" value="option2" class="sr-only" required>
-                                                    <label for="inlineRadio2">Perempuan</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- /.form-group -->
-                                        <div class="form-group">
-                                            <label class="col-md-2 col-sm-2 col-xs-12">RT Tempat Tinggal</label>
-                                            <div class="col-md-4 col-sm-4 col-xs-12">
-                                                <select class="form-control" title="RT Tempat Tinggal">
-                                                    <option>RT 1</option>
-                                                    <option>RT 2</option>
-                                                    <option>RT 3</option>
-                                                    <option>RT 4</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <!-- /.form-group -->
-                                        <div class="form-group">
-                                            <label class="col-md-2 col-sm-2 col-xs-12">Username</label>
-                                            <div class="col-md-4 col-sm-4 col-xs-12">
-                                                <input type="text" class="form-control" id="username" required>
-                                            </div>
-                                        </div>
-                                        <!-- /.form-group -->
-                                        <div class="form-group">
-                                            <label class="col-md-2 col-sm-2 col-xs-12">Password</label>
-                                            <div class="col-md-4 col-sm-4 col-xs-12">
-                                                <div class="input-group">
-                                                    <input type="password" class="form-control" name="password" id="password1" required>
-                                                    <div class="input-group-addon"><span class="glyphicon glyphicon-eye-close"></span></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- /.form-group -->
-                                        <div class="form-group">
-                                            <label class="col-md-2 col-sm-2 col-xs-12">Ulangi Password</label>
-                                            <div class="col-md-4 col-sm-4 col-xs-12">
-                                                <div class="input-group">
-                                                    <input type="password" class="form-control" id="password2" required>
-                                                    <div class="input-group-addon"><span class="glyphicon glyphicon-eye-close"></span></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- /.form-group -->
-
-                                        <div class="col-md-offset-2 col-sm-offset-2">
-                                            &nbsp;<button type="submit" class="btn btn-labeled btn-success"><span class="btn-label"><i class="glyphicon glyphicon-floppy-disk"></i></span> Save</button>
-                                        </div>
-
-                                    </form>
-                                    <!-- /.form -->
+                                    <div id="container" style="min-width: 310px; max-width:800px; height: 550px; margin: 0 auto"></div>
                                 </div>
                                 <!-- /.panel body -->
                             </div>
@@ -134,22 +59,74 @@
         </div>
         <!-- /#wrapper -->
         <%@include file="include/scripts.jsp" %>
+        <script src="${path}/js/highcharts.js"></script>
+        <script src="${path}/js/modules/exporting.js"></script>
 
         <script>
-            $(document).ready(function() {
-                var password = document.getElementById("password1")
-                    , confirm_password = document.getElementById("password2");
-
-                function validatePassword() {
-                    if (password.value != confirm_password.value) {
-                        confirm_password.setCustomValidity("Passwords Don't Match");
-                    } else {
-                        confirm_password.setCustomValidity('');
+            Highcharts.chart('container', {
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Monthly Average Rainfall'
+                },
+                subtitle: {
+                    text: 'Source: WorldClimate.com'
+                },
+                xAxis: {
+                    categories: [
+                        'Jan',
+                        'Feb',
+                        'Mar',
+                        'Apr',
+                        'May',
+                        'Jun',
+                        'Jul',
+                        'Aug',
+                        'Sep',
+                        'Oct',
+                        'Nov',
+                        'Dec'
+                    ],
+                    crosshair: true
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Rainfall (mm)'
                     }
-                }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                        '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+                    name: 'Tokyo',
+                    data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
 
-                password.onchange = validatePassword;
-                confirm_password.onkeyup = validatePassword;
+                }, {
+                    name: 'New York',
+                    data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+
+                }, {
+                    name: 'London',
+                    data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
+
+                }, {
+                    name: 'Berlin',
+                    data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
+
+                }]
             });
         </script>
 
