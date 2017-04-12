@@ -69,6 +69,7 @@
                                     <label class="col-md-2 col-sm-2 col-xs-12">Kode Event</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" class="form-control col-md-7 col-xs-12" id="kodeEvent"
+                                               value="${event.id}"
                                                readonly="readonly">
                                     </div>
                                 </div>
@@ -77,7 +78,8 @@
                                 <div class="form-group">
                                     <label class="col-md-2 col-sm-2 col-xs-12">Nama Event</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" class="form-control col-md-7 col-xs-12" id="namaEvent">
+                                        <input type="text" class="form-control col-md-7 col-xs-12" id="namaEvent"
+                                               value="${event.nama}">
                                     </div>
                                 </div>
                                 <!-- /.form-group -->
@@ -86,7 +88,7 @@
                                     <label class="col-md-2 col-sm-2 col-xs-12">Penyelenggara</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" class="form-control col-md-7 col-xs-12" id="penyelenggara"
-                                               name="penyelenggara">
+                                               name="penyelenggara" value="${event.penyelenggara}">
                                     </div>
                                 </div>
                                 <!-- /.form-group -->
@@ -97,7 +99,8 @@
                                         <div class="xdisplay_inputx has-feedback">
                                             <div class="input-group">
                                                 <input type="text" class="form-control col-md-7 col-xs-12"
-                                                       id="single_cal3" aria-describedby="inputSuccess2Status">
+                                                       id="single_cal3" aria-describedby="inputSuccess2Status"
+                                                       name="mulai">
                                                 <div class="input-group-addon"><span
                                                         class="glyphicon glyphicon-calendar"></span></div>
                                             </div>
@@ -112,7 +115,8 @@
                                         <div class="xdisplay_inputx has-feedback">
                                             <div class="input-group">
                                                 <input type="text" class="form-control col-md-7 col-xs-12"
-                                                       id="single_cal2" aria-describedby="inputSuccess2Status">
+                                                       id="single_cal2" aria-describedby="inputSuccess2Status"
+                                                       name="selesai">
                                                 <div class="input-group-addon"><span
                                                         class="glyphicon glyphicon-calendar"></span></div>
                                             </div>
@@ -122,7 +126,8 @@
                                 <!-- /.form-group -->
 
                                 <div class="col-md-offset-2 col-sm-offset-2">
-                                    &nbsp;<button type="button" class="btn btn-labeled btn-success"><span class="btn-label"><i
+                                    &nbsp;
+                                    <button type="button" class="btn btn-labeled btn-success"><span class="btn-label"><i
                                             class="glyphicon glyphicon-floppy-disk"></i></span> Save
                                     </button>
                                 </div>
@@ -145,13 +150,19 @@
 
 </div>
 <!-- /#wrapper -->
-<%@include file="include/scripts.jsp"%>
+<%@include file="include/scripts.jsp" %>
 <script src="${path}/js/moment/moment.min.js"></script>
 <script src="${path}/js/datepicker/daterangepicker.js"></script>
 
 <script>
-    $(document).ready(function () {
+    function formatDate(date) {
+        var d = date.getDate();
+        var m = date.getMonth() + 1;
+        var y = date.getFullYear();
+        return (d < 10 ? '0' + d : d) + "-" + (m < 10 ? '0' + m : m) + "-" + y;
+    }
 
+    $(document).ready(function () {
 
         $('#single_cal3').daterangepicker({
             singleDatePicker: true,
@@ -166,6 +177,10 @@
         }, function (start, end, label) {
             console.log(start.toISOString(), end.toISOString(), label);
         });
+
+        $("#single_cal3").value = formatDate(new Date(${event.mulai.time}));
+        $("#single_cal2").value = formatDate(new Date(${event.selesai.time}));
+
     });
 </script>
 

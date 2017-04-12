@@ -110,39 +110,12 @@
 
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 <script>
-    $(document).ready(function () {
+
+    function onDocumentReady(){
         $('input[type="checkbox"]').on('change', function() {
             $('input[type="checkbox"]').not(this).prop('checked', false);
         });
-    })
-</script>
 
-<script>
-    function addHs() {
-        window.location='${path}/homestay/new';
-    }
-    function editHs(){
-        window.location='${path}/homestay/edit';
-    }
-
-    $(document).ready(function() {
-        $('#btnAdd').tooltip();
-        $('.singleCheckbox').click(function () {
-            if ($(this).is(':checked')) {
-                $('#btnDelete').removeAttr('disabled');
-                $('#btnEdit').removeAttr('disabled');
-                $('[data-toggle="tooltip"]').tooltip();
-            } else {
-                $('#btnDelete').attr('disabled', true);
-                $('#btnEdit').attr('disabled', true);
-            }
-        });
-    });
-
-</script>
-
-<script>
-    $(document).ready(function() {
 
         $('#dataTables-example tr').click(function(event) {
             $(this).toggleClass('selected');
@@ -154,31 +127,21 @@
         $('#dataTables-example').DataTable({
             responsive: true
         });
-    });
-</script>
 
-<script>
-    $(document).ready(function () {
-        function myfunc(ele) {
-
-            var values = new Array();
-            $.each($("input[name='case[]']:checked").closest("td").siblings("td"),
-                function () {
-                    values.push($(this).text());
-                });
-
-//            alert("val---" + values.join (", "));
-        }
-
-
-        $(document).ready(function() {
-            $("input.case").click(myfunc);
+        $('#btnAdd').tooltip();
+        $('.singleCheckbox').click(function () {
+            if ($(this).is(':checked')) {
+                $('#btnDelete').removeAttr('disabled');
+                $('#btnEdit').removeAttr('disabled');
+                $('[data-toggle="tooltip"]').tooltip();
+            } else {
+                $('#btnDelete').attr('disabled', true);
+                $('#btnEdit').attr('disabled', true);
+            }
         });
-    })
-</script>
 
-<script>
-    $(document).ready(function() {
+        $("input.case").click(myfunc);
+
         var table = $('#dataTables-example').DataTable();
 
         $('#dataTables-example tbody').on( 'click', 'tr', function () {
@@ -195,7 +158,28 @@
             table.row('.selected').remove().draw( false );
             alert("hello world");
         } );
-    } );
+    }
+
+    $(document).ready(onDocumentReady)
+
+    function addHs() {
+        window.location='${path}/homestay/new';
+    }
+    function editHs(){
+        window.location='${path}/homestay/edit';
+    }
+
+    function myfunc(ele) {
+
+        var values = new Array();
+        $.each($("input[name='case[]']:checked").closest("td").siblings("td"),
+            function () {
+                values.push($(this).text());
+            });
+
+//            alert("val---" + values.join (", "));
+    }
+
 </script>
 
 </body>

@@ -69,14 +69,15 @@
                                     <label class="col-md-2 col-sm-2 col-xs-12">Kode Homestay</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" class="form-control col-md-7 col-xs-12" id="kodeHomestay"
-                                               readonly="readonly">
+                                               readonly="readonly" value="${homestay.id}">
                                     </div>
                                 </div>
                                 <!-- /.form-group -->
                                 <div class="form-group">
                                     <label class="col-md-2 col-sm-2 col-xs-12">Nama Pemilik</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" class="form-control col-md-7 col-xs-12" id="namaPemilik">
+                                        <input type="text" class="form-control col-md-7 col-xs-12" id="namaPemilik"
+                                        value="${homestay.pemilik}">
                                     </div>
                                 </div>
                                 <!-- /.form-group -->

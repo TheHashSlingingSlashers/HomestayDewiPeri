@@ -8,6 +8,7 @@ import org.springframework.context.annotation.ComponentScan.Filter
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.FilterType
 import org.springframework.context.event.ContextRefreshedEvent
+import org.springframework.context.event.ContextStartedEvent
 import org.springframework.context.event.EventListener
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.jdbc.datasource.DriverManagerDataSource
@@ -41,7 +42,7 @@ class SpringWebAppInitializer : AbstractAnnotationConfigDispatcherServletInitial
 @EnableWebMvc
 @ComponentScan("app")
 open class WebConfig : WebMvcConfigurerAdapter() {
-    @EventListener(ContextRefreshedEvent::class)
+    @EventListener(ContextRefreshedEvent::class,ContextStartedEvent::class)
     fun onStartup() {
         jdbcTemplate(dataSource()).query("show tables", {
             if (!it.next()) {

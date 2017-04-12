@@ -20,6 +20,7 @@ import java.util.*
 import javax.servlet.http.HttpServletRequest
 
 
+
 @Controller
 @RequestMapping("/")
 class HomeController {
@@ -56,7 +57,7 @@ class HomeController {
     private fun validateLogin(username: String?, password: String?): Boolean {
         if (username == null || password == null) return false
         val sql = "SELECT * FROM pengguna WHERE `USERNAME`=? AND `PASSWORD`=?"
-        return jdbcTemplate.query(sql, arrayOf(username, password), ResultSetExtractor(ResultSet::next))
+        return jdbcTemplate.query(sql, arrayOf(username, password), ResultSetExtractor{it.next()})
     }
 }
 
