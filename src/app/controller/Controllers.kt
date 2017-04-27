@@ -20,7 +20,6 @@ import java.util.*
 import javax.servlet.http.HttpServletRequest
 
 
-
 @Controller
 @RequestMapping("/")
 class HomeController {
@@ -57,7 +56,7 @@ class HomeController {
     private fun validateLogin(username: String?, password: String?): Boolean {
         if (username == null || password == null) return false
         val sql = "SELECT * FROM pengguna WHERE `USERNAME`=? AND `PASSWORD`=?"
-        return jdbcTemplate.query(sql, arrayOf(username, password), ResultSetExtractor{it.next()})
+        return jdbcTemplate.query(sql, arrayOf(username, password), ResultSetExtractor { it.next() })
     }
 }
 
@@ -115,7 +114,7 @@ class HomestayController {
 @Controller @RequestMapping("/penyewa")
 class PenyewaController {
     @Autowired private lateinit var dao: PenyewaDAO
-//    @Autowired private lateinit var eventDAO: EventDAO
+    //    @Autowired private lateinit var eventDAO: EventDAO
     @RequestMapping(method = arrayOf(GET))
     fun lihat(model: Model): String {
         val listPenyewa = dao.all
@@ -263,5 +262,11 @@ class UserController {
         dao.update(u)
         return "redirect:/pengguna"
     }
+}
+
+@Controller @RequestMapping("/manajemen")
+class ManagementHS {
+    @RequestMapping(method = arrayOf(GET))
+    fun asd() = "manajemen-hs"
 }
 
