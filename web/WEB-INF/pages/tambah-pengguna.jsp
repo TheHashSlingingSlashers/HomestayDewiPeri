@@ -50,42 +50,27 @@
                                     <form class="form-horizontal" role="form" method="get">
 
                                         <div class="form-group">
-                                            <label class="col-md-2 col-sm-2 col-xs-12">No. Identitas</label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <input type="text" class="form-control" id="noIdentias" required>
-                                            </div>
-                                        </div>
-                                        <!-- /.form-group -->                                    
-                                        <div class="form-group">
-                                            <label class="col-md-2 col-sm-2 col-xs-12">Nama</label>
+                                            <label class="col-md-2 col-sm-2 col-xs-12">Nama Pengguna</label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                 <input type="text" class="form-control" id="nama" required>
                                             </div>
                                         </div>
                                         <!-- /.form-group -->
                                         <div class="form-group">
-                                            <label class="col-md-2 col-sm-2 col-xs-12">Jenis Kelamin</label>
+                                            <label class="col-md-2 col-sm-2 col-xs-12">Role</label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                 <div class="radio radio-inline radio-primary">
-                                                    <input type="radio" name="sexRadio" id="inlineRadio1" value="option1" class="sr-only" required>
-                                                    <label for="inlineRadio1">Laki-laki</label>
+                                                    <input type="radio" name="roleRadio" id="inlineRadio1" value="option1" class="sr-only" required>
+                                                    <label for="inlineRadio1">Admin</label>
                                                 </div>
                                                 <div class="radio radio-inline radio-primary">
-                                                    <input type="radio" name="sexRadio" id="inlineRadio2" value="option2" class="sr-only" required>
-                                                    <label for="inlineRadio2">Perempuan</label>
+                                                    <input type="radio" name="roleRadio" id="inlineRadio2" value="option2" class="sr-only" required>
+                                                    <label for="inlineRadio2">Penyelenggara</label>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <!-- /.form-group -->
-                                        <div class="form-group">
-                                            <label class="col-md-2 col-sm-2 col-xs-12">RT Tempat Tinggal</label>
-                                            <div class="col-md-4 col-sm-4 col-xs-12">
-                                                <select class="form-control" title="RT Tempat Tinggal">
-                                                    <option>RT 1</option>
-                                                    <option>RT 2</option>
-                                                    <option>RT 3</option>
-                                                    <option>RT 4</option>
-                                                </select>
+                                                <div class="radio radio-inline radio-primary">
+                                                    <input type="radio" name="roleRadio" id="inlineRadio3" value="option3" class="sr-only" required>
+                                                    <label for="inlineRadio3">Pemilik Homestay</label>
+                                                </div>
                                             </div>
                                         </div>
                                         <!-- /.form-group -->

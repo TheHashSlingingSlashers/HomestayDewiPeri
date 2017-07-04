@@ -37,27 +37,11 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Manajemen Pengguna</h1>
+                    <h1 class="page-header"><i class="fa fa-user fa-fw" aria-hidden="true"></i> Manajemen Pengguna</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-md-12 col-sm-12 col-xs-12">
-                    <form class="form-inline pull-right" role="form">
-                        <div class="form-group">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Username Pengguna...">
-                                <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button"> Cari</button>
-                                        </span>
-                            </div>
-                        </div>
-                        <!-- /.form-group -->
-                    </form>
-                </div>
-            </div>
-            <!-- /.row -->
+
 
             <div class="row">
                 <div class="col-lg-12">
@@ -107,8 +91,8 @@
                                 <!-- /.form-group -->
 
                                 <div class="col-md-offset-2 col-sm-offset-2">
-                                    <button type="button" class="btn btn-labeled btn-success"><span class="btn-label"><i
-                                            class="glyphicon glyphicon-floppy-disk"></i></span> Simpan
+                                    <button type="submit" class="btn btn-labeled btn-success"><span class="btn-label"><i
+                                            class="glyphicon glyphicon-floppy-disk"></i></span> Save
                                     </button>
                                 </div>
 

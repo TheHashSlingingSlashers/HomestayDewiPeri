@@ -12,9 +12,61 @@
     <title>Admin Dewi Peri</title>
     <%@include file="include/css.jsp"%>
     <%@include file="include/dataTablesCss.jsp"%>
+    <!-- Custom CSS -->
+    <link href="${path}/dist/css/build.css" rel="stylesheet">
 
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <style>
+        .tt-query,
+        .tt-hint {
+            margin-bottom: 0;
+        }
+        .tt-hint {
+            display: block;
+            width: 100%;
+            height: 38px;
+            padding: 8px 12px;
+            font-size: 14px;
+            line-height: 1.428571429;
+            color: #999;
+            vertical-align: middle;
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+            transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+        }
+        .tt-menu {
+            min-width: 160px;
+            margin-top: 2px;
+            padding: 5px 0;
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+            -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+            background-clip: padding-box;
+        }
+        .tt-suggestion {
+            display: block;
+            padding: 3px 20px;
+        }
+        .tt-suggestion.tt-is-under-cursor {
+            color: #fff;
+            background-color: #428bca;
+        }
+        .tt-suggestion.tt-is-under-cursor a {
+            color: #fff;
+        }
+        .tt-suggestion p {
+            margin: 0;
+        }
+    </style>
+
+    <!-- script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script -->
 
 </head>
 <body>
@@ -26,7 +78,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Manajemen Pengguna</h1>
+                    <h1 class="page-header"><i class="fa fa-suitcase fa-fw" aria-hidden="true"></i> Manajemen Homestay</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -35,21 +87,52 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-primary">
-                        <div class="panel-heading">Tambah Pengguna Baru</div>
+                        <div class="panel-heading">Kelola Penyewa</div>
                         <div class="panel-body">
                             <form class="form-horizontal" role="form">
 
                                 <div class="form-group">
-                                    <label class="col-md-2 col-sm-2 col-xs-12">Pemilik Homestay</label>
-                                    <div class="col-md-4 col-sm-6 col-xs-12" id="the-basics">
-                                        <input class="form-control typeahead" type="text" id="the-basics">
+                                    <label class="col-md-2 col-sm-2 col-xs-12">Event</label>
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <select name="lokasi" class="form-control" title="Pilih Event yang Diikuti">
+                                            <option value="RT 1">Lorem ipsum dolor sit amet</option>
+                                            <option value="RT 2">Consectetur adipiscing elit</option>
+                                            <option value="RT 3">Proin eu tincidunt urna</option>
+                                            <option value="RT 4">Aliquam ut arcu sit amet tortor</option>
+                                        </select>
                                     </div>
-
                                 </div>
+                                <!-- /.form-group -->
+
+                                <div class="form-group">
+                                    <label class="col-md-2 col-sm-2 col-xs-12">Lokasi</label>
+                                    <div class="col-md-2 col-sm-2 col-xs-12">
+                                        <select name="lokasi" class="form-control" title="Pilih Event yang Diikuti">
+                                            <option value="RT 1">RT 1</option>
+                                            <option value="RT 2">RT 2</option>
+                                            <option value="RT 3">RT 3</option>
+                                            <option value="RT 4">RT 4</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- /.form-group -->
+
+                                <div class="form-group">
+                                    <label class="col-md-2 col-sm-2 col-xs-12">Pemilik</label>
+                                    <div class="col-md-2 col-sm-2 col-xs-12">
+                                        <select name="lokasi" class="form-control" title="Pilih Event yang Diikuti">
+                                            <option value="RT 1">Tincidunt aliquam</option>
+                                            <option value="RT 2">Morbi a </option>
+                                            <option value="RT 3">Tempor ipsum</option>
+                                            <option value="RT 4">Quis faucibus nulla</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- /.form-group -->
 
                                 <div class="form-group">
                                     <label class="col-md-2 col-sm-2 col-xs-12">Kapasitas</label>
-                                    <div class="col-md-4 col-sm-6 col-xs-12">
+                                    <div class="col-md-2 col-sm-2 col-xs-12">
                                         <input type="text" class="form-control" id="kapasitas" readonly="readonly">
                                     </div>
                                 </div>
@@ -78,7 +161,7 @@
                                     <tr class="odd gradeX">
                                         <td>
                                             <div class="checkbox checkbox-primary">
-                                                <input type="checkbox" class="styled styled-primary case singleCheckbox" name="case[]" id="singleCheckbox" value="1">
+                                                <input type="checkbox" class="styled styled-primary case singleCheckbox" name="case[]" value="1">
                                                 <label></label>
                                             </div>
                                         </td>
@@ -89,7 +172,7 @@
                                     <tr class="even gradeC">
                                         <td>
                                             <div class="checkbox checkbox-primary">
-                                                <input type="checkbox" class="styled styled-primary case singleCheckbox" name="case[]" id="singleCheckbox" value="1">
+                                                <input type="checkbox" class="styled styled-primary case singleCheckbox" name="case[]" value="1">
                                                 <label></label>
                                             </div>
                                         </td>
@@ -149,10 +232,19 @@
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 <script>
     $(document).ready(function() {
-        var c = $('#kapasitas').val(8);
+        $('#dataTables-example tr').click(function(event) {
+            $(this).toggleClass('selected');
+            if (event.target.type !== 'checkbox') {
+                $(':checkbox', this).trigger('click');
+            }
+        });
+
         $('#dataTables-example').DataTable({
             responsive: true
         });
+
+        var c = $('#kapasitas').val(8);
+
         var capacity = $('#kapasitas').val();
         //var count = $("[type='checkbox']:checked").length;
 
@@ -163,53 +255,7 @@
             });
             $("#kapasitas").val(total);
         });
-
     });
-</script>
-
-<script>
-    var substringMatcher = function(strs) {
-        return function findMatches(q, cb) {
-            var matches, substringRegex;
-
-            // an array that will be populated with substring matches
-            matches = [];
-
-            // regex used to determine if a string contains the substring `q`
-            substrRegex = new RegExp(q, 'i');
-
-            // iterate through the pool of strings and for any string that
-            // contains the substring `q`, add it to the `matches` array
-            $.each(strs, function(i, str) {
-                if (substrRegex.test(str)) {
-                    matches.push(str);
-                }
-            });
-
-            cb(matches);
-        };
-    };
-
-    var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
-        'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
-        'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
-        'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
-        'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
-        'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
-        'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
-        'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
-        'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
-    ];
-
-    $('#the-basics .typeahead').typeahead({
-            hint: true,
-            highlight: true,
-            minLength: 1
-        },
-        {
-            name: 'states',
-            source: substringMatcher(states)
-        });
 </script>
 
 <script>
@@ -217,11 +263,11 @@
         var a = "";
         $("input:checkbox").click(function () {
             if ((this).checked) {
-                if (a.length == 0) {
-                    a = $(this).closest("tr").find("td:eq(1)").text();
-                } else {
+            //    if (a.length == 0) {
+            //        a = $(this).closest("tr").find("td:eq(1)").text();
+            //    } else {
                     a = a + "," + $(this).closest("tr").find("td:eq(1)").text();
-                }
+            //    }
             } else {
                 if (a.length == 1) {
                     a = a.slice(0, -1);
@@ -229,7 +275,6 @@
                     a = a.replace(("," + $(this).closest("tr").find("td:eq(1)").text()), "");
                 }
             }
-
         });
 
         $('#save').click(function (e) {

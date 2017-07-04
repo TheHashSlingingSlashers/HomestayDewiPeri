@@ -24,6 +24,39 @@
     <!-- Custom CSS -->
     <link href="${path}/dist/css/build.css" rel="stylesheet">
 
+    <script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.12.4.js">
+    </script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js">
+    </script>
+
+    <script type="text/javascript" class="init">
+
+
+        $(document).ready(function() {
+            var table = $('#example').DataTable();
+
+            $('#example tbody').on( 'click', 'tr', function () {
+                if ( $(this).hasClass('selected') ) {
+                    $(this).removeClass('selected');
+                }
+                else {
+                    table.$('tr.selected').removeClass('selected');
+                    $(this).addClass('selected');
+                    $('#btnDelete').removeAttr('disabled');
+                    $('#btnEdit').removeAttr('disabled');
+                    $('[data-toggle="tooltip"]').tooltip();
+                }
+            } );
+
+            $('#btnDelete').click( function () {
+                table.row('.selected').remove().draw( false );
+            } );
+
+            $('#btnAdd').tooltip();
+        } );
+
+    </script>
+
 
 </head>
 
@@ -56,10 +89,11 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="dataTable_wrapper">
-                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <table class="table table-bordered" id="example">
+                                    <%--<table class="display" id="dataTables-example">--%>
                                     <thead>
                                     <tr>
-                                        <th> </th>
+                                        <%--<th> </th>--%>
                                         <th>Kode Event</th>
                                         <th>Nama Event</th>
                                         <th>Penyelenggara</th>
@@ -71,12 +105,12 @@
                                     <tbody>
                                     <c:forEach items="${listEvent}" var="e">
                                         <tr>
-                                            <td>
-                                                <div class="checkbox checkbox-primary">
-                                                    <input type="checkbox" class="styled styled-primary case singleCheckbox" name="case[]" id="singleCheckbox" value="option2">
-                                                    <label></label>
-                                                </div>
-                                            </td>
+                                            <%--<td>--%>
+                                                <%--<div class="checkbox checkbox-primary">--%>
+                                                    <%--<input type="checkbox" class="styled styled-primary case singleCheckbox" name="case[]" id="singleCheckbox" value="option2">--%>
+                                                    <%--<label></label>--%>
+                                                <%--</div>--%>
+                                            <%--</td>--%>
                                             <td>${e.id}</td>
                                             <td>${e.nama}</td>
                                             <td>${e.penyelenggara}</td>
@@ -85,7 +119,6 @@
                                             <td>&NonBreakingSpace;</td>
                                         </tr>
                                     </c:forEach>
-
                                     </tbody>
                                 </table>
                             </div>
@@ -111,97 +144,24 @@
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 <script>
     $(document).ready(function () {
-        $('input[type="checkbox"]').on('change', function() {
-            $('input[type="checkbox"]').not(this).prop('checked', false);
-        });
-    })
-</script>
+        var table = $('#example').DataTable();
 
-<script>
+        $('#example tbody').on( 'click', 'tr', function () {
+//            console.log( table.row( this ).data()[1] );
+            var id = table.row( this ).data()[0];
+            $("#btnEdit").on("click",function(){
+                window.location='${path}/event/edit/'+id;
+            });
+        } );
+    })
+
     function addEvent() {
         window.location='${path}/event/new';
     }
     function editEvent(id){
         window.location='${path}/event/edit/'+id;
     }
-
-    $(document).ready(function() {
-        $('#btnAdd').tooltip();
-        $('.singleCheckbox').click(function () {
-            if ($(this).is(':checked')) {
-                $('#btnDelete').removeAttr('disabled');
-                $('#btnEdit').removeAttr('disabled');
-                $('[data-toggle="tooltip"]').tooltip();
-            } else {
-                $('#btnDelete').attr('disabled', true);
-                $('#btnEdit').attr('disabled', true);
-            }
-        });
-    });
-
 </script>
-
-<script>
-    $(document).ready(function() {
-
-        $('#dataTables-example tr').click(function(event) {
-            $(this).toggleClass('selected');
-            if (event.target.type !== 'checkbox') {
-                $(':checkbox', this).trigger('click');
-            }
-        });
-
-        $('#dataTables-example').DataTable({
-            responsive: true
-        });
-
-
-    });
-</script>
-
-<script>
-    $(document).ready(function () {
-        function myfunc(ele) {
-            var id=$("input[name='case[]']:checked").closest("td").siblings("td")[0].innerHTML;
-            var values = new Array();
-            $.each($("input[name='case[]']:checked").closest("td").siblings("td"),
-                function () {
-                    values.push($(this).text());
-                });
-            $("#btnEdit").on("click",function(){
-                window.location='${path}/event/edit/'+id;
-            })
-//            alert("val---" + values.join (", "));
-        }
-        $(document).ready(function() {
-            $("input.case").click(myfunc);
-        });
-    });
-
-
-</script>
-
-<script>
-    $(document).ready(function() {
-        var table = $('#dataTables-example').DataTable();
-
-        $('#dataTables-example tbody').on( 'click', 'tr', function () {
-            if ( $(this).hasClass('selected') ) {
-                $(this).removeClass('selected');
-            }
-            else {
-                table.$('tr.selected').removeClass('selected');
-                $(this).addClass('selected');
-            }
-        } );
-
-        $('#button').click( function () {
-            table.row('.selected').remove().draw( false );
-            alert("hello world");
-        } );
-    } );
-</script>
-
 
 
 </body>

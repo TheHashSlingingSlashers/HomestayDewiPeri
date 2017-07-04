@@ -34,10 +34,6 @@
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
                 <li>
-                    <a href="${path}/event"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> Event</a>
-                </li>
-
-                <li>
                     <a href="${path}/penyewa"><i class="fa fa-users fa-fw" aria-hidden="true"></i> Penyewa</a>
                 </li>
 
@@ -46,7 +42,7 @@
                 </li>
 
                 <li>
-                    <a href="${path}/pengguna"><i class="fa fa-user fa-fw" aria-hidden="true"></i> Manajemen Pengguna</a>
+                    <a href="${path}/event"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> Event</a>
                 </li>
 
                 <li>
@@ -54,20 +50,21 @@
                             class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="#">Lihat Penyewa Homestay</a>
+                            <a href="${path}/manajemen/hist">History Terakhir Pemakaian Homestay</a>
                         </li>
                         <li>
-                            <a href="kelola-penyewa.jsp">Kelola Penyewa Homestay</a>
+                            <a href="${path}/manajemen">Kelola Penyewa Homestay</a>
                         </li>
                         <li>
-                            <a href="#">Memindah Penyewa Homestay</a>
+                            <a href="${path}/manajemen/list">Lihat Penyewa Homestay</a>
                         </li>
+
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
 
                 <li>
-                    <a href="${path}/statistik"><i class="fa fa-bar-chart fa-fw" aria-hidden="true"></i> Statistik</a>
+                    <a href="${path}/pengguna"><i class="fa fa-user fa-fw" aria-hidden="true"></i> Manajemen Pengguna</a>
                 </li>
 
             </ul>
