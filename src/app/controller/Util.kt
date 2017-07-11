@@ -14,11 +14,10 @@ import javax.servlet.http.HttpSession
 /**
  * Created by ric on 28/02/17.
  */
-inline fun event(init: Event.() -> Unit) = Event().apply { init() }
-
-inline fun user(init: User.() -> Unit) = User().apply { init() }
-inline fun penyewa(init: Penyewa.() -> Unit) = Penyewa().apply { init() }
-inline fun homestay(init: Homestay.() -> Unit) = Homestay().apply { init() }
+inline fun event(init: Event.() -> Unit) = Event().apply(init)
+inline fun user(init: User.() -> Unit) = User().apply(init)
+inline fun penyewa(init: Penyewa.() -> Unit) = Penyewa().apply(init)
+inline fun homestay(init: Homestay.() -> Unit) = Homestay().apply(init)
 operator fun HttpServletRequest.get(name: String): String? = getParameter(name)
 internal operator fun <E> Enumeration<E>.contains(e: E?): Boolean {
     if (e == null) return false
@@ -30,7 +29,5 @@ internal operator fun <E> Enumeration<E>.contains(e: E?): Boolean {
 }
 
 fun HttpSession.clearAttributes() {
-    for (attr in attributeNames.iterator()) {
-        removeAttribute(attr)
-    }
+    attributeNames.iterator().forEach { removeAttribute(it) }
 }

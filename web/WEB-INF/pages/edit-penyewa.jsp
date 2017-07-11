@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@page import="app.model.Penyewa.Sex" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,13 +48,13 @@
                     <div class="panel panel-primary">
                         <div class="panel-heading">Edit Penyewa</div>
                         <div class="panel-body">
-                            <form class="form-horizontal" role="form">
+                            <form class="form-horizontal" role="form" method="post">
 
                                 <div class="form-group">
                                     <label class="col-md-2 col-sm-2 col-xs-12">No. Identitas</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" class="form-control col-md-7 col-xs-12" id="noIdentias"
-                                               name="noIdentias" readonly="readonly">
+                                        <input type="text" class="form-control col-md-7 col-xs-12" id="noIdentitas"
+                                               name="noIdentitas" readonly="readonly" value="${penyewa.id}">
                                     </div>
                                 </div>
                                 <!-- /.form-group -->
@@ -61,19 +62,28 @@
                                     <label class="col-md-2 col-sm-2 col-xs-12">Nama</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" class="form-control col-md-7 col-xs-12" id="nama"
-                                               name="nama">
+                                               name="nama" value="${penyewa.nama}">
                                     </div>
                                 </div>
                                 <!-- /.form-group -->
                                 <div class="form-group">
                                     <label class="col-md-2 col-sm-2 col-xs-12">Jenis Kelamin</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
+
                                         <div class="radio radio-inline radio-primary">
-                                            <input type="radio" name="sexRadio" id="inlineRadio1" value="Laki-laki">
+                                            <jsp:text>
+                                                <![CDATA[ <input type="radio" name="jenisKelamin" id="inlineRadio1" value="L" ]]>
+                                            </jsp:text>
+                                            <c:if test="${penyewa.jenisKelamin==\"L\"}" var="sex">checked </c:if>
+                                            <jsp:text> <![CDATA[ /> ]]></jsp:text>
                                             <label for="inlineRadio1">Laki-laki</label>
                                         </div>
                                         <div class="radio radio-inline radio-primary">
-                                            <input type="radio" name="sexRadio" id="inlineRadio2" value="Perempuan">
+                                            <jsp:text>
+                                                <![CDATA[<input type="radio" name="jenisKelamin" id="inlineRadio2" value="P" ]]>
+                                            </jsp:text>
+                                            <c:if test="${!sex}">checked</c:if>
+                                            <jsp:text> <![CDATA[ /> ]]></jsp:text>
                                             <label for="inlineRadio2">Perempuan</label>
                                         </div>
                                     </div>
@@ -83,7 +93,7 @@
                                     <label class="col-md-2 col-sm-2 col-xs-12">Alamat</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" class="form-control col-md-7 col-xs-12" id="alamat"
-                                               name="alamat">
+                                               name="alamat" value="${penyewa.alamat}">
                                     </div>
                                 </div>
                                 <!-- /.form-group -->
@@ -91,7 +101,7 @@
                                     <label class="col-md-2 col-sm-2 col-xs-12">No. Telepon</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" class="form-control col-md-7 col-xs-12" id="telepon"
-                                               name="telepon">
+                                               name="noTelp" value="${penyewa.noTelp}">
                                     </div>
                                 </div>
                                 <!-- /.form-group -->
@@ -99,12 +109,12 @@
                                     <label class="col-md-2 col-sm-2 col-xs-12">Jenis Makanan</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <div class="radio radio-inline radio-primary">
-                                            <input type="radio" name="foodRadio" id="inlineRadio3" value="Vegetarian">
+                                            <input type="radio" name="jenisMakanan" id="inlineRadio3" value="vege">
                                             <label for="inlineRadio3">Vegetarian</label>
                                         </div>
                                         <div class="radio radio-inline radio-primary">
-                                            <input type="radio" name="foodRadio" id="inlineRadio4"
-                                                   value="Non Vegetarian">
+                                            <input type="radio" name="jenisMakanan" id="inlineRadio4"
+                                                   value="nonvege">
                                             <label for="inlineRadio4">Non Vegetarian</label>
                                         </div>
                                     </div>
@@ -114,12 +124,12 @@
                                     <label class="col-md-2 col-sm-2 col-xs-12">Keterangan</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <div class="radio radio-inline radio-primary">
-                                            <input type="radio" name="infoRadio" id="inlineRadio5" value="Menginap">
-                                            <label for="inlineRadio5">Menginap&nbsp</label>
+                                            <input type="radio" name="menginap" id="inlineRadio5" value="true">
+                                            <label for="inlineRadio5">Menginap</label>
                                         </div>
                                         <div class="radio radio-inline radio-primary">
-                                            <input type="radio" name="infoRadio" id="inlineRadio6"
-                                                   value="Tidak Menginap">
+                                            <input type="radio" name="menginap" id="inlineRadio6"
+                                                   value="false">
                                             <label for="inlineRadio6">Tidak Menginap</label>
                                         </div>
                                     </div>

@@ -117,14 +117,14 @@ class PenyewaController {
     //    @Autowired private lateinit var eventDAO: EventDAO
     @RequestMapping(method = arrayOf(GET))
     fun lihat(model: Model): String {
-        val listPenyewa = dao.all
+        val listPenyewa = dao.getAll()
         model.addAttribute("listPenyewa", listPenyewa)
         return "lihat-penyewa"
     }
 
     @RequestMapping("/new", method = arrayOf(GET))
-    fun tambah(model: Model, @Autowired eventDAO: EventDAO): String {
-        val listEvent = eventDAO.all
+    fun tambah(model: Model): String {
+        val listEvent = dao.all
         model.addAttribute("listEvent", listEvent)
         return "tambah-penyewa"
     }
@@ -163,6 +163,11 @@ class PenyewaController {
             isMenginap = req["menginap"]?.toBoolean() ?: false
         }
         dao.update(p)
+        return "redirect:/penyewa"
+    }
+    @RequestMapping("/delete/{id}", method=arrayOf(GET))
+    fun delete(@PathVariable("id") id:String):String{
+        dao.deleteById(id)
         return "redirect:/penyewa"
     }
 }

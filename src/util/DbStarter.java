@@ -1,15 +1,10 @@
 package util;
 
-import org.h2.tools.Backup;
-import org.h2.tools.Restore;
 import org.h2.tools.RunScript;
-import org.h2.tools.Server;
-import org.h2.util.StringUtils;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.DriverManager;

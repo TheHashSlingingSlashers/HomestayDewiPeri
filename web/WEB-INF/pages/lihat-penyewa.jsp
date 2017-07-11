@@ -30,26 +30,7 @@
 
 
         $(document).ready(function() {
-            var table = $('#example').DataTable();
 
-            $('#example tbody').on( 'click', 'tr', function () {
-                if ( $(this).hasClass('selected') ) {
-                    $(this).removeClass('selected');
-                }
-                else {
-                    table.$('tr.selected').removeClass('selected');
-                    $(this).addClass('selected');
-                    $('#btnDelete').removeAttr('disabled');
-                    $('#btnEdit').removeAttr('disabled');
-                    $('[data-toggle="tooltip"]').tooltip();
-                }
-            } );
-
-            $('#btnDelete').click( function () {
-                table.row('.selected').remove().draw( false );
-            } );
-
-            $('#btnAdd').tooltip();
         } );
     </script>
 </head>
@@ -96,19 +77,18 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <%--<c:forEach items="${listPenyewa}" var="p">--%>
-                                        <%--<tr>--%>
-                                            <%--<td>${p.id}</td>--%>
-                                            <%--<td>${p.nama}</td>--%>
-                                            <%--<td>${p.jenisKelamin}</td>--%>
-                                            <%--<td>${p.alamat}</td>--%>
-                                            <%--<td>${p.noTelp}</td>--%>
-                                            <%--<td>${p.jenisMakanan}<td>--%>
-                                            <%--<td>${p.menginap}</td>--%>
-                                            <%--<td>&nbsp;</td>--%>
-                                        <%--</tr>--%>
-                                    <%--</c:forEach>--%>
-                                    <tr>
+                                    <c:forEach items="${listPenyewa}" var="p">
+                                        <tr>
+                                            <td>${p.id}</td>
+                                            <td>${p.nama}</td>
+                                            <td>${p.jenisKelamin}</td>
+                                            <td>${p.alamat}</td>
+                                            <td>${p.noTelp}</td>
+                                            <td>${p.jenisMakanan}</td>
+                                            <td>${p.menginap}</td>
+                                        </tr>
+                                    </c:forEach>
+                                    <%--<tr>
                                         <td>Tiger Nixon</td>
                                         <td>System Architect</td>
                                         <td>Edinburgh</td>
@@ -152,7 +132,7 @@
                                         <td>2008/11/28</td>
                                         <td>$162,700</td>
                                         <td>Menginap</td>
-                                    </tr>
+                                    </tr>--%>
                                     </tbody>
                                 </table>
                             </div>
@@ -171,6 +151,20 @@
     <!-- /#page-wrapper -->
 </div>
 <!-- /#wrapper -->
+
+<div class="modal fade" id="confirmDialog" role="dialog">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-body">
+                <form role="form">
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <%@include file="include/scripts.jsp" %>
 <%@include file="include/dataTablesScript.jsp" %>
 
@@ -228,15 +222,46 @@
 
 <script>
     $(document).ready(function () {
-        var table = $('#example').DataTable();
+        var x = $("#example");
+        var table = x.DataTable();
 
-        $('#example tbody').on( 'click', 'tr', function () {
+        /*$('#example tbody').on( 'click', 'tr', function () {
             var id = table.row( this ).data()[0];
             $("#btnEdit").on("click",function(){
                 window.location='${path}/penyewa/edit/'+id;
             });
+        } );*/
+        var btnEdit = $("#btnEdit");
+        x.find('tbody').on( 'click', 'tr', function () {
+            var id = table.row( this ).data()[0];
+            btnEdit.on("click",function(){
+                window.location='${path}/penyewa/edit/'+id;
+            });
+            if ( $(this).hasClass('selected') ) {
+                $(this).removeClass('selected');
+            }
+            else {
+                table.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+                $('#btnDelete').removeAttr('disabled');
+                btnEdit.removeAttr('disabled');
+                $('[data-toggle="tooltip"]').tooltip();
+            }
         } );
-    })
+
+        //dikomen karena agar supaya yang lihat bingung
+        // jk. ben ra mumet sing koding
+        $('#btnDelete').click( function () {
+            var id=table.row('.selected').data()[0];
+            deletePenyewa(id)
+         } );
+
+        $('#btnAdd').tooltip();
+    });
+
+    function deletePenyewa(id){
+        window.location.replace('${path}/penyewa/delete/'+id)
+    }
 
     function addPenyewa() {
         window.location = '${path}/penyewa/new';
