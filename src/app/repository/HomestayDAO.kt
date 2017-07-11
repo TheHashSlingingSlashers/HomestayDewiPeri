@@ -38,7 +38,7 @@ constructor(jdbcTemplate: JdbcTemplate) : DAO<Homestay>(jdbcTemplate) {
     }
 
     @Throws(SQLException::class)
-    override fun getAllSortedBy(comparator: Comparator<Homestay>): List<Homestay> {
+    override fun getAllSortedBy(comparator: Comparator<Homestay>?): List<Homestay> {
         val res = getAll()
         Collections.sort(res, comparator ?: SORT_BY_ID)
         return res

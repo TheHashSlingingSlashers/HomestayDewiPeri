@@ -124,7 +124,7 @@ class PenyewaController {
 
     @RequestMapping("/new", method = arrayOf(GET))
     fun tambah(model: Model): String {
-        val listEvent = dao.all
+        val listEvent = dao.getAll()
         model.addAttribute("listEvent", listEvent)
         return "tambah-penyewa"
     }
@@ -179,7 +179,7 @@ class EventController {
 
     @RequestMapping(method = arrayOf(GET))
     fun lihat(model: Model): String {
-        model.addAttribute("listEvent", dao.all)
+        model.addAttribute("listEvent", dao.getAll())
         model.addAttribute("formatter", SimpleDateFormat("dd-MM-Y"))
         return "lihat-event"
     }

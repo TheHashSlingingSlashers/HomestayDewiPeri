@@ -66,7 +66,7 @@ constructor(template: JdbcTemplate) : DAO<User>(template) {
 
     @Throws(SQLException::class)
     override fun update(obj: User): Int {
-        return jdbcTemplate.update("UPDATE PENGGUNA SET `PASSWORD`=?,`role`=? WHERE USERNAME=?",
+        return jdbcTemplate.update("UPDATE PENGGUNA SET `PASSWORD`=?,`role`=? WHERE `USERNAME`=?",
                 obj.password, obj.role, obj.username)
     }
 }
