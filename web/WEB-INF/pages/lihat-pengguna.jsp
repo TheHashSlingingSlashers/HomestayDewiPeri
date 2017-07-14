@@ -23,35 +23,6 @@
     <!-- Custom CSS -->
     <link href="${path}/dist/css/build.css" rel="stylesheet">
 
-    <script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.12.4.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-
-    <script type="text/javascript" class="init">
-
-
-        $(document).ready(function() {
-            var table = $('#example').DataTable();
-
-            $('#example tbody').on( 'click', 'tr', function () {
-                if ( $(this).hasClass('selected') ) {
-                    $(this).removeClass('selected');
-                }
-                else {
-                    table.$('tr.selected').removeClass('selected');
-                    $(this).addClass('selected');
-                    $('#btnDelete').removeAttr('disabled');
-                    $('#btnEdit').removeAttr('disabled');
-                    $('[data-toggle="tooltip"]').tooltip();
-                }
-            } );
-
-            $('#btnDelete').click( function () {
-                table.row('.selected').remove().draw( false );
-            } );
-
-            $('#btnAdd').tooltip();
-        } );
-    </script>
 
 </head>
 
@@ -76,8 +47,12 @@
                 <div class="col-lg-12">
                     <button type="button" id="btnAdd" onclick="addPengguna();" data-toggle="tooltip" data-placement="top" title="Add Pengguna" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i></button>
                     &nbsp;<button type="button" id="btnEdit" onclick="editPasswd();" data-toggle="tooltip" data-placement="top" title="Edit Password" class="btn btn-warning" disabled><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                    &nbsp;<button type="button" id="btnDelete" href="#" data-toggle="tooltip" data-placement="top" title="Delete Pengguna" class="btn btn-danger" disabled><i class="fa fa-trash" aria-hidden="true"></i></button>
-                    <div class="panel panel-primary">
+                    &nbsp;
+                    <span data-toggle="modal" data-target="#myModal">
+                        <button type="button" id="btnDelete" href="#" data-toggle="tooltip" data-placement="top" title="Delete Pengguna" class="btn btn-danger" disabled><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    </span>
+
+                    <div class="panel panel-primary" style="margin-top: 10px;">
                         <div class="panel-heading">
                             &nbsp;
                         </div>
@@ -104,6 +79,29 @@
                                 </table>
                             </div>
                             <!-- /.table-responsive -->
+
+                            <!-- Modal -->
+                            <div id="myModal" class="modal fade" role="dialog">
+                                <div class="modal-dialog modal-md">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header btn-danger" style="font-weight:bold; color:white;"">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h5 class="modal-title modal-sm">Perhatian</h5>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p id="message"></p>
+                                        <p>Klik 'Delete' untuk <strong>menghapus</strong> data. Klik 'Cancel' untuk membatalkan aksi.</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" id="btnModalDelete" class="btn btn-danger">Delete</button>
+                                        <button type="button" id="btnModalCancel" data-dismiss="modal" class="btn btn-default">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -122,72 +120,70 @@
 <%@include file="include/dataTablesScript.jsp" %>
 
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-<script>
-    $(document).ready(function () {
-        $('input[type="checkbox"]').on('change', function() {
-            $('input[type="checkbox"]').not(this).prop('checked', false);
-        });
-    });
+<%--<script>--%>
+    <%--$(document).ready(function () {--%>
+        <%--$('input[type="checkbox"]').on('change', function() {--%>
+            <%--$('input[type="checkbox"]').not(this).prop('checked', false);--%>
+        <%--});--%>
+    <%--});--%>
 
-    function addPengguna() {
-        window.location = '${path}/pengguna/new';
-    }
-    function editPasswd(){
-        window.location='${path}/pengguna/edit';
-    }
-</script>
+    <%--function addPengguna() {--%>
+        <%--window.location = '${path}/pengguna/new';--%>
+    <%--}--%>
+    <%--function editPasswd(){--%>
+        <%--window.location='${path}/pengguna/edit';--%>
+    <%--}--%>
+<%--</script>--%>
 
-<script>
-    $(document).ready(function() {
-        $('#btnAdd').tooltip();
-        $('.singleCheckbox').click(function () {
-            if ($(this).is(':checked')) {
-                $('#btnDelete').removeAttr('disabled');
-                $('#btnEdit').removeAttr('disabled');
-                $('[data-toggle="tooltip"]').tooltip();
-            } else {
-                $('#btnDelete').attr('disabled', true);
-                $('#btnEdit').attr('disabled', true);
-            }
-        });
-    });
+<%--<script>--%>
+    <%--$(document).ready(function() {--%>
+        <%--$('#btnAdd').tooltip();--%>
+        <%--$('.singleCheckbox').click(function () {--%>
+            <%--if ($(this).is(':checked')) {--%>
+                <%--$('#btnDelete').removeAttr('disabled');--%>
+                <%--$('#btnEdit').removeAttr('disabled');--%>
+                <%--$('[data-toggle="tooltip"]').tooltip();--%>
+            <%--} else {--%>
+                <%--$('#btnDelete').attr('disabled', true);--%>
+                <%--$('#btnEdit').attr('disabled', true);--%>
+            <%--}--%>
+        <%--});--%>
+    <%--});--%>
 
-</script>
+<%--</script>--%>
 
-    <script>
-    $(document).ready(function() {
+    <%--<script>--%>
+    <%--$(document).ready(function() {--%>
 
-        $('#dataTables-example tr').click(function(event) {
-            $(this).toggleClass('selected');
-            if (event.target.type !== 'checkbox') {
-                $(':checkbox', this).trigger('click');
-            }
-        });
+        <%--$('#dataTables-example tr').click(function(event) {--%>
+            <%--$(this).toggleClass('selected');--%>
+            <%--if (event.target.type !== 'checkbox') {--%>
+                <%--$(':checkbox', this).trigger('click');--%>
+            <%--}--%>
+        <%--});--%>
 
-        $('#dataTables-example').DataTable({
-            responsive: true
-        });
-    });
-</script>
+        <%--$('#dataTables-example').DataTable({--%>
+            <%--responsive: true--%>
+        <%--});--%>
+    <%--});--%>
+<%--</script>--%>
 
-<script>
-    $(document).ready(function () {
-        function myfunc(ele) {
+<%--<script>--%>
+    <%--$(document).ready(function () {--%>
+        <%--function myfunc(ele) {--%>
 
-            var values = new Array();
-            $.each($("input[name='case[]']:checked").closest("td").siblings("td"),
-                function () {
-                    values.push($(this).text());
-                });
+            <%--var values = new Array();--%>
+            <%--$.each($("input[name='case[]']:checked").closest("td").siblings("td"),--%>
+                <%--function () {--%>
+                    <%--values.push($(this).text());--%>
+                <%--});--%>
+        <%--}--%>
 
-//            alert("val---" + values.join (", "));
-        }
-
-        $(document).ready(function() {
-            $("input.case").click(myfunc);
-        });
-    })
-</script>
+        <%--$(document).ready(function() {--%>
+            <%--$("input.case").click(myfunc);--%>
+        <%--});--%>
+    <%--})--%>
+<%--</script>--%>
 
 <script>
     $(document).ready(function () {
@@ -198,8 +194,34 @@
             $("#btnEdit").on("click",function(){
                 window.location='${path}/pengguna/edit/'+id;
             });
+            if ( $(this).hasClass('selected') ) {
+                $(this).removeClass('selected');
+            }
+            else {
+                table.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+                $('#btnDelete').removeAttr('disabled');
+                $('#btnEdit').removeAttr('disabled');
+                $('[data-toggle="tooltip"]').tooltip();
+            }
         } );
-    })
+
+        $('#btnDelete').click( function () {
+            var username = table.row('.selected').data()[0];
+            $('#message').text('Apakah Anda yakin akan menghapus data, '+username+'?');
+        } );
+
+        $('#btnModalDelete').click( function () {
+            var id=table.row('.selected').data()[0];
+//            deletePenyewa(id)
+        } );
+
+        $('#btnAdd').tooltip();
+
+        $('[data-toggle="tooltip"]').tooltip({
+            trigger : 'hover'
+        });
+    });
 
     function addPengguna() {
         window.location = '${path}/pengguna/new';

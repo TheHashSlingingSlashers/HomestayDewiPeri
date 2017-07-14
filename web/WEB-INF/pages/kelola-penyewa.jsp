@@ -25,7 +25,6 @@
     <!-- Custom CSS -->
     <link href="${path}/dist/css/build.css" rel="stylesheet">
 
-
     <style>
         .radio {
             padding: 0px;

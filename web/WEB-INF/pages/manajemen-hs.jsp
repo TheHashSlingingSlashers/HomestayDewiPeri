@@ -158,50 +158,50 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr class="odd gradeX">
-                                        <td>
-                                            <div class="checkbox checkbox-primary">
-                                                <input type="checkbox" class="styled styled-primary case singleCheckbox" name="case[]" value="1">
-                                                <label></label>
-                                            </div>
-                                        </td>
-                                        <td>Internet Explorer 4.0</td>
-                                        <td>Win 95+</td>
-                                        <td class="center">4</td>
-                                    </tr>
-                                    <tr class="even gradeC">
-                                        <td>
-                                            <div class="checkbox checkbox-primary">
-                                                <input type="checkbox" class="styled styled-primary case singleCheckbox" name="case[]" value="1">
-                                                <label></label>
-                                            </div>
-                                        </td>
-                                        <td>Internet Explorer 5.0</td>
-                                        <td>Win 95+</td>
-                                        <td class="center">5</td>
-                                    </tr>
-                                    <tr class="odd gradeA">
-                                        <td>
-                                            <div class="checkbox checkbox-primary">
-                                                <input type="checkbox" class="styled styled-primary case singleCheckbox" name="case[]" id="singleCheckbox" value="1">
-                                                <label></label>
-                                            </div>
-                                        </td>
-                                        <td>Internet Explorer 5.5</td>
-                                        <td>Win 95+</td>
-                                        <td class="center">5.5</td>
-                                    </tr>
-                                    <tr class="even gradeA">
-                                        <td>
-                                            <div class="checkbox checkbox-primary">
-                                                <input type="checkbox" class="styled styled-primary case singleCheckbox" name="case[]" id="singleCheckbox" value="1">
-                                                <label></label>
-                                            </div>
-                                        </td>
-                                        <td>Internet Explorer 6</td>
-                                        <td>Win 98+</td>
-                                        <td class="center">6</td>
-                                    </tr>
+                                    <%--<tr class="odd gradeX">--%>
+                                        <%--<td>--%>
+                                            <%--<div class="checkbox checkbox-primary">--%>
+                                                <%--<input type="checkbox" class="styled styled-primary case singleCheckbox" name="case[]" value="1">--%>
+                                                <%--<label></label>--%>
+                                            <%--</div>--%>
+                                        <%--</td>--%>
+                                        <%--<td>Internet Explorer 4.0</td>--%>
+                                        <%--<td>Win 95+</td>--%>
+                                        <%--<td class="center">4</td>--%>
+                                    <%--</tr>--%>
+                                    <%--<tr class="even gradeC">--%>
+                                        <%--<td>--%>
+                                            <%--<div class="checkbox checkbox-primary">--%>
+                                                <%--<input type="checkbox" class="styled styled-primary case singleCheckbox" name="case[]" value="1">--%>
+                                                <%--<label></label>--%>
+                                            <%--</div>--%>
+                                        <%--</td>--%>
+                                        <%--<td>Internet Explorer 5.0</td>--%>
+                                        <%--<td>Win 95+</td>--%>
+                                        <%--<td class="center">5</td>--%>
+                                    <%--</tr>--%>
+                                    <%--<tr class="odd gradeA">--%>
+                                        <%--<td>--%>
+                                            <%--<div class="checkbox checkbox-primary">--%>
+                                                <%--<input type="checkbox" class="styled styled-primary case singleCheckbox" name="case[]" id="singleCheckbox" value="1">--%>
+                                                <%--<label></label>--%>
+                                            <%--</div>--%>
+                                        <%--</td>--%>
+                                        <%--<td>Internet Explorer 5.5</td>--%>
+                                        <%--<td>Win 95+</td>--%>
+                                        <%--<td class="center">5.5</td>--%>
+                                    <%--</tr>--%>
+                                    <%--<tr class="even gradeA">--%>
+                                        <%--<td>--%>
+                                            <%--<div class="checkbox checkbox-primary">--%>
+                                                <%--<input type="checkbox" class="styled styled-primary case singleCheckbox" name="case[]" id="singleCheckbox" value="1">--%>
+                                                <%--<label></label>--%>
+                                            <%--</div>--%>
+                                        <%--</td>--%>
+                                        <%--<td>Internet Explorer 6</td>--%>
+                                        <%--<td>Win 98+</td>--%>
+                                        <%--<td class="center">6</td>--%>
+                                    <%--</tr>--%>
                                     </tbody>
                                 </table>
                             </div>

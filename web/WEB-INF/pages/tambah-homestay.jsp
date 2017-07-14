@@ -110,13 +110,34 @@
                                 </div>
                                 <!-- /.form-group -->
                                 <div class="col-md-offset-2 col-sm-offset-2">
-                                    <button type="submit" class="btn btn-labeled btn-success"><span class="btn-label"><i
+                                    <button type="submit" data-toggle="modal" data-target="#myModal" id="bynSave" class="btn btn-labeled btn-success"><span class="btn-label"><i
                                             class="glyphicon glyphicon-floppy-disk"></i></span> Simpan
                                     </button>
                                 </div>
 
                             </form>
                             <!-- /.form -->
+
+                            <!-- Modal -->
+                            <div id="myModal" class="modal fade" role="dialog">
+                                <div class="modal-dialog modal-md">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header btn-success" style="font-weight:bold; color:white;"">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h5 class="modal-title modal-sm">Berhasil</h5>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p id="message"></p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" id="btnOK" data-dismiss="modal" class="btn btn-success">OK</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         </div>
                         <!-- /.panel body -->
                     </div>
@@ -165,6 +186,15 @@
         else {
             $('#kapasitas').val(result.toFixed(0));
         }
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('#btnSave').click(function () {
+            var namaHs = $('#nama').val();
+            $('#message').text('Data, '+namaHs+' berhasil disimpan.');
+        });
     });
 </script>
 

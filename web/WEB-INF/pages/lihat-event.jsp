@@ -24,39 +24,6 @@
     <!-- Custom CSS -->
     <link href="${path}/dist/css/build.css" rel="stylesheet">
 
-    <script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.12.4.js">
-    </script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js">
-    </script>
-
-    <script type="text/javascript" class="init">
-
-
-        $(document).ready(function() {
-            var table = $('#example').DataTable();
-
-            $('#example tbody').on( 'click', 'tr', function () {
-                if ( $(this).hasClass('selected') ) {
-                    $(this).removeClass('selected');
-                }
-                else {
-                    table.$('tr.selected').removeClass('selected');
-                    $(this).addClass('selected');
-                    $('#btnDelete').removeAttr('disabled');
-                    $('#btnEdit').removeAttr('disabled');
-                    $('[data-toggle="tooltip"]').tooltip();
-                }
-            } );
-
-            $('#btnDelete').click( function () {
-                table.row('.selected').remove().draw( false );
-            } );
-
-            $('#btnAdd').tooltip();
-        } );
-
-    </script>
-
 
 </head>
 
@@ -82,7 +49,7 @@
                     <button type="button" id="btnAdd" onclick="addEvent();" data-toggle="tooltip" data-placement="top" title="Add Event" class="btn btn-primary" ><i class="fa fa-plus" aria-hidden="true"></i></button>
                     &nbsp;<button type="button" id="btnEdit" onclick="editEvent();" data-toggle="tooltip" data-placement="top" title="Edit Event" class="btn btn-warning" disabled><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                     &nbsp;<button type="button" id="btnDelete" href="#" data-toggle="tooltip" data-placement="top" title="Delete Event" class="btn btn-danger" disabled><i class="fa fa-trash" aria-hidden="true"></i></button>
-                    <div class="panel panel-primary">
+                    <div class="panel panel-primary"  style="margin-top: 10px;">
                         <div class="panel-heading">
                             &nbsp;
                         </div>
@@ -93,7 +60,6 @@
                                     <%--<table class="display" id="dataTables-example">--%>
                                     <thead>
                                     <tr>
-                                        <%--<th> </th>--%>
                                         <th>Kode Event</th>
                                         <th>Nama Event</th>
                                         <th>Penyelenggara</th>
@@ -103,14 +69,9 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+
                                     <c:forEach items="${listEvent}" var="e">
                                         <tr>
-                                            <%--<td>--%>
-                                                <%--<div class="checkbox checkbox-primary">--%>
-                                                    <%--<input type="checkbox" class="styled styled-primary case singleCheckbox" name="case[]" id="singleCheckbox" value="option2">--%>
-                                                    <%--<label></label>--%>
-                                                <%--</div>--%>
-                                            <%--</td>--%>
                                             <td>${e.id}</td>
                                             <td>${e.nama}</td>
                                             <td>${e.penyelenggara}</td>
@@ -123,6 +84,29 @@
                                 </table>
                             </div>
                             <!-- /.table-responsive -->
+
+                            <!-- Modal -->
+                            <div id="myModal" class="modal fade" role="dialog">
+                                <div class="modal-dialog modal-md">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header btn-danger" style="font-weight:bold; color:white;"">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h5 class="modal-title modal-sm">Perhatian</h5>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p id="message"></p>
+                                        <p>Klik 'Delete' untuk <strong>menghapus</strong> data. Klik 'Cancel' untuk membatalkan aksi.</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" id="btnModalDelete" class="btn btn-danger">Delete</button>
+                                        <button type="button" id="btnModalCancel" data-dismiss="modal" class="btn btn-default">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -152,8 +136,35 @@
             $("#btnEdit").on("click",function(){
                 window.location='${path}/event/edit/'+id;
             });
+
+            if ( $(this).hasClass('selected') ) {
+                $(this).removeClass('selected');
+            }
+            else {
+                table.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+                $('#btnDelete').removeAttr('disabled');
+                $('#btnEdit').removeAttr('disabled');
+                $('[data-toggle="tooltip"]').tooltip();
+            }
+
+            $('#btnDelete').click( function () {
+                var namaEvent = table.row('.selected').data()[1];
+                $('#message').text('Apakah Anda yakin akan menghapus data, '+namaEvent+'?');
+            } );
+
+            $('#btnModalDelete').click( function () {
+                var id=table.row('.selected').data()[0];
+//            deletePenyewa(id)
+            } );
+
+            $('#btnAdd').tooltip();
+
+            $('[data-toggle="tooltip"]').tooltip({
+                trigger : 'hover'
+            });
         } );
-    })
+    });
 
     function addEvent() {
         window.location='${path}/event/new';

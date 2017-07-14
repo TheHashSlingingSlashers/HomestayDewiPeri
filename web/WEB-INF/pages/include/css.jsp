@@ -1,6 +1,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${pageContext.servletContext.contextPath}" scope="application"/>
 
+
 <!-- Bootstrap Core CSS -->
 <link href="${path}/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
