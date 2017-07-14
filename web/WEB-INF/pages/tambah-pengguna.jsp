@@ -48,11 +48,11 @@
                                 <div class="panel-heading">Tambah Pengguna Baru</div>
                                 <div class="panel-body">
                                     <form class="form-horizontal" role="form" method="get">
-
+                                        <!-- /.form-group -->
                                         <div class="form-group">
-                                            <label class="col-md-2 col-sm-2 col-xs-12">Nama Pengguna</label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <input type="text" class="form-control" id="nama" required>
+                                            <label class="col-md-2 col-sm-2 col-xs-12">Username</label>
+                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                <input type="text" class="form-control" id="username" required>
                                             </div>
                                         </div>
                                         <!-- /.form-group -->
@@ -64,10 +64,6 @@
                                                     <label for="inlineRadio1">Admin</label>
                                                 </div>
                                                 <div class="radio radio-inline radio-primary">
-                                                    <input type="radio" name="roleRadio" id="inlineRadio2" value="option2" class="sr-only" required>
-                                                    <label for="inlineRadio2">Penyelenggara</label>
-                                                </div>
-                                                <div class="radio radio-inline radio-primary">
                                                     <input type="radio" name="roleRadio" id="inlineRadio3" value="option3" class="sr-only" required>
                                                     <label for="inlineRadio3">Pemilik Homestay</label>
                                                 </div>
@@ -75,17 +71,10 @@
                                         </div>
                                         <!-- /.form-group -->
                                         <div class="form-group">
-                                            <label class="col-md-2 col-sm-2 col-xs-12">Username</label>
-                                            <div class="col-md-4 col-sm-4 col-xs-12">
-                                                <input type="text" class="form-control" id="username" required>
-                                            </div>
-                                        </div>
-                                        <!-- /.form-group -->
-                                        <div class="form-group">
                                             <label class="col-md-2 col-sm-2 col-xs-12">Password</label>
                                             <div class="col-md-4 col-sm-4 col-xs-12">
                                                 <div class="input-group">
-                                                    <input type="password" class="form-control" name="password" id="password1" required>
+                                                    <input type="password" class="form-control" name="password" id="inputPwd" required>
                                                     <div class="input-group-addon"><span class="glyphicon glyphicon-eye-close"></span></div>
                                                 </div>    
                                             </div>
@@ -95,12 +84,13 @@
                                             <label class="col-md-2 col-sm-2 col-xs-12">Ulangi Password</label>
                                             <div class="col-md-4 col-sm-4 col-xs-12">
                                                 <div class="input-group">
-                                                    <input type="password" class="form-control" id="password2" required>
+                                                    <input type="password" class="form-control" id="confirmPwd" required>
                                                     <div class="input-group-addon"><span class="glyphicon glyphicon-eye-close"></span></div>
                                                 </div>
                                             </div>
                                         </div>
                                         <!-- /.form-group -->
+                                        <div class="col-md-offset-2" id="checkPasswordMatch" style="color: red; font-style: italic; margin-bottom: 15px;"></div>
 
                                         <div class="col-md-offset-2 col-sm-offset-2">
                                             &nbsp;<button type="submit" class="btn btn-labeled btn-success"><span class="btn-label"><i class="glyphicon glyphicon-floppy-disk"></i></span> Save</button>
@@ -115,7 +105,7 @@
 
                                             <!-- Modal content-->
                                             <div class="modal-content">
-                                                <div class="modal-header btn-success" style="font-weight:bold; color:white;"">
+                                                <div class="modal-header btn-success" style="font-weight:bold; color:white;">
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                 <h5 class="modal-title modal-sm">Berhasil</h5>
                                             </div>
@@ -148,20 +138,11 @@
         <%@include file="include/scripts.jsp" %>
 
         <script>
-            $(document).ready(function() {
-                var password = document.getElementById("password1")
-                    , confirm_password = document.getElementById("password2");
-
-                function validatePassword() {
-                    if (password.value != confirm_password.value) {
-                        confirm_password.setCustomValidity("Passwords Don't Match");
-                    } else {
-                        confirm_password.setCustomValidity('');
-                    }
-                }
-
-                password.onchange = validatePassword;
-                confirm_password.onkeyup = validatePassword;
+            $(function() {
+                $("#confirmPwd").keyup(function() {
+                    var password = $("#inputPwd").val();
+                    $("#checkPasswordMatch").html(password == $(this).val() ? "Passwords cocok." : "Passwords tidak cocok!");
+                });
             });
         </script>
 
