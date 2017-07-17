@@ -25,6 +25,8 @@
 
 
 
+
+
 </head>
 
 <body>
@@ -62,8 +64,15 @@
                                 <div class="form-group">
                                     <label class="col-md-2 col-sm-2 col-xs-12">Nama Pemilik</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" class="form-control col-md-7 col-xs-12" id="namaPemilik"
+                                        <input type="text" class="form-control col-md-7 col-xs-12" id="testInput"
                                                name="pemilik" required>
+                                    </div>
+                                </div>
+                                <!-- /.form-group -->
+                                <div class="form-group">
+                                    <label class="col-md-2 col-sm-2 col-xs-12">ID Pemilik</label>
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <input type="text" class="form-control col-md-4 col-sm-4 col-xs-12" id="idPemilik" name="idPemilik" required>
                                     </div>
                                 </div>
                                 <!-- /.form-group -->
@@ -124,7 +133,7 @@
 
                                     <!-- Modal content-->
                                     <div class="modal-content">
-                                        <div class="modal-header btn-success" style="font-weight:bold; color:white;"">
+                                        <div class="modal-header btn-success" style="font-weight:bold; color:white;">
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         <h5 class="modal-title modal-sm">Berhasil</h5>
                                     </div>
@@ -156,6 +165,13 @@
 <!-- /#wrapper -->
 <%@include file="include/scripts.jsp" %>
 
+<script>
+    $(function() {
+        $("#idPemilik").autofill({
+            data: ["stefanus","kasih","handoyo","engelbert","eric","setiawan"]
+        });
+    });
+</script>
 <script>
     $('#jumlahKamar').keyup(function () {
         var val1 = 0;
