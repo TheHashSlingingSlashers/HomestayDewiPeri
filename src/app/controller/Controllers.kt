@@ -1,5 +1,6 @@
 package app.controller
 
+import app.model.User
 import app.repository.EventDAO
 import app.repository.HomestayDAO
 import app.repository.PenyewaDAO
@@ -29,8 +30,13 @@ class HomeController {
     @RequestMapping(method = arrayOf(GET))
     fun home(req: HttpServletRequest): String {
         val session = req.session
-        return if ("user" !in session.attributeNames) "redirect:/login"
-        else "index"
+        if ("user" !in session.attributeNames) return "redirect:/login"
+        else {
+            val user = req.session.getAttribute("user")
+            if (user != null && (user as User).role == "S")
+                return "index"
+            else return "pemilik-hs"
+        }
     }
 
     @RequestMapping("/login", method = arrayOf(GET))
@@ -41,10 +47,9 @@ class HomeController {
 
     @RequestMapping("/login", method = arrayOf(POST))
     fun loginSubmit(req: HttpServletRequest, @RequestParam("username") user: String?, @RequestParam("password") pass: String?): String {
-        if (validateLogin(user, pass)) {
-            req.session.setAttribute("user", user)
-            return "redirect:/"
-        } else return "/login"
+        val u = validateLogin(user, pass)
+        req.session.setAttribute("user", u)
+        return if (u != null) "redirect:/" else "redirect:/login"
     }
 
     @RequestMapping("/logout", method = arrayOf(GET))
@@ -53,10 +58,17 @@ class HomeController {
         return "redirect:/login"
     }
 
-    private fun validateLogin(username: String?, password: String?): Boolean {
-        if (username == null || password == null) return false
+    private fun validateLogin(username: String?, password: String?): User? {
+        if (username == null || password == null) return null
         val sql = "SELECT * FROM pengguna WHERE `USERNAME`=? AND `PASSWORD`=?"
-        return jdbcTemplate.query(sql, arrayOf(username, password), ResultSetExtractor { it.next() })
+        return jdbcTemplate.query(sql, arrayOf(username, password), ResultSetExtractor {
+            if (it.next()) {
+                user {
+                    this.username = it.getString("username")
+                    role = it.getString("role")
+                }
+            } else null
+        })
     }
 }
 
@@ -68,7 +80,9 @@ class HomestayController {
     private lateinit var homestayDAO: HomestayDAO
 
     @RequestMapping(method = arrayOf(GET))
-    fun lihat(): String {
+    fun lihat(model: Model): String {
+        val listHomestay = homestayDAO.getAll()
+        model.addAttribute("listHomestay", listHomestay)
         return "lihat-homestay"
     }
 
@@ -80,6 +94,7 @@ class HomestayController {
         val homestay = homestay {
             id = req["id"]
             pemilik = req["pemilik"]
+            idPemilik = req["idPemilik"]
             lokasi = req["lokasi"]
             jumlahKamar = req["jumlahKamar"]?.toInt() ?: 0
             jumlahBed = req["jumlahBed"]?.toInt() ?: 0
@@ -107,6 +122,12 @@ class HomestayController {
             jumlahWC = req["jumlahWC"]?.toInt() ?: 0
         }
         homestayDAO.update(h)
+        return "redirect:/homestay"
+    }
+
+    @RequestMapping("/delete/{id}", method = arrayOf(GET))
+    fun delete(@PathVariable("id") id: String): String {
+        homestayDAO.deleteById(id)
         return "redirect:/homestay"
     }
 }
@@ -165,8 +186,9 @@ class PenyewaController {
         dao.update(p)
         return "redirect:/penyewa"
     }
-    @RequestMapping("/delete/{id}", method=arrayOf(GET))
-    fun delete(@PathVariable("id") id:String):String{
+
+    @RequestMapping("/delete/{id}", method = arrayOf(GET))
+    fun delete(@PathVariable("id") id: String): String {
         dao.deleteById(id)
         return "redirect:/penyewa"
     }
@@ -242,7 +264,11 @@ class UserController {
     @Autowired private lateinit var dao: UserDAO
 
     @RequestMapping(method = arrayOf(GET))
-    fun lihat() = "lihat-pengguna"
+    fun lihat(model: Model): String {
+        val users = dao.getAll()
+        model.addAttribute("listPengguna", users)
+        return "lihat-pengguna"
+    }
 
     @RequestMapping("/new", method = arrayOf(GET))
     fun tambah() = "tambah-pengguna"
@@ -265,6 +291,12 @@ class UserController {
     fun editSubmit(@RequestParam("username") user: String?, @RequestParam("password") password: String?): String {
         val u = user { username = user;this.password = password }
         dao.update(u)
+        return "redirect:/pengguna"
+    }
+
+    @RequestMapping("/delete/{id}", method = arrayOf(GET))
+    fun delete(@PathVariable("id") id: String): String {
+        dao.deleteById(id)
         return "redirect:/pengguna"
     }
 }

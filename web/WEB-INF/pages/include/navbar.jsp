@@ -6,7 +6,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="${path}">Admin Dewi Peri</a>
+        <a class="navbar-brand" href="${path}/">Admin Dewi Peri</a>
     </div>
     <!-- /.navbar-header -->
 

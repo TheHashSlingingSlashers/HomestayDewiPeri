@@ -20,7 +20,7 @@ inline fun penyewa(init: Penyewa.() -> Unit) = Penyewa().apply(init)
 inline fun homestay(init: Homestay.() -> Unit) = Homestay().apply(init)
 operator fun HttpServletRequest.get(name: String): String? = getParameter(name)
 internal operator fun <E> Enumeration<E>.contains(e: E?): Boolean {
-    if (e == null) return false
+    if (e === null) return false
     while (hasMoreElements()) {
         val d = nextElement()
         if (d == e) return true

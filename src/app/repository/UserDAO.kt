@@ -61,7 +61,7 @@ constructor(template: JdbcTemplate) : DAO<User>(template) {
 
     @Throws(SQLException::class)
     override fun deleteById(id: String): Int {
-        return jdbcTemplate.update("DELETE FROM pengguna WHERE `id`=?", id)
+        return jdbcTemplate.update("DELETE FROM pengguna WHERE `username`=?", id)
     }
 
     @Throws(SQLException::class)

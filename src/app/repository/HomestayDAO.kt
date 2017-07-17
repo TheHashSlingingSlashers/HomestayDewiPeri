@@ -76,14 +76,15 @@ constructor(jdbcTemplate: JdbcTemplate) : DAO<Homestay>(jdbcTemplate) {
 
     @Throws(SQLException::class)
     override fun insert(h: Homestay): Int {
-        val sql = "INSERT INTO HOMESTAY(id,pemilik,LOKASI,JML_KAMAR,JML_BED,JML_WC) VALUES (?,?,?,?,?,?)"
+        val sql = "INSERT INTO HOMESTAY(id,pemilik,id_pemilik,LOKASI,JML_KAMAR,JML_BED,JML_WC) VALUES (?,?,?,?,?,?,?)"
         return jdbcTemplate.update(sql) { ps ->
             ps.setString(1, h.id)
             ps.setString(2, h.pemilik)
-            ps.setString(3, h.lokasi)
-            ps.setInt(4, h.jumlahKamar)
-            ps.setInt(5, h.jumlahBed)
-            ps.setInt(6, h.jumlahWC)
+            ps.setString(3, h.idPemilik)
+            ps.setString(4, h.lokasi)
+            ps.setInt(5, h.jumlahKamar)
+            ps.setInt(6, h.jumlahBed)
+            ps.setInt(7, h.jumlahWC)
         }
 
         //        try (PreparedStatement ps = DbStarter.getConnection().prepareStatement(sql)) {

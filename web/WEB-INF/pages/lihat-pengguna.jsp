@@ -213,7 +213,7 @@
 
         $('#btnModalDelete').click( function () {
             var id=table.row('.selected').data()[0];
-//            deletePenyewa(id)
+            deletePengguna(id)
         } );
 
         $('#btnAdd').tooltip();
@@ -222,6 +222,9 @@
             trigger : 'hover'
         });
     });
+    function deletePengguna(id){
+        window.location.replace('${path}/pengguna/delete/'+id)
+    }
 
     function addPengguna() {
         window.location = '${path}/pengguna/new';

@@ -4,8 +4,20 @@ package app.model;
  * Created by ric on 20/02/17.
  */
 public class Homestay {
-    private String id,pemilik,lokasi;
-    private int jumlahKamar,jumlahBed, jumlahWC;
+    private String id;
+    private String pemilik;
+    private String lokasi;
+    private String idPemilik;
+    private int jumlahKamar, jumlahBed, jumlahWC;
+    private boolean available;
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
 
     public String getId() {
         return id;
@@ -53,5 +65,13 @@ public class Homestay {
 
     public void setJumlahWC(int jumlahWC) {
         this.jumlahWC = jumlahWC;
+    }
+
+    public String getIdPemilik() {
+        return idPemilik;
+    }
+
+    public void setIdPemilik(String idPemilik) {
+        this.idPemilik = idPemilik;
     }
 }
