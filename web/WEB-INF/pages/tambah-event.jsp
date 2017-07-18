@@ -17,59 +17,8 @@
     <meta name="author" content="">
 
     <title>Admin Dewi Peri</title>
-    <link href="https://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.css" rel="stylesheet">
+    <link rel="stylesheet" href="${path}/dist/css/tags.css">
     <%@include file="include/css.jsp" %>
-    <%--<style>--%>
-        <%--.tt-query,--%>
-        <%--.tt-hint {--%>
-            <%--margin-bottom: 0;--%>
-        <%--}--%>
-        <%--.tt-hint {--%>
-            <%--display: block;--%>
-            <%--width: 100%;--%>
-            <%--height: 38px;--%>
-            <%--padding: 8px 12px;--%>
-            <%--font-size: 14px;--%>
-            <%--line-height: 1.428571429;--%>
-            <%--color: #999;--%>
-            <%--vertical-align: middle;--%>
-            <%--background-color: #ffffff;--%>
-            <%--border: 1px solid #cccccc;--%>
-            <%--border-radius: 4px;--%>
-            <%---webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);--%>
-            <%--box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);--%>
-            <%---webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;--%>
-            <%--transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;--%>
-        <%--}--%>
-        <%--.tt-menu {--%>
-            <%--min-width: 160px;--%>
-            <%--margin-top: 2px;--%>
-            <%--padding: 5px 0;--%>
-            <%--background-color: #ffffff;--%>
-            <%--border: 1px solid #cccccc;--%>
-            <%--border: 1px solid rgba(0, 0, 0, 0.15);--%>
-            <%--border-radius: 4px;--%>
-            <%---webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);--%>
-            <%--box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);--%>
-            <%--background-clip: padding-box;--%>
-        <%--}--%>
-        <%--.tt-suggestion {--%>
-            <%--display: block;--%>
-            <%--padding: 3px 20px;--%>
-        <%--}--%>
-        <%--.tt-suggestion.tt-is-under-cursor {--%>
-            <%--color: #fff;--%>
-            <%--background-color: #428bca;--%>
-        <%--}--%>
-        <%--.tt-suggestion.tt-is-under-cursor a {--%>
-            <%--color: #fff;--%>
-        <%--}--%>
-        <%--.tt-suggestion p {--%>
-            <%--margin: 0;--%>
-        <%--}--%>
-    <%--</style>--%>
-
-
 
 </head>
 
@@ -126,7 +75,7 @@
                                 <div class="form-group">
                                     <label class="col-md-2 col-sm-2 col-xs-12">Peserta</label>
                                     <div id="the-basics" class="col-md-6 col-sm-6 col-xs-12">
-                                        <input class="form-control col-md-7 col-xs-12 typeahead" type="text" data-role="tagsinput" placeholder="Nama Peserta">
+                                        <input class="form-control col-md-7 col-xs-12" type="text" id="nmPeserta" placeholder="Nama Peserta">
                                     </div>
                                 </div>
                                 <!-- /.form-group -->
@@ -165,8 +114,7 @@
 
                                 <div class="col-md-offset-2 col-sm-offset-2">
                                     &nbsp;<button type="submit" data-toggle="modal" data-target="#myModal" id="btnSave" class="btn btn-labeled btn-success"><span class="btn-label"><i
-                                            class="glyphicon glyphicon-floppy-disk"></i></span> Save
-                                    </button>
+                                            class="glyphicon glyphicon-floppy-disk"></i></span> Simpan</button>
                                 </div>
 
                             </form>
@@ -178,7 +126,7 @@
 
                                     <!-- Modal content-->
                                     <div class="modal-content">
-                                        <div class="modal-header btn-success" style="font-weight:bold; color:white;"">
+                                        <div class="modal-header btn-success" style="font-weight:bold; color:white;">
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         <h5 class="modal-title modal-sm">Berhasil</h5>
                                     </div>
@@ -212,9 +160,6 @@
 
 <script src="${path}/js/moment/moment.min.js"></script>
 <script src="${path}/js/datepicker/daterangepicker.js"></script>
-<!-- Typeahead -->
-<script src="${path}/dist/js/typeahead.jquery.js"></script>
-<script src="${path}/dist/js/bloodhound.js"></script>
 
 <script>
     $(document).ready(function () {
@@ -245,100 +190,17 @@
     });
 </script>
 
-<!-- script>
-    var citynames = new Bloodhound({
-        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
-        queryTokenizer: Bloodhound.tokenizers.whitespace,
-        prefetch: {
-            url: 'assets/citynames.json',
-            filter: function(list) {
-                return $.map(list, function(cityname) {
-                    return { name: cityname }; });
-            }
-        }
-    });
-    citynames.initialize();
-
-    $('input').tagsinput({
-        typeaheadjs: {
-            name: 'citynames',
-            displayKey: 'name',
-            valueKey: 'name',
-            source: citynames.ttAdapter()
-        }
-    });
-</script -->
-
 <script>
-    <%--$(document).ready(function () {--%>
-    <%--var substringMatcher = function(strs) {--%>
-        <%--return function findMatches(q, cb) {--%>
-            <%--var matches, substringRegex;--%>
-
-            <%--// an array that will be populated with substring matches--%>
-            <%--matches = [];--%>
-
-            <%--// regex used to determine if a string contains the substring `q`--%>
-            <%--substrRegex = new RegExp(q, 'i');--%>
-
-            <%--// iterate through the pool of strings and for any string that--%>
-            <%--// contains the substring `q`, add it to the `matches` array--%>
-            <%--$.each(strs, function(i, str) {--%>
-                <%--if (substrRegex.test(str)) {--%>
-                    <%--matches.push(str);--%>
-                <%--}--%>
-            <%--});--%>
-
-            <%--cb(matches);--%>
-        <%--};--%>
-    <%--};--%>
-
-    <%--var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',--%>
-        <%--'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',--%>
-        <%--'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',--%>
-        <%--'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',--%>
-        <%--'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',--%>
-        <%--'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',--%>
-        <%--'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',--%>
-        <%--'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',--%>
-        <%--'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'--%>
-    <%--];--%>
-
-    <%--$('#the-basics .typeahead').typeahead({--%>
-            <%--hint: true,--%>
-            <%--highlight: true,--%>
-            <%--minLength: 1--%>
-        <%--},--%>
-        <%--{--%>
-            <%--name: 'states',--%>
-            <%--source: substringMatcher(states)--%>
-        <%--});--%>
-    <%--});--%>
-<%--</script>--%>
-
-<%--<script>--%>
-    <%--var citynames = new Bloodhound({--%>
-        <%--datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),--%>
-        <%--queryTokenizer: Bloodhound.tokenizers.whitespace,--%>
-        <%--prefetch: {--%>
-            <%--url: 'assets/citynames.json',--%>
-            <%--filter: function(list) {--%>
-                <%--return $.map(list, function(cityname) {--%>
-                    <%--return { name: cityname }; });--%>
-            <%--}--%>
-        <%--}--%>
-    <%--});--%>
-    <%--citynames.initialize();--%>
-
-    <%--$('input').tagsinput({--%>
-        <%--typeaheadjs: {--%>
-            <%--name: 'citynames',--%>
-            <%--displayKey: 'name',--%>
-            <%--valueKey: 'name',--%>
-            <%--source: citynames.ttAdapter()--%>
-        <%--}--%>
-    <%--});--%>
+    $(function() {
+        $("#nmPeserta").tags({
+            requireData: true,
+            unique: true
+        }).autofill({
+            data: ["javascript","jquery","mysql"]
+        });
+    });
 </script>
+
 </body>
 
 </html>
