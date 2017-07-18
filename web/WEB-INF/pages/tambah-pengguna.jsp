@@ -101,7 +101,7 @@
                                 <div class="col-md-offset-2 col-sm-offset-2">
                                     <button type="submit" class="btn btn-labeled btn-success">
                                         <span class="btn-label">
-                                            <i class="glyphicon glyphicon-floppy-disk"/>
+                                            <i class="glyphicon glyphicon-floppy-disk"></i>
                                         </span>
                                         Save
                                     </button>

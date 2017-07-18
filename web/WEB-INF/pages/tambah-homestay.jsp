@@ -24,9 +24,6 @@
     <link href="${path}/dist/css/build.css" rel="stylesheet">
 
 
-
-
-
 </head>
 
 <body>
@@ -52,7 +49,7 @@
                     <div class="panel panel-primary">
                         <div class="panel-heading">Tambah Homestay Baru</div>
                         <div class="panel-body">
-                            <form  method="POST" class="form-horizontal" role="form">
+                            <form method="POST" class="form-horizontal" role="form">
                                 <div class="form-group">
                                     <label class="col-md-2 col-sm-2 col-xs-12">Kode Homestay</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
@@ -72,7 +69,8 @@
                                 <div class="form-group">
                                     <label class="col-md-2 col-sm-2 col-xs-12">ID Pemilik</label>
                                     <div class="col-md-4 col-sm-4 col-xs-12">
-                                        <input type="text" class="form-control col-md-4 col-sm-4 col-xs-12" id="idPemilik" name="idPemilik" required>
+                                        <input type="text" class="form-control col-md-4 col-sm-4 col-xs-12"
+                                               id="idPemilik" name="idPemilik" required>
                                     </div>
                                 </div>
                                 <!-- /.form-group -->
@@ -91,7 +89,8 @@
                                 <div class="form-group">
                                     <label class="col-md-2 col-sm-2 col-xs-12">Jumlah Kamar</label>
                                     <div class="col-md-4 col-sm-4 col-xs-12">
-                                        <input type="text" class="form-control" id="jumlahKamar" name="jumlahKamar" required>
+                                        <input type="text" class="form-control" id="jumlahKamar" name="jumlahKamar"
+                                               required>
                                     </div>
                                 </div>
                                 <!-- /.form-group -->
@@ -114,12 +113,14 @@
                                 <div class="form-group">
                                     <label class="col-md-2 col-sm-2 col-xs-12">Jumlah Toilet</label>
                                     <div class="col-md-4 col-sm-4 col-xs-12">
-                                        <input type="text" class="form-control" id="jumlahToilet" name="jumlahWC" required>
+                                        <input type="text" class="form-control" id="jumlahToilet" name="jumlahWC"
+                                               required>
                                     </div>
                                 </div>
                                 <!-- /.form-group -->
                                 <div class="col-md-offset-2 col-sm-offset-2">
-                                    <button type="submit" data-toggle="modal" data-target="#myModal" id="bynSave" class="btn btn-labeled btn-success"><span class="btn-label"><i
+                                    <button type="submit" data-toggle="modal" data-target="#myModal" id="bynSave"
+                                            class="btn btn-labeled btn-success"><span class="btn-label"><i
                                             class="glyphicon glyphicon-floppy-disk"></i></span> Simpan
                                     </button>
                                 </div>
@@ -134,18 +135,20 @@
                                     <!-- Modal content-->
                                     <div class="modal-content">
                                         <div class="modal-header btn-success" style="font-weight:bold; color:white;">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h5 class="modal-title modal-sm">Berhasil</h5>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p id="message"></p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" id="btnOK" data-dismiss="modal" class="btn btn-success">OK</button>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h5 class="modal-title modal-sm">Berhasil</h5>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p id="message"></p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" id="btnOK" data-dismiss="modal"
+                                                    class="btn btn-success">OK
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
                         </div>
                         <!-- /.panel body -->
@@ -166,9 +169,9 @@
 <%@include file="include/scripts.jsp" %>
 
 <script>
-    $(function() {
+    $(function () {
         $("#idPemilik").autofill({
-            data: ["stefanus","kasih","handoyo","engelbert","eric","setiawan"]
+            data: arrIdPemilik
         });
     });
 </script>
@@ -206,11 +209,15 @@
 </script>
 
 <script>
+    var arrIdPemilik = [];
     $(document).ready(function () {
         $('#btnSave').click(function () {
             var namaHs = $('#nama').val();
-            $('#message').text('Data, '+namaHs+' berhasil disimpan.');
+            $('#message').text('Data, ' + namaHs + ' berhasil disimpan.');
         });
+        <c:forEach items="${listIdPemilik}" var="id">
+        arrIdPemilik.push("${id}");
+        </c:forEach>
     });
 </script>
 

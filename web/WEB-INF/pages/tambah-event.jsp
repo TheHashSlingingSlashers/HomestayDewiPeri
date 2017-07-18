@@ -75,7 +75,8 @@
                                 <div class="form-group">
                                     <label class="col-md-2 col-sm-2 col-xs-12">Peserta</label>
                                     <div id="the-basics" class="col-md-6 col-sm-6 col-xs-12">
-                                        <input class="form-control col-md-7 col-xs-12" type="text" id="nmPeserta" placeholder="Nama Peserta">
+                                        <input class="form-control col-md-7 col-xs-12" type="text" id="nmPeserta"
+                                               placeholder="Nama Peserta">
                                     </div>
                                 </div>
                                 <!-- /.form-group -->
@@ -113,8 +114,10 @@
                                 <!-- /.form-group -->
 
                                 <div class="col-md-offset-2 col-sm-offset-2">
-                                    &nbsp;<button type="submit" data-toggle="modal" data-target="#myModal" id="btnSave" class="btn btn-labeled btn-success"><span class="btn-label"><i
-                                            class="glyphicon glyphicon-floppy-disk"></i></span> Simpan</button>
+                                    &nbsp;<button type="submit" data-toggle="modal" data-target="#myModal" id="btnSave"
+                                                  class="btn btn-labeled btn-success"><span class="btn-label"><i
+                                        class="glyphicon glyphicon-floppy-disk"></i></span> Simpan
+                                </button>
                                 </div>
 
                             </form>
@@ -127,18 +130,20 @@
                                     <!-- Modal content-->
                                     <div class="modal-content">
                                         <div class="modal-header btn-success" style="font-weight:bold; color:white;">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h5 class="modal-title modal-sm">Berhasil</h5>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p id="message"></p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" id="btnOK" data-dismiss="modal" class="btn btn-success">OK</button>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h5 class="modal-title modal-sm">Berhasil</h5>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p id="message"></p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" id="btnOK" data-dismiss="modal"
+                                                    class="btn btn-success">OK
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
                         </div>
                         <!-- /.panel body -->
@@ -185,18 +190,22 @@
     $(document).ready(function () {
         $('#btnSave').click(function () {
             var namaEvt = $('#nama').val();
-            $('#message').text('Data, '+namaEvt+' berhasil disimpan.');
+            $('#message').text('Data, ' + namaEvt + ' berhasil disimpan.');
         });
     });
 </script>
 
 <script>
-    $(function() {
+    var arrPenyewa = [];
+    <c:forEach items="${listPenyewa}" var="p">
+    arrPenyewa.push({id: "${p.id}", nama: "${p.nama}"})
+    </c:forEach>
+    $(function () {
         $("#nmPeserta").tags({
             requireData: true,
             unique: true
         }).autofill({
-            data: ["javascript","jquery","mysql"]
+            data: arrPenyewa
         });
     });
 </script>
