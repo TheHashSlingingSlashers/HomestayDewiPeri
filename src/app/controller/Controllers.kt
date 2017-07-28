@@ -284,8 +284,12 @@ class UserController {
         return "redirect:/pengguna"
     }
 
-    @RequestMapping("/edit", method = arrayOf(GET))
-    fun edit() = "edit-password"
+    @RequestMapping("/edit/{id}", method = arrayOf(GET))
+    fun edit(@PathVariable("id") id: String, model: Model): String {
+        val p = dao.getById(id)
+        model.addAttribute("pengguna", p)
+        return "edit-password"
+    }
 
     @RequestMapping("/edit", method = arrayOf(POST))
     fun editSubmit(@RequestParam("username") user: String?, @RequestParam("password") password: String?): String {

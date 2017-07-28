@@ -99,11 +99,8 @@
                                      style="color: red; font-style: italic; margin-bottom: 15px;"></div>
 
                                 <div class="col-md-offset-2 col-sm-offset-2">
-                                    <button type="submit" class="btn btn-labeled btn-success">
-                                        <span class="btn-label">
-                                            <i class="glyphicon glyphicon-floppy-disk"/>
-                                        </span>
-                                        Save
+                                    <button type="submit" data-toggle="modal" data-target="#myModal" id="bynSave" class="btn btn-labeled btn-success"><span class="btn-label"><i
+                                            class="glyphicon glyphicon-floppy-disk"></i></span> Simpan
                                     </button>
                                 </div>
 

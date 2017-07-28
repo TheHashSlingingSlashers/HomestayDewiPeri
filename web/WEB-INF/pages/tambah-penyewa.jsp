@@ -128,7 +128,7 @@
                                 <!-- /.form-group -->
                                 <div class="col-md-offset-2 col-sm-offset-2">
                                     &nbsp;<button type="submit" data-toggle="modal" data-target="#myModal" id="btnSave" class="btn btn-labeled btn-success"><span class="btn-label"><i
-                                            class="glyphicon glyphicon-floppy-disk"></i></span> Save
+                                            class="glyphicon glyphicon-floppy-disk"></i></span> Simpan
                                     </button>
                                 </div>
 
@@ -141,7 +141,7 @@
 
                                     <!-- Modal content-->
                                     <div class="modal-content">
-                                        <div class="modal-header btn-success" style="font-weight:bold; color:white;"">
+                                        <div class="modal-header btn-success" style="font-weight:bold; color:white;">
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         <h5 class="modal-title modal-sm">Berhasil</h5>
                                     </div>

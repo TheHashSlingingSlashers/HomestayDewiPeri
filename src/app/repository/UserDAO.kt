@@ -43,10 +43,10 @@ constructor(template: JdbcTemplate) : DAO<User>(template) {
 
     @Throws(SQLException::class)
     override fun getById(id: String): User? {
-        return jdbcTemplate.query<User>("select `username`,`role` from pengguna where id=?", arrayOf(id), intArrayOf(VARCHAR)) { rs ->
+        return jdbcTemplate.query<User>("select `username`,`password` from pengguna where username=?", arrayOf(id), intArrayOf(VARCHAR)) { rs ->
             if (rs.next()) user {
                 username = rs.getString("username")
-                role = "role"
+                password = rs.getString("password")
             }
             else null
         }

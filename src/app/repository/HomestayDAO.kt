@@ -50,6 +50,7 @@ constructor(jdbcTemplate: JdbcTemplate) : DAO<Homestay>(jdbcTemplate) {
             if (rs.next()) homestay {
                 this.id = rs.getString("id")
                 pemilik = rs.getString("pemilik")
+                idPemilik = rs.getString("id_pemilik")
                 lokasi = rs.getString("lokasi")
                 jumlahKamar = rs.getInt("jml_kamar")
                 jumlahBed = rs.getInt("jml_bed")

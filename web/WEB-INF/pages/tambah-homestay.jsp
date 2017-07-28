@@ -119,7 +119,7 @@
                                 </div>
                                 <!-- /.form-group -->
                                 <div class="col-md-offset-2 col-sm-offset-2">
-                                    <button type="submit" data-toggle="modal" data-target="#myModal" id="bynSave" class="btn btn-labeled btn-success"><span class="btn-label"><i
+                                    <button type="submit" data-toggle="modal" data-target="#myModal" id="btnSave" class="btn btn-labeled btn-success"><span class="btn-label"><i
                                             class="glyphicon glyphicon-floppy-disk"></i></span> Simpan
                                     </button>
                                 </div>

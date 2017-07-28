@@ -29,7 +29,7 @@ public class InsertPenyewa extends HttpServlet {
         String alamat = request.getParameter("alamat");
         String telepon = request.getParameter("telepon");
         String jnsMakanan = request.getParameter("foodRadio");
-        String keterangan = request.getParameter("infoRadio");
+        String menginap = request.getParameter("menginap");
         
         System.out.println(id);
         System.out.println(nama);
@@ -37,7 +37,7 @@ public class InsertPenyewa extends HttpServlet {
         System.out.println(alamat);
         System.out.println(telepon);
         System.out.println(jnsMakanan);
-        System.out.println(keterangan);
+        System.out.println(menginap);
     }
 
 }

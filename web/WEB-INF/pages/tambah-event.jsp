@@ -196,7 +196,7 @@
             requireData: true,
             unique: true
         }).autofill({
-            data: ["javascript","jquery","mysql"]
+            data: ["javascript","jquery","mysql","Engelbert Eric"]
         });
     });
 </script>
