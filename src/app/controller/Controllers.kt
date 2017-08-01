@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod.GET
 import org.springframework.web.bind.annotation.RequestMethod.POST
 import org.springframework.web.bind.annotation.RequestParam
-import java.sql.ResultSet
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.servlet.http.HttpServletRequest
@@ -89,17 +88,22 @@ class HomeController {
 @RequestMapping("/homestay")
 class HomestayController {
     @Autowired
-    private lateinit var homestayDAO: HomestayDAO
+    private lateinit var dao: HomestayDAO
+    @Autowired private lateinit var userDAO: UserDAO
 
     @RequestMapping(method = arrayOf(GET))
     fun lihat(model: Model): String {
-        val listHomestay = homestayDAO.getAll()
+        val listHomestay = dao.getAll()
         model.addAttribute("listHomestay", listHomestay)
         return "lihat-homestay"
     }
 
     @RequestMapping("/new", method = arrayOf(GET))
-    fun tambah() = "tambah-homestay"
+    fun tambah(model: Model): String {
+        val listIdPemilik = userDAO.getAll().map { it.username }
+        model.addAttribute("listIdPemilik", listIdPemilik)
+        return "tambah-homestay"
+    }
 
     @RequestMapping("/new", method = arrayOf(POST))
     fun tambahSubmit(req: HttpServletRequest): String {
@@ -112,13 +116,13 @@ class HomestayController {
             jumlahBed = req["jumlahBed"]?.toInt() ?: 0
             jumlahWC = req["jumlahWC"]?.toInt() ?: 0
         }
-        homestayDAO.insert(homestay)
+        dao.insert(homestay)
         return "redirect:/homestay"
     }
 
     @RequestMapping("/edit/{id}", method = arrayOf(GET))
     fun edit(@PathVariable("id") id: String, model: Model): String {
-        val h = homestayDAO.getById(id)
+        val h = dao.getById(id)
         model.addAttribute("homestay", h)
         return "edit-homestay"
     }
@@ -133,13 +137,13 @@ class HomestayController {
             jumlahBed = req["jumlahBed"]?.toInt() ?: 0
             jumlahWC = req["jumlahWC"]?.toInt() ?: 0
         }
-        homestayDAO.update(h)
+        dao.update(h)
         return "redirect:/homestay"
     }
 
     @RequestMapping("/delete/{id}", method = arrayOf(GET))
     fun delete(@PathVariable("id") id: String): String {
-        homestayDAO.deleteById(id)
+        dao.deleteById(id)
         return "redirect:/homestay"
     }
 }
@@ -210,6 +214,7 @@ class PenyewaController {
 @Controller @RequestMapping("/event")
 class EventController {
     @Autowired private lateinit var dao: EventDAO
+    @Autowired private lateinit var penyewaDAO: PenyewaDAO
 
     @RequestMapping(method = arrayOf(GET))
     fun lihat(model: Model): String {
@@ -219,7 +224,11 @@ class EventController {
     }
 
     @RequestMapping("/new", method = arrayOf(GET))
-    fun tambah() = "tambah-event"
+    fun tambah(model: Model): String {
+        val listPenyewa = penyewaDAO.getAll()
+        model.addAttribute(listPenyewa)
+        return "tambah-event"
+    }
 
     @RequestMapping("/new", method = arrayOf(POST))
     fun tambahSubmit(req: HttpServletRequest): String {
