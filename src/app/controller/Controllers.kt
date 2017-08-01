@@ -26,16 +26,21 @@ import javax.servlet.http.HttpServletRequest
 class HomeController {
     @Autowired
     private lateinit var jdbcTemplate: JdbcTemplate
+    @Autowired private lateinit var dao: HomestayDAO
 
     @RequestMapping(method = arrayOf(GET))
-    fun home(req: HttpServletRequest): String {
+    fun home(model:Model, req: HttpServletRequest): String {
         val session = req.session
         if ("user" !in session.attributeNames) return "redirect:/login"
         else {
             val user = req.session.getAttribute("user")
             if (user != null && (user as User).role == "S")
                 return "index"
-            else return "pemilik-hs"
+            else {
+                val id = req["username"]
+
+                return "pemilik-hs"
+            }
         }
     }
 
@@ -57,6 +62,13 @@ class HomeController {
         req.session.clearAttributes()
         return "redirect:/login"
     }
+
+//    @RequestMapping("/pemilik-hs", method = arrayOf(GET))
+//    fun viewHs(@RequestParam("username") user: String, model: Model): String {
+//        val h = dao.getById(user)
+//        model.addAttribute("homestay", h)
+//        return "pemilik-hs"
+//    }
 
     private fun validateLogin(username: String?, password: String?): User? {
         if (username == null || password == null) return null
@@ -309,5 +321,17 @@ class UserController {
 class ManagementHS {
     @RequestMapping(method = arrayOf(GET))
     fun asd() = "manajemen-hs"
+}
+
+@Controller @RequestMapping("/pemilik-hs")
+class PemilikHomestay {
+    @Autowired private lateinit var dao: HomestayDAO
+
+    @RequestMapping(method = arrayOf(GET))
+    fun asd(req: HttpServletRequest, model:Model): String{
+        val h = dao.getById("P4ij0")
+        model.addAttribute("homestay", h)
+        return "pemilik-hs"
+    }
 }
 

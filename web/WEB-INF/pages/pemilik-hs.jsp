@@ -63,7 +63,7 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li class="active">
-                            <a href="${path}/penyewa"><i class="fa fa-home fa-fw" aria-hidden="true"></i> Info Homestay</a>
+                            <a href="${path}/pemilik"><i class="fa fa-home fa-fw" aria-hidden="true"></i> Info Homestay</a>
                         </li>
 
                         <li>
@@ -97,7 +97,7 @@
                                     <label class="col-md-2 col-sm-2 col-xs-12">Kode Homestay</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" class="form-control col-md-7 col-xs-12" id="kodeHomestay"
-                                               name="id" readonly="readonly">
+                                               name="id" readonly="readonly" value="${homestay.id}">
                                     </div>
                                 </div>
                                 <!-- /.form-group -->
@@ -105,7 +105,7 @@
                                     <label class="col-md-2 col-sm-2 col-xs-12">Nama Pemilik</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" class="form-control col-md-7 col-xs-12" id="namaPemilik"
-                                               name="pemilik" required>
+                                               name="pemilik" required value="${homestay.pemilik}">
                                     </div>
                                 </div>
                                 <!-- /.form-group -->
@@ -133,7 +133,7 @@
                                 <div class="form-group">
                                     <label class="col-md-2 col-sm-2 col-xs-12">Jumlah Kamar</label>
                                     <div class="col-md-4 col-sm-4 col-xs-12">
-                                        <input type="text" class="form-control" id="jumlahKamar" name="jumlahKamar" required>
+                                        <input type="text" class="form-control" id="jumlahKamar" name="jumlahKamar" required value="${homestay.jumlahKamar}">
                                     </div>
                                 </div>
                                 <!-- /.form-group -->
@@ -141,7 +141,7 @@
                                     <label class="col-md-2 col-sm-2 col-xs-12">Jumlah Tempat Tidur</label>
                                     <div class="col-md-4 col-sm-4 col-xs-12">
                                         <input type="text" class="form-control" id="jumlahTempatTidur"
-                                               name="jumlahBed" required>
+                                               name="jumlahBed" required value="${homestay.jumlahBed}">
                                     </div>
                                 </div>
                                 <!-- /.form-group -->
@@ -156,7 +156,7 @@
                                 <div class="form-group">
                                     <label class="col-md-2 col-sm-2 col-xs-12">Jumlah Toilet</label>
                                     <div class="col-md-4 col-sm-4 col-xs-12">
-                                        <input type="text" class="form-control" id="jumlahToilet" name="jumlahWC" required>
+                                        <input type="text" class="form-control" id="jumlahToilet" name="jumlahWC" required value="${homestay.jumlahWC}">
                                     </div>
                                 </div>
                                 <!-- /.form-group -->

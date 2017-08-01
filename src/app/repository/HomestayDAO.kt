@@ -46,7 +46,7 @@ constructor(jdbcTemplate: JdbcTemplate) : DAO<Homestay>(jdbcTemplate) {
 
     @Throws(SQLException::class)
     override fun getById(id: String): Homestay? {
-        return jdbcTemplate.query<Homestay>("SELECT * FROM HOMESTAY WHERE id=?", arrayOf(id), intArrayOf(VARCHAR)) { rs: ResultSet ->
+        return jdbcTemplate.query<Homestay>("SELECT * FROM HOMESTAY WHERE id_pemilik=?", arrayOf(id), intArrayOf(VARCHAR)) { rs: ResultSet ->
             if (rs.next()) homestay {
                 this.id = rs.getString("id")
                 pemilik = rs.getString("pemilik")

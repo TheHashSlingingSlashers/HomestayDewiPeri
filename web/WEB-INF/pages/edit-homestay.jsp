@@ -47,7 +47,7 @@
                     <div class="panel panel-primary">
                         <div class="panel-heading"> Edit Homestay</div>
                         <div class="panel-body">
-                            <form class="form-horizontal" role="form" role="form" method="post">
+                            <form class="form-horizontal" role="form" method="post">
                                 <div class="form-group">
                                     <label class="col-md-2 col-sm-2 col-xs-12">Kode Homestay</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
