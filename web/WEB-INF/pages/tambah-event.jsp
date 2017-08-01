@@ -77,6 +77,7 @@
                                     <div id="the-basics" class="col-md-6 col-sm-6 col-xs-12">
                                         <input class="form-control col-md-7 col-xs-12" type="text" id="nmPeserta"
                                                placeholder="Nama Peserta">
+                                        <input type="hidden" name="namaPeserta" id="nmPesertaHidden"/>
                                     </div>
                                 </div>
                                 <!-- /.form-group -->
@@ -114,7 +115,7 @@
                                 <!-- /.form-group -->
 
                                 <div class="col-md-offset-2 col-sm-offset-2">
-                                    &nbsp;<button type="submit" data-toggle="modal" data-target="#myModal" id="btnSave"
+                                    &nbsp;<button type="submit" id="btnSave"
                                                   class="btn btn-labeled btn-success"><span class="btn-label"><i
                                         class="glyphicon glyphicon-floppy-disk"></i></span> Simpan
                                 </button>
@@ -167,6 +168,10 @@
 <script src="${path}/js/datepicker/daterangepicker.js"></script>
 
 <script>
+    $('form').submit(function () {
+        console.log("onSubmit")
+        return false;
+    });
     $(document).ready(function () {
 
 
@@ -188,24 +193,26 @@
 
 <script>
     $(document).ready(function () {
-        $('#btnSave').click(function () {
-            var namaEvt = $('#nama').val();
-            $('#message').text('Data, ' + namaEvt + ' berhasil disimpan.');
-        });
+//        $('#btnSave').click(function () {
+//            var namaEvt = $('#nama').val();
+//            $('#message').text('Data, ' + namaEvt + ' berhasil disimpan.');
+//        });
     });
 </script>
 
 <script>
     var arrPenyewa = [];
     <c:forEach items="${listPenyewa}" var="p">
-    arrPenyewa.push({id: "${p.id}", nama: "${p.nama}"})
+    arrPenyewa.push({id: "${p.id}", nama: "${p.nama}"});
     </c:forEach>
     $(function () {
         $("#nmPeserta").tags({
             requireData: true,
             unique: true
         }).autofill({
-            data: arrPenyewa
+            data: arrPenyewa.map(function (p) {
+                return p.nama;
+            })
         });
     });
 </script>

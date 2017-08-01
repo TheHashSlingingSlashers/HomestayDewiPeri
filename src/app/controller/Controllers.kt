@@ -26,20 +26,23 @@ class HomeController {
     @Autowired
     private lateinit var jdbcTemplate: JdbcTemplate
     @Autowired private lateinit var dao: HomestayDAO
+    @Autowired private lateinit var userDAO: UserDAO
 
     @RequestMapping(method = arrayOf(GET))
-    fun home(model:Model, req: HttpServletRequest): String {
+    fun home(model: Model, req: HttpServletRequest): String {
         val session = req.session
         if ("user" !in session.attributeNames) return "redirect:/login"
         else {
             val user = req.session.getAttribute("user")
-            if (user != null && (user as User).role == "S")
-                return "index"
-            else {
-                val id = req["username"]
-
-                return "pemilik-hs"
-            }
+            if (user != null) {
+                if ((user as User).role == "S")
+                    return "index"
+                else {
+                    val homestay = dao.getById((user as User).username)
+                    model.addAttribute("homestay", homestay)
+                    return "pemilik-hs"
+                }
+            } else return "redirect:/login"
         }
     }
 
@@ -226,7 +229,7 @@ class EventController {
     @RequestMapping("/new", method = arrayOf(GET))
     fun tambah(model: Model): String {
         val listPenyewa = penyewaDAO.getAll()
-        model.addAttribute(listPenyewa)
+        model.addAttribute("listPenyewa", listPenyewa)
         return "tambah-event"
     }
 
@@ -331,16 +334,3 @@ class ManagementHS {
     @RequestMapping(method = arrayOf(GET))
     fun asd() = "manajemen-hs"
 }
-
-@Controller @RequestMapping("/pemilik-hs")
-class PemilikHomestay {
-    @Autowired private lateinit var dao: HomestayDAO
-
-    @RequestMapping(method = arrayOf(GET))
-    fun asd(req: HttpServletRequest, model:Model): String{
-        val h = dao.getById("P4ij0")
-        model.addAttribute("homestay", h)
-        return "pemilik-hs"
-    }
-}
-
