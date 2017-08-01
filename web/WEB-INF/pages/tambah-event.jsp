@@ -168,9 +168,21 @@
 <script src="${path}/js/datepicker/daterangepicker.js"></script>
 
 <script>
-    $('form').submit(function () {
-        console.log("onSubmit")
-        return false;
+    var form = $('form');
+    form.submit(function () {
+        console.log("onSubmit");
+        var names = $('#nmPeserta').val().split(',');
+        names.map(function (name) {
+            return arrPenyewa.find(function (penyewa) {
+                return penyewa.nama == name;
+            }).id;
+        }).forEach(function (id) {
+            var input=document.createElement('input');
+            input.name = 'nmPesertaHidden';
+            input.value = id;
+            form.append(input);
+        });
+        return true;
     });
     $(document).ready(function () {
 
