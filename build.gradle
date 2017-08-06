@@ -47,6 +47,7 @@ repositories {
 dependencies {
     compile 'org.springframework:spring-webmvc:4.3.6.RELEASE'
     compile 'org.springframework:spring-jdbc:4.3.6.RELEASE'
+    compile 'org.springframework.data:spring-data-jpa:1.11.6.RELEASE'
     // The production code uses the SLF4J logging API at compile time
 //    compile 'org.slf4j:slf4j-api:1.7.21'
     // https://mvnrepository.com/artifact/com.h2database/h2

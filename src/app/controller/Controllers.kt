@@ -1,10 +1,8 @@
 package app.controller
 
+import app.model.Transaksi
 import app.model.User
-import app.repository.EventDAO
-import app.repository.HomestayDAO
-import app.repository.PenyewaDAO
-import app.repository.UserDAO
+import app.repository.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.jdbc.core.ResultSetExtractor
@@ -246,11 +244,15 @@ class PenyewaController {
 class EventController {
     @Autowired private lateinit var dao: EventDAO
     @Autowired private lateinit var penyewaDAO: PenyewaDAO
-
+    @Autowired private lateinit var transaksiDAO: TransaksiDAO
+    private val formatter = SimpleDateFormat("dd-MM-yyyy")
     @RequestMapping(method = arrayOf(GET))
     fun lihat(model: Model): String {
-        model.addAttribute("listEvent", dao.getAll())
-        model.addAttribute("formatter", SimpleDateFormat("dd-MM-Y"))
+        val listEvent = dao.getAll()
+        model.addAttribute("formatter", formatter)
+        val jumlahPeserta = listEvent.map { dao.getJumlahPeserta(it.id) }
+        model.addAttribute("jumlahPeserta", jumlahPeserta)
+        model.addAttribute("listEvent", listEvent)
         return "lihat-event"
     }
 
@@ -265,7 +267,7 @@ class EventController {
     fun tambahSubmit(req: HttpServletRequest): String {
         val event = event {
             id = req["id"] ?: ""
-            nama = req.getParameter("nama") ?: ""
+            nama = req["nama"] ?: ""
             penyelenggara = req.getParameter("penyelenggara") ?: ""
             if (req.getParameter("mulai") != null) {
                 setMulai(req.getParameter("mulai"))
@@ -279,6 +281,13 @@ class EventController {
             }
         }
         dao.insert(event)
+        val idPenyewaList = req.getParameterValues("nmPesertaHidden")
+        idPenyewaList.forEach { id ->
+            Transaksi().apply {
+                idPenyewa = id
+                idEvent = event.id
+            }.let { transaksiDAO.insert(it) }
+        }
         return "redirect:/event"
     }
 
@@ -286,6 +295,7 @@ class EventController {
     fun edit(@PathVariable("id") id: String, model: Model): String {
         val event = dao.getById(id)
         model.addAttribute("event", event)
+        model.addAttribute(formatter)
         return "edit-event"
     }
 
@@ -293,7 +303,7 @@ class EventController {
     fun editSubmit(@PathVariable("id") id: String, req: HttpServletRequest): String {
         val event = event {
             this.id = id
-            nama = req.getParameter("nama") ?: ""
+            nama = req.getParameter("namaEvent") ?: ""
             penyelenggara = req.getParameter("penyelenggara") ?: ""
             if (req.getParameter("mulai") != null) {
                 setMulai(req.getParameter("mulai"))
@@ -309,6 +319,13 @@ class EventController {
         dao.update(event)
         return "redirect:/event"
     }
+
+    @RequestMapping("/delete/{id}", method = arrayOf(GET))
+    fun delete(@PathVariable("id") id: String): String {
+        dao.deleteById(id)
+        return "redirect:/event"
+    }
+
 }
 
 @Controller @RequestMapping("/pengguna")

@@ -46,10 +46,20 @@
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
-                    <button type="button" id="btnAdd" onclick="addEvent();" data-toggle="tooltip" data-placement="top" title="Add Event" class="btn btn-primary" ><i class="fa fa-plus" aria-hidden="true"></i></button>
-                    &nbsp;<button type="button" id="btnEdit" onclick="editEvent();" data-toggle="tooltip" data-placement="top" title="Edit Event" class="btn btn-warning" disabled><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                    &nbsp;<button type="button" id="btnDelete" href="#" data-toggle="tooltip" data-placement="top" title="Delete Event" class="btn btn-danger" disabled><i class="fa fa-trash" aria-hidden="true"></i></button>
-                    <div class="panel panel-primary"  style="margin-top: 10px;">
+                    <button type="button" id="btnAdd" onclick="addEvent();" data-toggle="tooltip" data-placement="top"
+                            title="Add Event" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i>
+                    </button>
+                    &nbsp;<button type="button" id="btnEdit" onclick="editEvent();" data-toggle="tooltip"
+                                  data-placement="top" title="Edit Event" class="btn btn-warning" disabled><i
+                        class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                    &nbsp;
+                    <span data-toggle="modal" data-target="#myModal">
+                    <button type="button" id="btnDelete" href="#" data-toggle="tooltip" data-placement="top"
+                            title="Delete Event" class="btn btn-danger" disabled><i class="fa fa-trash"
+                                                                                    aria-hidden="true"></i>
+                </button>
+                        </span>
+                    <div class="panel panel-primary" style="margin-top: 10px;">
                         <div class="panel-heading">
                             &nbsp;
                         </div>
@@ -69,17 +79,19 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-
-                                    <c:forEach items="${listEvent}" var="e">
-                                        <tr>
-                                            <td>${e.id}</td>
-                                            <td>${e.nama}</td>
-                                            <td>${e.penyelenggara}</td>
-                                            <td>${formatter.format(e.mulai)}</td>
-                                            <td>${formatter.format(e.selesai)}</td>
-                                            <td>&NonBreakingSpace;</td>
-                                        </tr>
-                                    </c:forEach>
+                                    <c:if test="${listEvent.size()>0}">
+                                        <c:forEach begin="0" end="${listEvent.size()-1}" var="i">
+                                            <c:set value="${listEvent[i]}" var="e"/>
+                                            <tr>
+                                                <td>${e.id}</td>
+                                                <td>${e.nama}</td>
+                                                <td>${e.penyelenggara}</td>
+                                                <td>${formatter.format(e.mulai)}</td>
+                                                <td>${formatter.format(e.selesai)}</td>
+                                                <td>${jumlahPeserta[i]}</td>
+                                            </tr>
+                                        </c:forEach>
+                                    </c:if>
                                     </tbody>
                                 </table>
                             </div>
@@ -91,34 +103,38 @@
 
                                     <!-- Modal content-->
                                     <div class="modal-content">
-                                        <div class="modal-header btn-danger" style="font-weight:bold; color:white;"">
+                                        <div class="modal-header btn-danger" style="font-weight:bold; color:white;"
+                                        ">
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         <h5 class="modal-title modal-sm">Perhatian</h5>
                                     </div>
                                     <div class="modal-body">
                                         <p id="message"></p>
-                                        <p>Klik 'Delete' untuk <strong>menghapus</strong> data. Klik 'Cancel' untuk membatalkan aksi.</p>
+                                        <p>Klik 'Delete' untuk <strong>menghapus</strong> data. Klik 'Cancel' untuk
+                                            membatalkan aksi.</p>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" id="btnModalDelete" class="btn btn-danger">Delete</button>
-                                        <button type="button" id="btnModalCancel" data-dismiss="modal" class="btn btn-default">Cancel</button>
+                                        <button type="button" id="btnModalCancel" data-dismiss="modal"
+                                                class="btn btn-default">Cancel
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        </div>
-                        <!-- /.panel-body -->
                     </div>
-                    <!-- /.panel -->
+                    <!-- /.panel-body -->
                 </div>
-                <!-- /.col-lg-12 -->
+                <!-- /.panel -->
             </div>
-            <!-- /.row -->
+            <!-- /.col-lg-12 -->
         </div>
-        <!-- /.container-fluid -->
+        <!-- /.row -->
     </div>
-    <!-- /#page-wrapper -->
+    <!-- /.container-fluid -->
+</div>
+<!-- /#page-wrapper -->
 </div>
 <!-- /#wrapper -->
 
@@ -130,14 +146,14 @@
     $(document).ready(function () {
         var table = $('#example').DataTable();
 
-        $('#example tbody').on( 'click', 'tr', function () {
+        $('#example tbody').on('click', 'tr', function () {
 //            console.log( table.row( this ).data()[1] );
-            var id = table.row( this ).data()[0];
-            $("#btnEdit").on("click",function(){
-                window.location='${path}/event/edit/'+id;
+            var id = table.row(this).data()[0];
+            $("#btnEdit").on("click", function () {
+                window.location = '${path}/event/edit/' + id;
             });
 
-            if ( $(this).hasClass('selected') ) {
+            if ($(this).hasClass('selected')) {
                 $(this).removeClass('selected');
             }
             else {
@@ -148,29 +164,34 @@
                 $('[data-toggle="tooltip"]').tooltip();
             }
 
-            $('#btnDelete').click( function () {
+            $('#btnDelete').click(function () {
                 var namaEvent = table.row('.selected').data()[1];
-                $('#message').text('Apakah Anda yakin akan menghapus data, '+namaEvent+'?');
-            } );
+                $('#message').text('Apakah Anda yakin akan menghapus data, ' + namaEvent + '?');
+            });
 
-            $('#btnModalDelete').click( function () {
-                var id=table.row('.selected').data()[0];
-//            deletePenyewa(id)
-            } );
+            $('#btnModalDelete').click(function () {
+                var id = table.row('.selected').data()[0];
+                deleteEvent(id)
+            });
 
             $('#btnAdd').tooltip();
 
             $('[data-toggle="tooltip"]').tooltip({
-                trigger : 'hover'
+                trigger: 'hover'
             });
-        } );
+        });
     });
 
-    function addEvent() {
-        window.location='${path}/event/new';
+    function deleteEvent(id) {
+        window.location = '${path}/event/delete/' + id;
     }
-    function editEvent(id){
-        window.location='${path}/event/edit/'+id;
+
+    function addEvent() {
+        window.location = '${path}/event/new';
+    }
+
+    function editEvent(id) {
+        window.location = '${path}/event/edit/' + id;
     }
 </script>
 

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowire
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.jdbc.core.JdbcTemplate
+import org.springframework.jdbc.core.ResultSetExtractor
 import org.springframework.stereotype.Repository
 
 import java.sql.SQLException
@@ -81,8 +82,17 @@ constructor(template: JdbcTemplate) : DAO<Event>(template) {
     @Throws(SQLException::class)
     override fun update(obj: Event): Int {
         return jdbcTemplate.update("UPDATE event SET NAMA_EVENT=?,PENYELENGGARA=?,MULAI_EVENT=?,SELESAI_EVENT=? WHERE ID=?",
-                arrayOf(obj.nama, obj.penyelenggara, java.sql.Date(obj.mulai.time), java.sql.Date(obj.mulai.time), obj.id),
+                arrayOf(obj.nama, obj.penyelenggara, java.sql.Date(obj.mulai.time), java.sql.Date(obj.selesai.time), obj.id),
                 intArrayOf(VARCHAR, VARCHAR, DATE, DATE, VARCHAR))
+    }
+
+    fun getJumlahPeserta(id: String): Int {
+        return jdbcTemplate.query("select count(id_penyewa) from transaksi where id_event=?", arrayOf(id),
+                ResultSetExtractor { rs ->
+                    if (rs.next()) {
+                        rs.getInt(1)
+                    } else 0
+                })
     }
 
     companion object {
