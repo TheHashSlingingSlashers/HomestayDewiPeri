@@ -17,6 +17,10 @@ import java.text.SimpleDateFormat
 import java.util.*
 import javax.servlet.http.HttpServletRequest
 
+private operator fun Model.set(key: String, obj: Any?): Unit {
+    if (containsAttribute(key)) mergeAttributes(kotlin.collections.mapOf(key to obj))
+    else addAttribute(key, obj)
+}
 
 @Controller
 @RequestMapping("/")
@@ -37,7 +41,7 @@ class HomeController {
                     return "index"
                 else {
                     val homestay = dao.getById((user as User).username)
-                    model.addAttribute("homestay", homestay)
+                    model["homestay"]= homestay
                     return "pemilik-hs"
                 }
             } else return "redirect:/login"
@@ -348,6 +352,14 @@ class UserController {
 
 @Controller @RequestMapping("/manajemen")
 class ManagementHS {
+    @Autowired private lateinit var eventDAO: EventDAO
+    @Autowired private lateinit var homestayDAO: HomestayDAO
+    @Autowired private lateinit var transaksiDAO: TransaksiDAO
+
     @RequestMapping(method = arrayOf(GET))
-    fun asd() = "manajemen-hs"
+    fun asd(model: Model): String {
+        val events = eventDAO.getEventsAfter(Date())
+        model.addAttribute("events", events)
+        return "manajemen-hs"
+    }
 }

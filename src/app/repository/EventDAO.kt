@@ -87,12 +87,26 @@ constructor(template: JdbcTemplate) : DAO<Event>(template) {
     }
 
     fun getJumlahPeserta(id: String): Int {
-        return jdbcTemplate.query("select count(id_penyewa) from transaksi where id_event=?", arrayOf(id),
+        return jdbcTemplate.query("SELECT count(id_penyewa) FROM transaksi WHERE id_event=?", arrayOf(id),
                 ResultSetExtractor { rs ->
                     if (rs.next()) {
                         rs.getInt(1)
                     } else 0
                 })
+    }
+
+    fun getEventsAfter(date: Date): List<Event> {
+        return jdbcTemplate.query("SELECT * FROM event WHERE mulai_event > ?", { ps ->
+            ps.setDate(1, java.sql.Date(date.time))
+        }) { rs, row ->
+            event {
+                id = rs.getString("id")
+                nama = rs.getString("nama_event")
+                penyelenggara = rs.getString("penyelenggara")
+                mulai = rs.getDate("mulai_event")
+                selesai = rs.getDate("selesai_event")
+            }
+        }
     }
 
     companion object {
