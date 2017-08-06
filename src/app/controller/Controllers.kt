@@ -35,9 +35,9 @@ class HomeController {
         else {
             val user = req.session.getAttribute("user")
             if (user != null) {
-                if ((user as User).role == "S")
+                if ((user as User).role == "S") {
                     return "index"
-                else {
+                } else {
                     val homestay = dao.getById((user as User).username)
                     model.addAttribute("homestay", homestay)
                     return "pemilik-hs"
@@ -83,6 +83,34 @@ class HomeController {
                 }
             } else null
         })
+    }
+
+    @RequestMapping("/edit-hs", method = arrayOf(GET))
+    fun editHs(model: Model, req: HttpServletRequest): String {
+        val user = req.session.getAttribute("user") as? User
+        return if (user != null) {
+            if (user.role == "P") {
+                val homestay = dao.getById((user as User).username)
+                model.addAttribute("idHomestay", homestay)
+                "edit-pemilik-hs"
+            } else "redirect:/"
+        } else "redirect:/"
+    }
+
+    @RequestMapping("/edit-hs", method = arrayOf(POST))
+    fun tambahSubmit(req: HttpServletRequest) : String {
+        val homestay = homestay {
+            id = req["id"]
+            pemilik = req["pemilik"]
+            idPemilik = req["idPemilik"]
+            lokasi = req["lokasi"]
+            jumlahKamar = req["jumlahKamar"]?.toInt() ?: 0
+            jumlahBed = req["jumlahBed"]?.toInt() ?: 0
+            jumlahWC = req["jumlahWC"]?.toInt() ?: 0
+            isAvailable = req["status"]?.toBoolean() ?: false
+        }
+        dao.update(homestay)
+        return "redirect:/"
     }
 }
 
@@ -334,3 +362,19 @@ class ManagementHS {
     @RequestMapping(method = arrayOf(GET))
     fun asd() = "manajemen-hs"
 }
+
+@Controller @RequestMapping("/list-penyewa")
+class ListPenyewaHs {
+    @Autowired private lateinit var dao: HomestayDAO
+
+    @RequestMapping(method = arrayOf(GET))
+    fun asd() = "penyewa-hs"
+}
+
+@Controller @RequestMapping("/login-penyewa")
+class Penyewa {
+    @RequestMapping(method = arrayOf(GET))
+    fun asd() = "login-penyewa"
+}
+
+

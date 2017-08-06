@@ -65,14 +65,10 @@
                                             <td>
                                             </td>
                                             <td>${p.nama}</td>
-                                            <td>
-                                                    ${p.jenisKelamin}
-                                            </td>
-                                            <td>
-                                                    ${p.jenisMakanan}
-                                            </td>
+                                            <td>${p.jenisKelamin}</td>
+                                            <td>${p.jenisMakanan}</td>
                                             <td></td>
-                                            <td><input type="checkbox" disabled="disabled" value="${p.menginap}"/></td>
+                                            <td>${p.menginap}</td>
                                         </tr>
                                     </c:forEach>
                                     </tbody>

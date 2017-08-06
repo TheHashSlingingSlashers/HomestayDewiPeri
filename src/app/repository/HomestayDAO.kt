@@ -9,9 +9,7 @@ import java.util.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.jdbc.core.*
 import org.springframework.stereotype.Repository
-
-import java.sql.Types.INTEGER
-import java.sql.Types.VARCHAR
+import java.sql.Types.*
 
 
 /**
@@ -146,8 +144,8 @@ constructor(jdbcTemplate: JdbcTemplate) : DAO<Homestay>(jdbcTemplate) {
 
     @Throws(SQLException::class)
     override fun update(h: Homestay): Int {
-        return jdbcTemplate.update("UPDATE HOMESTAY SET PEMILIK=?,LOKASI=?,JML_KAMAR=?,JML_BED=?,JML_WC=? WHERE ID=?",
-                arrayOf(h.pemilik, h.lokasi, h.jumlahKamar, h.jumlahBed, h.jumlahWC, h.id),
-                intArrayOf(VARCHAR, VARCHAR, INTEGER, INTEGER, INTEGER, VARCHAR))
+        return jdbcTemplate.update("UPDATE HOMESTAY SET PEMILIK=?,LOKASI=?,JML_KAMAR=?,JML_BED=?,JML_WC=?,STATUS=? WHERE ID=?",
+                arrayOf(h.pemilik, h.lokasi, h.jumlahKamar, h.jumlahBed, h.jumlahWC, h.isAvailable, h.id),
+                intArrayOf(VARCHAR, VARCHAR, INTEGER, INTEGER, INTEGER, BOOLEAN, VARCHAR))
     }
 }

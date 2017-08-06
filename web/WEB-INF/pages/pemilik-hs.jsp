@@ -37,7 +37,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="${path}">Selamat Datang, </a>
+                <a class="navbar-brand" href="${path}">Selamat Datang </a>
             </div>
             <!-- /.navbar-header -->
 
@@ -62,12 +62,11 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        <li class="active">
-                            <a href="${path}/pemilik"><i class="fa fa-home fa-fw" aria-hidden="true"></i> Info Homestay</a>
-                        </li>
-
                         <li>
-                            <a href="${path}/homestay"><i class="fa fa-users fa-fw" aria-hidden="true"></i> List Penyewa Homestay</a>
+                            <a href="${path}/"><i class="fa fa-home fa-fw" aria-hidden="true"></i> Home</a>
+                        </li>
+                        <li>
+                            <a href="${path}/list-penyewa"><i class="fa fa-users fa-fw" aria-hidden="true"></i> List Penyewa Homestay</a>
                         </li>
 
                     </ul>
@@ -92,7 +91,7 @@
                     <div class="panel panel-primary">
                         <div class="panel-heading">&nbsp;</div>
                         <div class="panel-body">
-                            <form  method="POST" class="form-horizontal" role="form">
+                            <form class="form-horizontal" role="form">
                                 <div class="form-group">
                                     <label class="col-md-2 col-sm-2 col-xs-12">Kode Homestay</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
@@ -105,35 +104,38 @@
                                     <label class="col-md-2 col-sm-2 col-xs-12">Nama Pemilik</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" class="form-control col-md-7 col-xs-12" id="namaPemilik"
-                                               name="pemilik" required value="${homestay.pemilik}">
+                                               name="pemilik" readonly="readonly" value="${homestay.available}">
                                     </div>
                                 </div>
                                 <!-- /.form-group -->
                                 <div class="form-group">
                                     <label class="col-md-2 col-sm-2 col-xs-12">Lokasi</label>
                                     <div class="col-md-4 col-sm-4 col-xs-12">
-                                        <select name="lokasi" class="form-control" title="Pilih Event yang Diikuti">
-                                            <option value="RT 1">RT 1</option>
-                                            <option value="RT 2">RT 2</option>
-                                            <option value="RT 3">RT 3</option>
-                                            <option value="RT 4">RT 4</option>
-                                        </select>
+                                        <input type="text" class="form-control col-md-7 col-xs-12" id="lokasi"
+                                               readonly="readonly" value="${homestay.lokasi}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-2 col-sm-2 col-xs-12">Status</label>
                                     <div class="col-md-4 col-sm-4 col-xs-12">
-                                        <select name="status" class="form-control" title="Status Homestay">
-                                            <option value="Tersedia">Tersedia</option>
-                                            <option value="Tidak Tersedia">Tidak Tersedia</option>
-                                        </select>
+                                        <c:choose>
+                                            <c:when test="${homestay.available}">
+                                                <input type="text" class="form-control col-md-7 col-xs-12" id="status"
+                                                       readonly="readonly" value="Tersedia">
+                                            </c:when>
+                                            <c:otherwise>
+                                                <input type="text" class="form-control col-md-7 col-xs-12" id="status"
+                                                       readonly="readonly" value="Tidak Tersedia">
+                                            </c:otherwise>
+                                        </c:choose>
                                     </div>
                                 </div>
                                 <!-- /.form-group -->
                                 <div class="form-group">
                                     <label class="col-md-2 col-sm-2 col-xs-12">Jumlah Kamar</label>
                                     <div class="col-md-4 col-sm-4 col-xs-12">
-                                        <input type="text" class="form-control" id="jumlahKamar" name="jumlahKamar" required value="${homestay.jumlahKamar}">
+                                        <input type="text" class="form-control" id="jumlahKamar" name="jumlahKamar"
+                                               readonly="readonly" value="${homestay.jumlahKamar}">
                                     </div>
                                 </div>
                                 <!-- /.form-group -->
@@ -141,7 +143,7 @@
                                     <label class="col-md-2 col-sm-2 col-xs-12">Jumlah Tempat Tidur</label>
                                     <div class="col-md-4 col-sm-4 col-xs-12">
                                         <input type="text" class="form-control" id="jumlahTempatTidur"
-                                               name="jumlahBed" required value="${homestay.jumlahBed}">
+                                               name="jumlahBed" readonly="readonly" value="${homestay.jumlahBed}">
                                     </div>
                                 </div>
                                 <!-- /.form-group -->
@@ -156,16 +158,17 @@
                                 <div class="form-group">
                                     <label class="col-md-2 col-sm-2 col-xs-12">Jumlah Toilet</label>
                                     <div class="col-md-4 col-sm-4 col-xs-12">
-                                        <input type="text" class="form-control" id="jumlahToilet" name="jumlahWC" required value="${homestay.jumlahWC}">
+                                        <input type="text" class="form-control" id="jumlahToilet" name="jumlahWC"
+                                               readonly="readonly" value="${homestay.jumlahWC}">
                                     </div>
                                 </div>
                                 <!-- /.form-group -->
                                 <div class="col-md-offset-2 col-sm-offset-2">
-                                    <button type="submit" class="btn btn-labeled btn-success"><span class="btn-label"><i
-                                            class="glyphicon glyphicon-floppy-disk"></i></span> Simpan
+                                    <button type="button" class="btn btn-labeled btn-warning"
+                                            onclick="editHs();" id="btnEdit"><span class="btn-label"><i
+                                            class="fa fa-pencil-square-o" aria-hidden="true"></i></span> Edit
                                     </button>
                                 </div>
-
                             </form>
                             <!-- /.form -->
                         </div>
@@ -186,7 +189,7 @@
 
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 <script>
-    $('#jumlahKamar').keyup(function () {
+    $(document).ready(function () {
         var val1 = 0;
         var val2 = 0;
         var result = 0;
@@ -199,22 +202,11 @@
         else {
             $('#kapasitas').val(result.toFixed(0));
         }
-    });
-</script>
-<script>
-    $('#jumlahTempatTidur').keyup(function () {
-        var val1 = 0;
-        var val2 = 0;
-        var result = 0;
-        val1 = parseFloat($('#jumlahKamar').val());
-        val2 = parseFloat($('#jumlahTempatTidur').val());
-        result = val1 * val2;
-        if (isNaN(result)) {
-            $('#kapasitas').val(0);
-        }
-        else {
-            $('#kapasitas').val(result.toFixed(0));
-        }
+
+        $("#btnEdit").on("click", function () {
+//            var id = kodeHomestay.value;
+            window.location = '${path}/edit-hs';
+        });
     });
 </script>
 

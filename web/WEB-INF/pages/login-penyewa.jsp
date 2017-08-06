@@ -36,7 +36,7 @@
                         <label for="inputUsername" class="sr-only">Kode Event</label>
                         <div class="input-group">
                             <div class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></div>
-                            <input type="username" name="username" id="inputUsername" class="form-control"
+                            <input type="username" name="kodeEvent" id="inputUsername" class="form-control"
                                    placeholder="Kode Event" required autofocus="">
                         </div>
                     </div>

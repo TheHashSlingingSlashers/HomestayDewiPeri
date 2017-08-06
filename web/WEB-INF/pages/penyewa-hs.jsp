@@ -22,6 +22,10 @@
     <%@include file="include/dataTablesCss.jsp" %>
     <!-- Custom CSS -->
     <link href="${path}/dist/css/build.css" rel="stylesheet">
+
+    <!-- you need to include the shieldui css and js assets in order for the components to work -->
+    <link rel="stylesheet" type="text/css" href="http://www.shieldui.com/shared/components/latest/css/light/all.min.css" />
+
     <style>
         .search-form .form-group {
             float: right !important;
@@ -113,14 +117,12 @@
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
-                    <li class="active">
-                        <a href="${path}/penyewa"><i class="fa fa-home fa-fw" aria-hidden="true"></i> Info Homestay</a>
-                    </li>
-
                     <li>
-                        <a href="${path}/homestay"><i class="fa fa-users fa-fw" aria-hidden="true"></i> List Penyewa Homestay</a>
+                        <a href="${path}/"><i class="fa fa-home fa-fw" aria-hidden="true"></i> Home</a>
                     </li>
-
+                    <li>
+                        <a href="${path}/list-penyewa"><i class="fa fa-users fa-fw" aria-hidden="true"></i> List Penyewa Homestay</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.sidebar-collapse -->
@@ -138,8 +140,11 @@
                 <!-- /.col-lg-12 -->
             </div>
             <div class="row">
+                <div class="col-md-4">
+                    <button id="exportButton" class="btn btn-sm btn-danger clearfix"><span class="fa fa-file-pdf-o"></span> Export to PDF</button>
+                </div>
                 <div class="col-md-4 col-md-offset-8">
-                    <form action="" class="search-form">
+                    <form action="GET" class="search-form">
                         <div class="form-group has-feedback">
                             <label for="search" class="sr-only">Kode Event</label>
                             <input type="text" class="form-control" name="search" id="search" placeholder="Masukkan Kode Event">
@@ -167,26 +172,38 @@
                                         <th>Nama</th>
                                         <th>Gender</th>
                                         <th>Makanan</th>
-                                        <th>Homestay</th>
                                         <th>Keterangan</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach items="${listPenyewa}" var="p">
-                                        <tr>
-                                            <td>
-                                            </td>
-                                            <td>${p.nama}</td>
-                                            <td>
-                                                    ${p.jenisKelamin}
-                                            </td>
-                                            <td>
-                                                    ${p.jenisMakanan}
-                                            </td>
-                                            <td></td>
-                                            <td><input type="checkbox" disabled="disabled" value="${p.menginap}"/></td>
-                                        </tr>
-                                    </c:forEach>
+                                    <tr>
+                                        <td>
+                                            1
+                                        </td>
+                                        <%--<td>${p.nama}</td>--%>
+                                        <td>Erika</td>
+                                        <%--<td>${p.jenisKelamin}</td>--%>
+                                        <td>L</td>
+                                        <%--<td>${p.jenisMakanan}</td>--%>
+                                        <td>Vegetarian</td>
+                                        <%--<td>${p.menginap}</td>--%>
+                                        <td>Menginap</td>
+                                    </tr>
+                                    <%--<c:forEach items="${listPenyewa}" var="p">--%>
+                                        <%--<tr>--%>
+                                            <%--<td>--%>
+                                                <%--1--%>
+                                            <%--</td>--%>
+                                            <%--&lt;%&ndash;<td>${p.nama}</td>&ndash;%&gt;--%>
+                                            <%--<td>Erika</td>--%>
+                                            <%--&lt;%&ndash;<td>${p.jenisKelamin}</td>&ndash;%&gt;--%>
+                                            <%--<td>L</td>--%>
+                                            <%--&lt;%&ndash;<td>${p.jenisMakanan}</td>&ndash;%&gt;--%>
+                                            <%--<td>Vegetarian</td>--%>
+                                            <%--&lt;%&ndash;<td>${p.menginap}</td>&ndash;%&gt;--%>
+                                            <%--<td>Menginap</td>--%>
+                                        <%--</tr>--%>
+                                    <%--</c:forEach>--%>
                                     </tbody>
                                 </table>
                             </div>
@@ -207,6 +224,8 @@
 <!-- /#wrapper -->
 <%@include file="include/scripts.jsp" %>
 <%@include file="include/dataTablesScript.jsp" %>
+<script type="text/javascript" src="http://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
+<script type="text/javascript" src="http://www.shieldui.com/shared/components/latest/js/jszip.min.js"></script>
 
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 <script>
@@ -217,6 +236,60 @@
         });
 
     })
+</script>
+
+<script type="text/javascript">
+    jQuery(function ($) {
+        $("#exportButton").click(function () {
+            // parse the HTML table element having an id=exportTable
+            var dataSource = shield.DataSource.create({
+                data: "#dataTables-example",
+                schema: {
+                    type: "table",
+                    fields: {
+                        No: { type: Number },
+                        Nama: { type: String },
+                        Gender: { type: String },
+                        Makanan: { type: String },
+                        Keterangan: { type: String }
+                    }
+                }
+            });
+
+            // when parsing is done, export the data to PDF
+            dataSource.read().then(function (data) {
+                var pdf = new shield.exp.PDFDocument({
+                    author: "PrepBootstrap",
+                    created: new Date()
+                });
+
+                pdf.addPage("a4", "portrait");
+
+                pdf.table(
+                    50,
+                    50,
+                    data,
+                    [
+                        { field: "No", title: "No", width: 30 },
+                        { field: "Nama", title: "Nama", width: 200 },
+                        { field: "Gender", title: "Gender", width: 50 },
+                        { field: "Makanan", title: "Makanan", width: 90 },
+                        { field: "Keterangan", title: "Keterangan", width: 110 }
+                    ],
+                    {
+                        margins: {
+                            top: 50,
+                            left: 50
+                        }
+                    }
+                );
+
+                pdf.saveAs({
+                    fileName: "PrepBootstrapPDF"
+                });
+            });
+        });
+    });
 </script>
 
 </body>
