@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
-
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <head>
 
     <meta charset="utf-8">
@@ -61,6 +61,7 @@
                                     <label class="col-md-2 col-sm-2 col-xs-12">Nama Event</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" class="form-control col-md-7 col-xs-12" id="namaEvent"
+                                               name="namaEvent"
                                                value="${event.nama}">
                                     </div>
                                 </div>
@@ -109,7 +110,7 @@
 
                                 <div class="col-md-offset-2 col-sm-offset-2">
                                     &nbsp;
-                                    <button type="button" class="btn btn-labeled btn-success"><span class="btn-label"><i
+                                    <button type="submit" class="btn btn-labeled btn-success"><span class="btn-label"><i
                                             class="glyphicon glyphicon-floppy-disk"></i></span> Save
                                     </button>
                                 </div>
@@ -160,8 +161,8 @@
             console.log(start.toISOString(), end.toISOString(), label);
         });
 
-        $("#single_cal3").value = formatDate(new Date(${event.mulai.time}));
-        $("#single_cal2").value = formatDate(new Date(${event.selesai.time}));
+        $("#single_cal3").data('daterangepicker').setEndDate(new Date(${event.mulai.time}));
+        $("#single_cal2").data('daterangepicker').setEndDate(new Date(${event.selesai.time}));
 
     });
 </script>

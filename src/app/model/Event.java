@@ -11,7 +11,7 @@ import java.util.Date;
 public class Event {
     private String id, nama, penyelenggara;
     private Date mulai, selesai;
-    private static final DateFormat formatter = new SimpleDateFormat("d-m-Y");
+    private static final DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 
     public String getId() {
         return id;
