@@ -31,6 +31,7 @@ constructor(jdbcTemplate: JdbcTemplate) : DAO<Homestay>(jdbcTemplate) {
                 jumlahKamar = rs.getInt("jml_kamar")
                 jumlahBed = rs.getInt("jml_bed")
                 jumlahWC = rs.getInt("jml_wc")
+                isAvailable = rs.getBoolean("status")
             }
         }
     }
@@ -53,6 +54,7 @@ constructor(jdbcTemplate: JdbcTemplate) : DAO<Homestay>(jdbcTemplate) {
                 jumlahKamar = rs.getInt("jml_kamar")
                 jumlahBed = rs.getInt("jml_bed")
                 jumlahWC = rs.getInt("jml_wc")
+                isAvailable = rs.getBoolean("status")
             }
             else null
         }
@@ -148,4 +150,20 @@ constructor(jdbcTemplate: JdbcTemplate) : DAO<Homestay>(jdbcTemplate) {
                 arrayOf(h.pemilik, h.lokasi, h.jumlahKamar, h.jumlahBed, h.jumlahWC, h.isAvailable, h.id),
                 intArrayOf(VARCHAR, VARCHAR, INTEGER, INTEGER, INTEGER, BOOLEAN, VARCHAR))
     }
+
+//    @Throws(SQLException::class)
+//    fun latestUsed(loc: String): List<Homestay> {
+//        return jdbcTemplate.query<Homestay>("SELECT h.id, h.pemilik, e.selesai_event FROM t.TRANSAKSI JOIN h.HOMESTAY ON h.id = t.id_hs JOIN e.EVENT ON e.id = t.id_event WHERE h.lokasi=?",
+//                arrayOf(loc), intArrayOf(VARCHAR)) { rs: ResultSet, rowNum: Int ->
+//           homestay {
+//                this.id = rs.getString("id")
+//                pemilik = rs.getString("pemilik")
+//                idPemilik = rs.getString("id_pemilik")
+//                lokasi = rs.getString("lokasi")
+//                jumlahKamar = rs.getInt("jml_kamar")
+//                jumlahBed = rs.getInt("jml_bed")
+//                jumlahWC = rs.getInt("jml_wc")
+//            }
+//        }
+//    }
 }

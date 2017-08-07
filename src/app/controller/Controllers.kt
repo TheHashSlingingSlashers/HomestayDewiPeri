@@ -25,6 +25,7 @@ class HomeController {
     private lateinit var jdbcTemplate: JdbcTemplate
     @Autowired private lateinit var dao: HomestayDAO
     @Autowired private lateinit var userDAO: UserDAO
+    @Autowired private lateinit var penyewaDAO: PenyewaDAO
 
     @RequestMapping(method = arrayOf(GET))
     fun home(model: Model, req: HttpServletRequest): String {
@@ -109,6 +110,16 @@ class HomeController {
         }
         dao.update(homestay)
         return "redirect:/"
+    }
+
+    @RequestMapping("/list-penyewa", method = arrayOf(GET))
+    fun asd() = "penyewa-hs";
+
+    @RequestMapping("/list-penyewa/{id}", method = arrayOf(GET))
+    fun edit(@PathVariable("id") id: String, model: Model): String {
+        val p = penyewaDAO.listPenyewa(id)
+        model.addAttribute("listPenyewa", p)
+        return "list-penyewa"
     }
 }
 
@@ -205,6 +216,7 @@ class PenyewaController {
             setJenisKelamin(req["jenisKelamin"])
             setJenisMakanan(req["jenisMakanan"])
             isMenginap = req["menginap"]?.toBoolean() ?: false
+//            isMenginap = req["menginap"]!!.toBoolean()
         }
         dao.insert(p)
         return "redirect:/penyewa"
@@ -378,20 +390,12 @@ class UserController {
 class ManagementHS {
     @RequestMapping(method = arrayOf(GET))
     fun asd() = "manajemen-hs"
-}
 
-@Controller @RequestMapping("/list-penyewa")
-class ListPenyewaHs {
-    @Autowired private lateinit var dao: HomestayDAO
+    @RequestMapping("/hist-homestay", method = arrayOf(GET))
+    fun hist() = "lihat-history-hs"
 
-    @RequestMapping(method = arrayOf(GET))
-    fun asd() = "penyewa-hs"
-}
-
-@Controller @RequestMapping("/login-penyewa")
-class Penyewa {
-    @RequestMapping(method = arrayOf(GET))
-    fun asd() = "login-penyewa"
+    @RequestMapping("/list",method = arrayOf(GET))
+    fun penyewahs() = "lihat-penyewa-hs"
 }
 
 

@@ -176,34 +176,30 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>
-                                            1
-                                        </td>
-                                        <%--<td>${p.nama}</td>--%>
-                                        <td>Erika</td>
-                                        <%--<td>${p.jenisKelamin}</td>--%>
-                                        <td>L</td>
-                                        <%--<td>${p.jenisMakanan}</td>--%>
-                                        <td>Vegetarian</td>
-                                        <%--<td>${p.menginap}</td>--%>
-                                        <td>Menginap</td>
-                                    </tr>
-                                    <%--<c:forEach items="${listPenyewa}" var="p">--%>
-                                        <%--<tr>--%>
-                                            <%--<td>--%>
-                                                <%--1--%>
-                                            <%--</td>--%>
-                                            <%--&lt;%&ndash;<td>${p.nama}</td>&ndash;%&gt;--%>
-                                            <%--<td>Erika</td>--%>
-                                            <%--&lt;%&ndash;<td>${p.jenisKelamin}</td>&ndash;%&gt;--%>
-                                            <%--<td>L</td>--%>
-                                            <%--&lt;%&ndash;<td>${p.jenisMakanan}</td>&ndash;%&gt;--%>
-                                            <%--<td>Vegetarian</td>--%>
-                                            <%--&lt;%&ndash;<td>${p.menginap}</td>&ndash;%&gt;--%>
-                                            <%--<td>Menginap</td>--%>
-                                        <%--</tr>--%>
-                                    <%--</c:forEach>--%>
+                                    <%--<tr>--%>
+                                        <%--<td>--%>
+                                            <%--1--%>
+                                        <%--</td>--%>
+                                        <%--&lt;%&ndash;<td>${p.nama}</td>&ndash;%&gt;--%>
+                                        <%--<td>Erika</td>--%>
+                                        <%--&lt;%&ndash;<td>${p.jenisKelamin}</td>&ndash;%&gt;--%>
+                                        <%--<td>L</td>--%>
+                                        <%--&lt;%&ndash;<td>${p.jenisMakanan}</td>&ndash;%&gt;--%>
+                                        <%--<td>Vegetarian</td>--%>
+                                        <%--&lt;%&ndash;<td>${p.menginap}</td>&ndash;%&gt;--%>
+                                        <%--<td>Menginap</td>--%>
+                                    <%--</tr>--%>
+                                    <c:set var="count" value="1" scope="page" />
+                                    <c:forEach items="${listPenyewa}" var="p">
+                                        <tr>
+                                            <td>${count}</td>
+                                            <td>${p.nama}</td>
+                                            <td>${p.jenisKelamin}</td>
+                                            <td>${p.jenisMakanan}</td>
+                                            <td>${p.menginap}</td>
+                                        </tr>
+                                        <c:set var="count" value="${count + 1}" scope="page"/>
+                                    </c:forEach>
                                     </tbody>
                                 </table>
                             </div>

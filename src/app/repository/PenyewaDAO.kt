@@ -151,6 +151,20 @@ constructor(jdbcTemplate: JdbcTemplate) : DAO<Penyewa>(jdbcTemplate) {
                 intArrayOf(VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR))
     }
 
+    @Throws(SQLException::class)
+    fun listPenyewa(id: String): List<Penyewa> {
+        return jdbcTemplate.query<Penyewa>("SELECT * FROM p.PENYEWA JOIN t.TRANSAKSI ON t.id_penyewa = p.id WHERE t.id_event=?",
+                arrayOf(id), intArrayOf(VARCHAR)) { rs, rowNum ->
+            penyewa {
+                this.id = rs.getString("id")
+                nama = rs.getString("nama")
+                setJenisKelamin(rs.getString("jns_kelamin"))
+                setJenisMakanan(rs.getString("jns_makanan"))
+                isMenginap = rs.getBoolean("menginap")
+            }
+        }
+    }
+
     companion object {
 
         val SORT_BY_ID = Comparator<Penyewa> { a, b -> a.id.compareTo(b.id) }
