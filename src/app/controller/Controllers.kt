@@ -1,5 +1,7 @@
 package app.controller
 
+import app.model.Event
+import app.model.Penyewa
 import app.model.Transaksi
 import app.model.User
 import app.repository.*
@@ -41,7 +43,7 @@ class HomeController {
                     return "index"
                 else {
                     val homestay = dao.getById((user as User).username)
-                    model["homestay"]= homestay
+                    model["homestay"] = homestay
                     return "pemilik-hs"
                 }
             } else return "redirect:/login"
@@ -355,11 +357,30 @@ class ManagementHS {
     @Autowired private lateinit var eventDAO: EventDAO
     @Autowired private lateinit var homestayDAO: HomestayDAO
     @Autowired private lateinit var transaksiDAO: TransaksiDAO
+    @Autowired private lateinit var penyewaDAO: PenyewaDAO
 
     @RequestMapping(method = arrayOf(GET))
     fun asd(model: Model): String {
         val events = eventDAO.getEventsAfter(Date())
-        model.addAttribute("events", events)
+        val homestays = homestayDAO.getAll()
+        val listPenyewa = penyewaDAO.getAll()
+        val transactions = transaksiDAO.getAll()
+        val a: Map<String, List<Transaksi>> = transactions
+                .filter { it.idHomestay == null }
+                .groupBy { transaksi -> transaksi.idEvent }
+        val b = mutableMapOf<String, List<Penyewa?>>()
+        a.forEach { (idEvent, listTransaksi) ->
+            b += idEvent to listTransaksi.map { trans ->
+                listPenyewa.find { penyewa ->
+                    penyewa.id == trans.idPenyewa
+                }
+            }
+        }
+        val c: Set<String> = homestays.map { (it.lokasi) }.toSet()
+        model["listEvent"] = events
+        model["listHomestay"] = homestays
+        model["mapPenyewa"] = b
+        model["listLokasi"] = c
         return "manajemen-hs"
     }
 }

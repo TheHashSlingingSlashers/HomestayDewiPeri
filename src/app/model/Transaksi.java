@@ -1,7 +1,10 @@
 package app.model;
 
+import org.jetbrains.annotations.Nullable;
+
 public class Transaksi {
     private String idPenyewa;
+    @Nullable
     private String idHomestay;
     private String idEvent;
 
@@ -13,6 +16,7 @@ public class Transaksi {
         this.idPenyewa = idPenyewa;
     }
 
+    @Nullable
     public String getIdHomestay() {
         return idHomestay;
     }
