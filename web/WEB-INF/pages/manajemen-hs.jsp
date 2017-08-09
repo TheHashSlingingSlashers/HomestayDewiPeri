@@ -151,12 +151,7 @@
 
                                 <div class="col-md-offset-2 col-sm-offset-2">
                                     <button type="button" class="btn btn-labeled btn-info" style="margin-left: 5px;">
-                                        <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span> Check
-                                    </button>
-
-                                    <button type="submit" class="btn btn-labeled btn-success" style="margin-left: 5px;"
-                                            id="save"><span class="btn-label"><i
-                                            class="glyphicon glyphicon-floppy-disk"></i></span> Save
+                                        <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span> Cek Cpty
                                     </button>
                                 </div>
 
@@ -169,6 +164,7 @@
                                     <thead>
                                     <tr>
                                         <th></th>
+                                        <th>No ID</th>
                                         <th>Nama</th>
                                         <th>Jenis Kelamin</th>
                                         <th>Jenis Makanan</th>
@@ -179,7 +175,13 @@
                                     <c:if test="${listPenyewa!=null}">
                                         <c:forEach items="${listPenyewa}" var="p">
                                             <tr>
-                                                <td></td>
+                                                <td>
+                                                    <div class="checkbox checkbox-primary">
+                                                        <input type="checkbox" class="styled styled-primary case singleCheckbox" name="case[]" id="singleCheckbox" value="1">
+                                                        <label></label>
+                                                    </div>
+                                                </td>
+                                                <td>${p.id}</td>
                                                 <td>${p.nama}</td>
                                                 <td>${p.jenisKelamin}</td>
                                                 <td>${p.jenisMakanan}</td>
@@ -190,6 +192,13 @@
                                 </table>
                             </div>
                             <!-- /.table-responsive -->
+
+
+                            <br>
+                                <button type="submit" class="btn btn-labeled btn-success" id="save" style="width: 100%"><span class="btn-label"><i
+                                            class="glyphicon glyphicon-floppy-disk"></i></span> Simpan
+                                </button>
+
 
                         </div>
                         <!-- /.panel body -->
