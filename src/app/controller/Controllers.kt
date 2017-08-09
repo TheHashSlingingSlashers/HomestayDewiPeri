@@ -6,6 +6,7 @@ import app.model.Transaksi
 import app.model.User
 import app.repository.*
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.jpa.repository.Query
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.jdbc.core.ResultSetExtractor
 import org.springframework.stereotype.Controller
@@ -360,13 +361,18 @@ class ManagementHS {
     @Autowired private lateinit var penyewaDAO: PenyewaDAO
 
     @RequestMapping(method = arrayOf(GET))
-    fun asd(model: Model): String {
-        val events = eventDAO.getEventsAfter(Date())
+    fun asd(model: Model, req: HttpServletRequest): String {
+        val idEvent = req["idEvent"]
+        val events = eventDAO.getAll()
+        val event = if (idEvent != null) eventDAO.getById(idEvent) else null
         val homestays = homestayDAO.getAll()
         val listPenyewa = penyewaDAO.getAll()
         val transactions = transaksiDAO.getAll()
-        val a: Map<String, List<Transaksi>> = transactions
-                .filter { it.idHomestay == null }
+        val a: Map<String, List<Transaksi>> = transactions.filter {
+            it.idHomestay == null && (if (event != null) {
+                it.idEvent == event.id
+            } else true)
+        }
                 .groupBy { transaksi -> transaksi.idEvent }
         val b = mutableMapOf<String, List<Penyewa?>>()
         a.forEach { (idEvent, listTransaksi) ->
@@ -376,11 +382,13 @@ class ManagementHS {
                 }
             }
         }
+        val d = b[event?.id]
         val c: Set<String> = homestays.map { (it.lokasi) }.toSet()
         model["listEvent"] = events
         model["listHomestay"] = homestays
         model["mapPenyewa"] = b
         model["listLokasi"] = c
+        model["listPenyewa"] = d
         return "manajemen-hs"
     }
 }

@@ -106,7 +106,8 @@
                                 <div class="form-group">
                                     <label class="col-md-2 col-sm-2 col-xs-12">Event</label>
                                     <div class="col-md-4 col-sm-4 col-xs-12">
-                                        <select name="event" class="form-control" title="Pilih Event yang Diikuti">
+                                        <select name="event" class="form-control" title="Pilih Event yang Diikuti"
+                                                id="event">
                                             <c:if test="${listEvent.size()>0}">
                                                 <c:forEach items="${listEvent}" var="event">
                                                     <option value="${event.id}">${event.nama}</option>
@@ -174,12 +175,17 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach items="${mapPenyewa}" var="p">
-                                        <tr>
-                                            <td></td>
-                                            <td>${}</td>
-                                        </tr>
-                                    </c:forEach>
+                                    <%--@elvariable id="listPenyewa" type="java.util.List<app.model.Penyewa>"--%>
+                                    <c:if test="${listPenyewa!=null}">
+                                        <c:forEach items="${listPenyewa}" var="p">
+                                            <tr>
+                                                <td></td>
+                                                <td>${p.nama}</td>
+                                                <td>${p.jenisKelamin}</td>
+                                                <td>${p.jenisMakanan}</td>
+                                            </tr>
+                                        </c:forEach>
+                                    </c:if>
                                     </tbody>
                                 </table>
                             </div>
@@ -210,6 +216,9 @@
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 <script>
     $(document).ready(function () {
+        $("#event").on('change', function () {
+            window.location = '?idEvent=' + this.value;
+        })
         $('#dataTables-example tr').click(function (event) {
             $(this).toggleClass('selected');
             if (event.target.type !== 'checkbox') {
