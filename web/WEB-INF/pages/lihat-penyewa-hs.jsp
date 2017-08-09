@@ -59,7 +59,8 @@
                                 </div>
                                 <!-- /.form-group -->
                                 <div class="col-md-offset-2 col-sm-offset-2">
-                                    <button type="button" class="btn btn-labeled btn-info" style="margin-left: 5px;"><span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span> Lihat</button>
+                                    <button type="button" id="lihatBtn" onclick="lihatPenyewa();" class="btn btn-labeled btn-success" style="margin-left: 5px;">
+                                        <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span> Lihat</button>
                                 </div>
                             </form>
                             <!-- /.form -->
@@ -74,7 +75,7 @@
                                         <th>Gender</th>
                                         <th>Makanan</th>
                                         <th>Homestay</th>
-                                        <th>Keterangan</th>
+                                        <th>Menginap</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -126,7 +127,16 @@
                 $(':checkbox', this).trigger('click');
             }
         });
-    })
+
+        $('#lihatBtn').click(function () {
+            var id = $('#kodeEvent').val();
+            lihatPenyewa(id);
+        });
+    });
+
+    function lihatPenyewa(id) {
+        window.location = '${path}/manajemen/list/'+id;
+    }
 </script>
 
 </body>

@@ -9,6 +9,7 @@ import java.util.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.jdbc.core.*
 import org.springframework.stereotype.Repository
+import org.springframework.transaction.TransactionUsageException
 import java.sql.Types.*
 
 
@@ -27,6 +28,7 @@ constructor(jdbcTemplate: JdbcTemplate) : DAO<Homestay>(jdbcTemplate) {
             homestay {
                 id = rs.getString("id")
                 pemilik = rs.getString("pemilik")
+                idPemilik = rs.getString("id_pemilik")
                 lokasi = rs.getString("lokasi")
                 jumlahKamar = rs.getInt("jml_kamar")
                 jumlahBed = rs.getInt("jml_bed")
@@ -77,7 +79,7 @@ constructor(jdbcTemplate: JdbcTemplate) : DAO<Homestay>(jdbcTemplate) {
 
     @Throws(SQLException::class)
     override fun insert(h: Homestay): Int {
-        val sql = "INSERT INTO HOMESTAY(id,pemilik,id_pemilik,LOKASI,JML_KAMAR,JML_BED,JML_WC) VALUES (?,?,?,?,?,?,?)"
+        val sql = "INSERT INTO HOMESTAY(ID,PEMILIK,ID_PEMILIK,LOKASI,JML_KAMAR,JML_BED,JML_WC,STATUS) VALUES (?,?,?,?,?,?,?,?)"
         return jdbcTemplate.update(sql) { ps ->
             ps.setString(1, h.id)
             ps.setString(2, h.pemilik)
@@ -86,6 +88,7 @@ constructor(jdbcTemplate: JdbcTemplate) : DAO<Homestay>(jdbcTemplate) {
             ps.setInt(5, h.jumlahKamar)
             ps.setInt(6, h.jumlahBed)
             ps.setInt(7, h.jumlahWC)
+            ps.setBoolean(8, false)
         }
 
         //        try (PreparedStatement ps = DbStarter.getConnection().prepareStatement(sql)) {

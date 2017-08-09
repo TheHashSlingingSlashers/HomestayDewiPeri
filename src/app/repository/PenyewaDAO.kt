@@ -153,7 +153,8 @@ constructor(jdbcTemplate: JdbcTemplate) : DAO<Penyewa>(jdbcTemplate) {
 
     @Throws(SQLException::class)
     fun listPenyewa(id: String): List<Penyewa> {
-        return jdbcTemplate.query<Penyewa>("SELECT * FROM p.PENYEWA JOIN t.TRANSAKSI ON t.id_penyewa = p.id WHERE t.id_event=?",
+//        return jdbcTemplate.query<Penyewa>("SELECT p.NAMA, p.JNS_KELAMIN, p.JNS_MAKANAN, h.PEMILIK, p.MENGINAP FROM PENYEWA p JOIN TRANSAKSI t ON t.ID_PENYEWA = p.ID JOIN HOMESTAY h ON h.ID = t.ID_HS WHERE t.ID_EVENT =?",
+        return jdbcTemplate.query<Penyewa>("SELECT * FROM PENYEWA p JOIN TRANSAKSI t ON t.ID_PENYEWA = p.ID WHERE t.ID_EVENT =?",
                 arrayOf(id), intArrayOf(VARCHAR)) { rs, rowNum ->
             penyewa {
                 this.id = rs.getString("id")

@@ -92,7 +92,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="${path}">Selamat Datang, </a>
+            <a class="navbar-brand" href="${path}">Selamat Datang </a>
         </div>
         <!-- /.navbar-header -->
 

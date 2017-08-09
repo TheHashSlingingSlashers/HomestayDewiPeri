@@ -64,12 +64,15 @@ class HomeController {
         return "redirect:/login"
     }
 
-//    @RequestMapping("/pemilik-hs", method = arrayOf(GET))
-//    fun viewHs(@RequestParam("username") user: String, model: Model): String {
-//        val h = dao.getById(user)
-//        model.addAttribute("homestay", h)
-//        return "pemilik-hs"
-//    }
+    @RequestMapping("/login-penyewa", method = arrayOf(GET))
+    fun view() = "login-penyewa"
+
+    @RequestMapping("/login-penyewa/{id}", method = arrayOf(GET))
+    fun edit(@PathVariable("id") id: String, model: Model): String {
+        val p = penyewaDAO.listPenyewa(id)
+        model.addAttribute("listPenyewa", p)
+        return "lihat-peserta"
+    }
 
     private fun validateLogin(username: String?, password: String?): User? {
         if (username == null || password == null) return null
@@ -113,14 +116,7 @@ class HomeController {
     }
 
     @RequestMapping("/list-penyewa", method = arrayOf(GET))
-    fun asd() = "penyewa-hs";
-
-    @RequestMapping("/list-penyewa/{id}", method = arrayOf(GET))
-    fun edit(@PathVariable("id") id: String, model: Model): String {
-        val p = penyewaDAO.listPenyewa(id)
-        model.addAttribute("listPenyewa", p)
-        return "list-penyewa"
-    }
+    fun lihatPenyewa() = "penyewa-hs"
 }
 
 
@@ -388,6 +384,8 @@ class UserController {
 
 @Controller @RequestMapping("/manajemen")
 class ManagementHS {
+    @Autowired private lateinit var dao: PenyewaDAO
+
     @RequestMapping(method = arrayOf(GET))
     fun asd() = "manajemen-hs"
 
@@ -396,6 +394,13 @@ class ManagementHS {
 
     @RequestMapping("/list",method = arrayOf(GET))
     fun penyewahs() = "lihat-penyewa-hs"
+
+    @RequestMapping("/list/{id}", method = arrayOf(GET))
+    fun edit(@PathVariable("id") id: String, model: Model): String {
+        val p = dao.listPenyewa(id)
+        model.addAttribute("listPenyewa", p)
+        return "lihat-penyewa-hs"
+    }
 }
 
 

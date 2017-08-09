@@ -31,17 +31,17 @@
         <div class="col-md-4 col-sm-6 col-xs-12 col-md-offset-4 col-sm-offset-3">
             <div class="form-login">
                 <h4>Masukkan Kode Event</h4><br>
-                <form method="POST" role="form">
+                <form method="GET" role="form">
                     <div class="form-group">
-                        <label for="inputUsername" class="sr-only">Kode Event</label>
+                        <label class="sr-only">Kode Event</label>
                         <div class="input-group">
                             <div class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></div>
-                            <input type="username" name="kodeEvent" id="inputUsername" class="form-control"
+                            <input type="username" name="kodeEvent" id="kodeEvent" class="form-control"
                                    placeholder="Kode Event" required autofocus="">
                         </div>
                     </div>
                     <div class="wrapper">
-                        <button class="btn btn-md btn-primary" id="myBtn" type="submit">
+                        <button class="btn btn-md btn-primary" id="loginBtn" type="button" onclick="login();">
                             <span class="glyphicon glyphicon-log-in"></span> Login
                         </button>
                     </div>
@@ -54,7 +54,18 @@
 </div>
 
 <%@include file="include/scripts.jsp" %>
+<script>
+    $(document).ready(function () {
+        $('#loginBtn').click(function () {
+            var id = $('#kodeEvent').val();
+            login(id);
+        });
 
+        function login(id) {
+            window.location = '${path}/login-penyewa/'+id;
+        }
+    })
+</script>
 
 </body>
 </html>
