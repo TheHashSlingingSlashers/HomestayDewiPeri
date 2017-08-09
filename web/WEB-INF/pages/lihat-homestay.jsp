@@ -71,6 +71,7 @@
                                     <tr>
                                         <th>Kode Hs</th>
                                         <th>Pemilik</th>
+                                        <th>ID Pemilik</th>
                                         <th>Lokasi</th>
                                         <th>Jml Kamar</th>
                                         <th>Jml Tmpt Tidur</th>
@@ -82,6 +83,7 @@
                                         <tr>
                                             <td>${h.id}</td>
                                             <td>${h.pemilik}</td>
+                                            <td>${h.idPemilik}</td>
                                             <td>${h.lokasi}</td>
                                             <td>${h.jumlahKamar}</td>
                                             <td>${h.jumlahBed}</td>
@@ -148,9 +150,10 @@
         var table = $('#example').DataTable();
 
         $('#example tbody').on('click', 'tr', function () {
-            var id = table.row(this).data()[0];
+            var id = table.row(this).data()[2];
             $("#btnEdit").on("click", function () {
-                window.location = '${path}/homestay/edit/' + id;
+                <%--window.location = '${path}/homestay/edit/' + id;--%>
+                editHs(id)
             });
 
             if ( $(this).hasClass('selected') ) {

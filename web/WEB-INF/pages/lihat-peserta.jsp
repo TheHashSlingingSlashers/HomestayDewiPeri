@@ -56,24 +56,21 @@
                                         <th>Gender</th>
                                         <th>Makanan</th>
                                         <th>Homestay</th>
-                                        <th>Keterangan</th>
+                                        <th>Menginap</th>
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    <c:set var="count" value="1" scope="page" />
                                     <c:forEach items="${listPenyewa}" var="p">
                                         <tr>
-                                            <td>
-                                            </td>
+                                            <td>${count}</td>
                                             <td>${p.nama}</td>
-                                            <td>
-                                                    ${p.jenisKelamin}
-                                            </td>
-                                            <td>
-                                                    ${p.jenisMakanan}
-                                            </td>
+                                            <td>${p.jenisKelamin}</td>
+                                            <td>${p.jenisMakanan}</td>
                                             <td></td>
-                                            <td><input type="checkbox" disabled="disabled" value="${p.menginap}"/></td>
+                                            <td>${p.menginap}</td>
                                         </tr>
+                                        <c:set var="count" value="${count + 1}" scope="page"/>
                                     </c:forEach>
                                     </tbody>
                                 </table>
@@ -101,8 +98,7 @@
         $('#dataTables-example').DataTable({
             responsive: true
         });
-
-    })
+    });
 </script>
 
 </body>

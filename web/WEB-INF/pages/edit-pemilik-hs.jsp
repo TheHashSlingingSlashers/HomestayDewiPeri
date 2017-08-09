@@ -63,9 +63,6 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="${path}/"><i class="fa fa-home fa-fw" aria-hidden="true"></i> Home</a>
-                        </li>
-                        <li>
                             <a href="${path}/list-penyewa"><i class="fa fa-users fa-fw" aria-hidden="true"></i> List Penyewa Homestay</a>
                         </li>
 
@@ -91,12 +88,12 @@
                     <div class="panel panel-primary">
                         <div class="panel-heading">&nbsp;</div>
                         <div class="panel-body">
-                            <form class="form-horizontal" role="form">
+                            <form  method="POST" class="form-horizontal" role="form">
                                 <div class="form-group">
                                     <label class="col-md-2 col-sm-2 col-xs-12">Kode Homestay</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" class="form-control col-md-7 col-xs-12" id="kodeHomestay"
-                                               name="id" readonly="readonly" value="${homestay.id}">
+                                               name="id" readonly="readonly" value="${idHomestay.id}">
                                     </div>
                                 </div>
                                 <!-- /.form-group -->
@@ -104,30 +101,28 @@
                                     <label class="col-md-2 col-sm-2 col-xs-12">Nama Pemilik</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" class="form-control col-md-7 col-xs-12" id="namaPemilik"
-                                               name="pemilik" readonly="readonly" value="${homestay.pemilik}">
+                                               name="pemilik" required value="${idHomestay.pemilik}">
                                     </div>
                                 </div>
                                 <!-- /.form-group -->
                                 <div class="form-group">
                                     <label class="col-md-2 col-sm-2 col-xs-12">Lokasi</label>
                                     <div class="col-md-4 col-sm-4 col-xs-12">
-                                        <input type="text" class="form-control col-md-7 col-xs-12" id="lokasi"
-                                               readonly="readonly" value="${homestay.lokasi}">
+                                        <select name="lokasi" class="form-control" title="Pilih Event yang Diikuti">
+                                            <option value="RT 1">RT 1</option>
+                                            <option value="RT 2">RT 2</option>
+                                            <option value="RT 3">RT 3</option>
+                                            <option value="RT 4">RT 4</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-2 col-sm-2 col-xs-12">Status</label>
                                     <div class="col-md-4 col-sm-4 col-xs-12">
-                                        <c:choose>
-                                            <c:when test="${homestay.available}">
-                                                <input type="text" class="form-control col-md-7 col-xs-12" id="status"
-                                                       readonly="readonly" value="Tersedia">
-                                            </c:when>
-                                            <c:otherwise>
-                                                <input type="text" class="form-control col-md-7 col-xs-12" id="status"
-                                                       readonly="readonly" value="Tidak Tersedia">
-                                            </c:otherwise>
-                                        </c:choose>
+                                        <select name="status" class="form-control" title="Status Homestay">
+                                            <option value="false">Tidak Tersedia</option>
+                                            <option value="true" selected>Tersedia</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <!-- /.form-group -->
@@ -135,7 +130,7 @@
                                     <label class="col-md-2 col-sm-2 col-xs-12">Jumlah Kamar</label>
                                     <div class="col-md-4 col-sm-4 col-xs-12">
                                         <input type="text" class="form-control" id="jumlahKamar" name="jumlahKamar"
-                                               readonly="readonly" value="${homestay.jumlahKamar}">
+                                               required value="${idHomestay.jumlahKamar}">
                                     </div>
                                 </div>
                                 <!-- /.form-group -->
@@ -143,7 +138,7 @@
                                     <label class="col-md-2 col-sm-2 col-xs-12">Jumlah Tempat Tidur</label>
                                     <div class="col-md-4 col-sm-4 col-xs-12">
                                         <input type="text" class="form-control" id="jumlahTempatTidur"
-                                               name="jumlahBed" readonly="readonly" value="${homestay.jumlahBed}">
+                                               name="jumlahBed" required value="${idHomestay.jumlahBed}">
                                     </div>
                                 </div>
                                 <!-- /.form-group -->
@@ -159,18 +154,40 @@
                                     <label class="col-md-2 col-sm-2 col-xs-12">Jumlah Toilet</label>
                                     <div class="col-md-4 col-sm-4 col-xs-12">
                                         <input type="text" class="form-control" id="jumlahToilet" name="jumlahWC"
-                                               readonly="readonly" value="${homestay.jumlahWC}">
+                                               required value="${idHomestay.jumlahWC}">
                                     </div>
                                 </div>
                                 <!-- /.form-group -->
                                 <div class="col-md-offset-2 col-sm-offset-2">
-                                    <button type="button" class="btn btn-labeled btn-warning"
-                                            onclick="editHs();" id="btnEdit"><span class="btn-label"><i
-                                            class="fa fa-pencil-square-o" aria-hidden="true"></i></span> Edit
+                                    <button type="submit" class="btn btn-labeled btn-success" data-toggle="modal"
+                                            data-target="#myModal" id="btnSave"><span class="btn-label">
+                                        <i class="glyphicon glyphicon-floppy-disk"></i></span> Simpan
                                     </button>
                                 </div>
+
                             </form>
                             <!-- /.form -->
+
+                            <!-- Modal -->
+                            <div id="myModal" class="modal fade" role="dialog">
+                                <div class="modal-dialog modal-md">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header btn-success" style="font-weight:bold; color:white;">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h5 class="modal-title modal-sm">Berhasil</h5>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p id="message"></p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" id="btnOK" data-dismiss="modal" class="btn btn-success">OK</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                         <!-- /.panel body -->
                     </div>
@@ -189,7 +206,7 @@
 
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 <script>
-    $(document).ready(function () {
+    $('#jumlahKamar').keyup(function () {
         var val1 = 0;
         var val2 = 0;
         var result = 0;
@@ -202,10 +219,41 @@
         else {
             $('#kapasitas').val(result.toFixed(0));
         }
+    });
+</script>
+<script>
+    $('#jumlahTempatTidur').keyup(function () {
+        var val1 = 0;
+        var val2 = 0;
+        var result = 0;
+        val1 = parseFloat($('#jumlahKamar').val());
+        val2 = parseFloat($('#jumlahTempatTidur').val());
+        result = val1 * val2;
+        if (isNaN(result)) {
+            $('#kapasitas').val(0);
+        }
+        else {
+            $('#kapasitas').val(result.toFixed(0));
+        }
+    });
+</script>
+<script>
+    $(document).ready(function () {
+       if (!($('#jumlahKamar')).isNull && !($('#jumlahTempatTidur').isNull)) {
+           val1 = parseFloat($('#jumlahKamar').val());
+           val2 = parseFloat($('#jumlahTempatTidur').val());
+           result = val1 * val2;
+           if (isNaN(result)) {
+               $('#kapasitas').val(0);
+           }
+           else {
+               $('#kapasitas').val(result.toFixed(0));
+           }
+        }
 
-        $("#btnEdit").on("click", function () {
-//            var id = kodeHomestay.value;
-            window.location = '${path}/edit-hs';
+        $('#btnSave').click(function () {
+            var namaPemilik = $('#namaPemilik').value;
+            $('#message').text('Homestay milik, '+namaPemilik+' berhasil diperbarui.');
         });
     });
 </script>

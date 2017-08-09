@@ -9,9 +9,8 @@ import java.util.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.jdbc.core.*
 import org.springframework.stereotype.Repository
-
-import java.sql.Types.INTEGER
-import java.sql.Types.VARCHAR
+import org.springframework.transaction.TransactionUsageException
+import java.sql.Types.*
 
 
 /**
@@ -29,10 +28,12 @@ constructor(jdbcTemplate: JdbcTemplate) : DAO<Homestay>(jdbcTemplate) {
             homestay {
                 id = rs.getString("id")
                 pemilik = rs.getString("pemilik")
+                idPemilik = rs.getString("id_pemilik")
                 lokasi = rs.getString("lokasi")
                 jumlahKamar = rs.getInt("jml_kamar")
                 jumlahBed = rs.getInt("jml_bed")
                 jumlahWC = rs.getInt("jml_wc")
+                isAvailable = rs.getBoolean("status")
             }
         }
     }
@@ -55,6 +56,7 @@ constructor(jdbcTemplate: JdbcTemplate) : DAO<Homestay>(jdbcTemplate) {
                 jumlahKamar = rs.getInt("jml_kamar")
                 jumlahBed = rs.getInt("jml_bed")
                 jumlahWC = rs.getInt("jml_wc")
+                isAvailable = rs.getBoolean("status")
             }
             else null
         }
@@ -77,7 +79,7 @@ constructor(jdbcTemplate: JdbcTemplate) : DAO<Homestay>(jdbcTemplate) {
 
     @Throws(SQLException::class)
     override fun insert(h: Homestay): Int {
-        val sql = "INSERT INTO HOMESTAY(id,pemilik,id_pemilik,LOKASI,JML_KAMAR,JML_BED,JML_WC) VALUES (?,?,?,?,?,?,?)"
+        val sql = "INSERT INTO HOMESTAY(ID,PEMILIK,ID_PEMILIK,LOKASI,JML_KAMAR,JML_BED,JML_WC,STATUS) VALUES (?,?,?,?,?,?,?,?)"
         return jdbcTemplate.update(sql) { ps ->
             ps.setString(1, h.id)
             ps.setString(2, h.pemilik)
@@ -86,6 +88,7 @@ constructor(jdbcTemplate: JdbcTemplate) : DAO<Homestay>(jdbcTemplate) {
             ps.setInt(5, h.jumlahKamar)
             ps.setInt(6, h.jumlahBed)
             ps.setInt(7, h.jumlahWC)
+            ps.setBoolean(8, false)
         }
 
         //        try (PreparedStatement ps = DbStarter.getConnection().prepareStatement(sql)) {
@@ -146,8 +149,24 @@ constructor(jdbcTemplate: JdbcTemplate) : DAO<Homestay>(jdbcTemplate) {
 
     @Throws(SQLException::class)
     override fun update(h: Homestay): Int {
-        return jdbcTemplate.update("UPDATE HOMESTAY SET PEMILIK=?,LOKASI=?,JML_KAMAR=?,JML_BED=?,JML_WC=? WHERE ID=?",
-                arrayOf(h.pemilik, h.lokasi, h.jumlahKamar, h.jumlahBed, h.jumlahWC, h.id),
-                intArrayOf(VARCHAR, VARCHAR, INTEGER, INTEGER, INTEGER, VARCHAR))
+        return jdbcTemplate.update("UPDATE HOMESTAY SET PEMILIK=?,LOKASI=?,JML_KAMAR=?,JML_BED=?,JML_WC=?,STATUS=? WHERE ID=?",
+                arrayOf(h.pemilik, h.lokasi, h.jumlahKamar, h.jumlahBed, h.jumlahWC, h.isAvailable, h.id),
+                intArrayOf(VARCHAR, VARCHAR, INTEGER, INTEGER, INTEGER, BOOLEAN, VARCHAR))
     }
+
+//    @Throws(SQLException::class)
+//    fun latestUsed(loc: String): List<Homestay> {
+//        return jdbcTemplate.query<Homestay>("SELECT h.id, h.pemilik, e.selesai_event FROM t.TRANSAKSI JOIN h.HOMESTAY ON h.id = t.id_hs JOIN e.EVENT ON e.id = t.id_event WHERE h.lokasi=?",
+//                arrayOf(loc), intArrayOf(VARCHAR)) { rs: ResultSet, rowNum: Int ->
+//           homestay {
+//                this.id = rs.getString("id")
+//                pemilik = rs.getString("pemilik")
+//                idPemilik = rs.getString("id_pemilik")
+//                lokasi = rs.getString("lokasi")
+//                jumlahKamar = rs.getInt("jml_kamar")
+//                jumlahBed = rs.getInt("jml_bed")
+//                jumlahWC = rs.getInt("jml_wc")
+//            }
+//        }
+//    }
 }

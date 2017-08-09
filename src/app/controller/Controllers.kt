@@ -6,7 +6,6 @@ import app.model.Transaksi
 import app.model.User
 import app.repository.*
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.data.jpa.repository.Query
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.jdbc.core.ResultSetExtractor
 import org.springframework.stereotype.Controller
@@ -32,6 +31,7 @@ class HomeController {
     private lateinit var jdbcTemplate: JdbcTemplate
     @Autowired private lateinit var dao: HomestayDAO
     @Autowired private lateinit var userDAO: UserDAO
+    @Autowired private lateinit var penyewaDAO: PenyewaDAO
 
     @RequestMapping(method = arrayOf(GET))
     fun home(model: Model, req: HttpServletRequest): String {
@@ -70,12 +70,15 @@ class HomeController {
         return "redirect:/login"
     }
 
-//    @RequestMapping("/pemilik-hs", method = arrayOf(GET))
-//    fun viewHs(@RequestParam("username") user: String, model: Model): String {
-//        val h = dao.getById(user)
-//        model.addAttribute("homestay", h)
-//        return "pemilik-hs"
-//    }
+    @RequestMapping("/login-penyewa", method = arrayOf(GET))
+    fun view() = "login-penyewa"
+
+    @RequestMapping("/login-penyewa/{id}", method = arrayOf(GET))
+    fun edit(@PathVariable("id") id: String, model: Model): String {
+        val p = penyewaDAO.listPenyewa(id)
+        model.addAttribute("listPenyewa", p)
+        return "lihat-peserta"
+    }
 
     private fun validateLogin(username: String?, password: String?): User? {
         if (username == null || password == null) return null
@@ -89,6 +92,37 @@ class HomeController {
             } else null
         })
     }
+
+    @RequestMapping("/edit-hs", method = arrayOf(GET))
+    fun editHs(model: Model, req: HttpServletRequest): String {
+        val user = req.session.getAttribute("user") as? User
+        return if (user != null) {
+            if (user.role == "P") {
+                val homestay = dao.getById((user as User).username)
+                model.addAttribute("idHomestay", homestay)
+                "edit-pemilik-hs"
+            } else "redirect:/"
+        } else "redirect:/"
+    }
+
+    @RequestMapping("/edit-hs", method = arrayOf(POST))
+    fun tambahSubmit(req: HttpServletRequest) : String {
+        val homestay = homestay {
+            id = req["id"]
+            pemilik = req["pemilik"]
+            idPemilik = req["idPemilik"]
+            lokasi = req["lokasi"]
+            jumlahKamar = req["jumlahKamar"]?.toInt() ?: 0
+            jumlahBed = req["jumlahBed"]?.toInt() ?: 0
+            jumlahWC = req["jumlahWC"]?.toInt() ?: 0
+            isAvailable = req["status"]?.toBoolean() ?: false
+        }
+        dao.update(homestay)
+        return "redirect:/"
+    }
+
+    @RequestMapping("/list-penyewa", method = arrayOf(GET))
+    fun lihatPenyewa() = "penyewa-hs"
 }
 
 
@@ -391,4 +425,18 @@ class ManagementHS {
         model["listPenyewa"] = d
         return "manajemen-hs"
     }
+    @RequestMapping("/hist-homestay", method = arrayOf(GET))
+    fun hist() = "lihat-history-hs"
+
+    @RequestMapping("/list",method = arrayOf(GET))
+    fun penyewahs() = "lihat-penyewa-hs"
+
+    @RequestMapping("/list/{id}", method = arrayOf(GET))
+    fun edit(@PathVariable("id") id: String, model: Model): String {
+        val p = penyewaDAO.listPenyewa(id)
+        model.addAttribute("listPenyewa", p)
+        return "lihat-penyewa-hs"
+    }
 }
+
+
