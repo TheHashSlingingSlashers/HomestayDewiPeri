@@ -1,3 +1,4 @@
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,6 +7,7 @@
     <%--@elvariable id="listHomestay" type="java.util.List<app.model.Homestay>"--%>
     <%--@elvariable id="mapPenyewa" type="java.util.Map<java.lang.String,java.util.List<app.model.Penyewa>>"--%>
     <%--@elvariable id="listLokasi" type="java.util.Set<java.lang.String>"--%>
+    <%--@elvariable id="selectedHs" type="app.model.Homestay"--%>
 
 
     <meta charset="utf-8">
@@ -108,9 +110,14 @@
                                     <div class="col-md-4 col-sm-4 col-xs-12">
                                         <select name="event" class="form-control" title="Pilih Event yang Diikuti"
                                                 id="event">
+                                            <option value="">Pilih event</option>
                                             <c:if test="${listEvent.size()>0}">
                                                 <c:forEach items="${listEvent}" var="event">
-                                                    <option value="${event.id}">${event.nama}</option>
+                                                    <c:out value="<option value='${event.id}'" escapeXml="false"/>
+                                                    <c:if test="${event.id==param['idEvent']}">
+                                                        <c:out value="selected=true"/>
+                                                    </c:if>
+                                                    <c:out value=">${event.nama}</option>" escapeXml="false"/>
                                                 </c:forEach>
                                             </c:if>
                                         </select>
@@ -133,9 +140,16 @@
                                 <div class="form-group">
                                     <label class="col-md-2 col-sm-2 col-xs-12">Pemilik</label>
                                     <div class="col-md-2 col-sm-2 col-xs-12">
-                                        <select name="lokasi" class="form-control" title="Pilih Homestay">
+                                        <select name="lokasi" class="form-control" title="Pilih Homestay" id="lokasi">
+                                            <option value="">Pilih homestay</option>
                                             <c:forEach items="${listHomestay}" var="h">
+                                                <c:out value="<option value='${h.id}' " escapeXml="false"/>
+                                                <c:if test="${selectedHs.id==h.id}">
+                                                    <c:out value="selected=true"/>
+                                                </c:if>
+                                                <c:out value=">${h.pemilik}</option>" escapeXml="false"/>
                                                 <option value="${h.id}">${h.pemilik}</option>
+
                                             </c:forEach>
                                         </select>
                                     </div>
@@ -145,7 +159,12 @@
                                 <div class="form-group">
                                     <label class="col-md-2 col-sm-2 col-xs-12">Kapasitas</label>
                                     <div class="col-md-2 col-sm-2 col-xs-12">
-                                        <input type="text" class="form-control" id="kapasitas" readonly="readonly">
+                                        <c:out value='<input type="text" class="form-control" id="kapasitas" readonly="readonly" '
+                                               escapeXml="false"/>
+                                        <c:if test="${selectedHs!=null}">
+                                            <c:out value="value='${selectedHs.jumlahBed*selectedHs.jumlahKamar}' />"/>
+                                        </c:if>
+                                        <c:out value="/>" escapeXml="false"/>
                                     </div>
                                 </div>
 
@@ -177,7 +196,9 @@
                                             <tr>
                                                 <td>
                                                     <div class="checkbox checkbox-primary">
-                                                        <input type="checkbox" class="styled styled-primary case singleCheckbox" name="case[]" id="singleCheckbox" value="1">
+                                                        <input type="checkbox"
+                                                               class="styled styled-primary case singleCheckbox"
+                                                               name="case[]" id="singleCheckbox" value="1">
                                                         <label></label>
                                                     </div>
                                                 </td>
@@ -195,9 +216,10 @@
 
 
                             <br>
-                                <button type="submit" class="btn btn-labeled btn-success" id="save" style="width: 100%"><span class="btn-label"><i
-                                            class="glyphicon glyphicon-floppy-disk"></i></span> Simpan
-                                </button>
+                            <button type="submit" class="btn btn-labeled btn-success" id="save"
+                                    style="width: 100%"><span class="btn-label"><i
+                                    class="glyphicon glyphicon-floppy-disk"></i></span> Simpan
+                            </button>
 
 
                         </div>
@@ -221,13 +243,17 @@
 <%@include file="include/scripts.jsp" %>
 <%@include file="include/dataTablesScript.jsp" %>
 <script src="${path}/dist/js/typeahead.jquery.min.js"></script>
-
+<script src="${path}/js/jquery.query-object.js"></script>
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 <script>
     $(document).ready(function () {
+        var q = $.query;
         $("#event").on('change', function () {
-            window.location = '?idEvent=' + this.value;
-        })
+            window.location = $.query.SET('idEvent', this.value).toString();
+        });
+        $("#lokasi").on('change', function () {
+            window.location = $.query.SET('hs', this.value).toString();
+        });
         $('#dataTables-example tr').click(function (event) {
             $(this).toggleClass('selected');
             if (event.target.type !== 'checkbox') {

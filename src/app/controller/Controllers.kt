@@ -106,7 +106,7 @@ class HomeController {
     }
 
     @RequestMapping("/edit-hs", method = arrayOf(POST))
-    fun tambahSubmit(req: HttpServletRequest) : String {
+    fun tambahSubmit(req: HttpServletRequest): String {
         val homestay = homestay {
             id = req["id"]
             pemilik = req["pemilik"]
@@ -397,8 +397,10 @@ class ManagementHS {
     @RequestMapping(method = arrayOf(GET))
     fun asd(model: Model, req: HttpServletRequest): String {
         val idEvent = req["idEvent"]
+        val idHs = req["hs"]
         val events = eventDAO.getAll()
         val event = if (idEvent != null) eventDAO.getById(idEvent) else null
+        val hs = if (idHs != null) homestayDAO.getById(idHs) else null
         val homestays = homestayDAO.getAll()
         val listPenyewa = penyewaDAO.getAll()
         val transactions = transaksiDAO.getAll()
@@ -406,8 +408,8 @@ class ManagementHS {
             it.idHomestay == null && (if (event != null) {
                 it.idEvent == event.id
             } else true)
-        }
-                .groupBy { transaksi -> transaksi.idEvent }
+        }.groupBy { transaksi -> transaksi.idEvent }
+
         val b = mutableMapOf<String, List<Penyewa?>>()
         a.forEach { (idEvent, listTransaksi) ->
             b += idEvent to listTransaksi.map { trans ->
@@ -423,12 +425,15 @@ class ManagementHS {
         model["mapPenyewa"] = b
         model["listLokasi"] = c
         model["listPenyewa"] = d
+        model["selectedEvent"] = event
+        model["selectedHs"] = hs
         return "manajemen-hs"
     }
+
     @RequestMapping("/hist-homestay", method = arrayOf(GET))
     fun hist() = "lihat-history-hs"
 
-    @RequestMapping("/list",method = arrayOf(GET))
+    @RequestMapping("/list", method = arrayOf(GET))
     fun penyewahs() = "lihat-penyewa-hs"
 
     @RequestMapping("/list/{id}", method = arrayOf(GET))
