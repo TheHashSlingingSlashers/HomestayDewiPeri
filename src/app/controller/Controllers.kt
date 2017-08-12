@@ -410,6 +410,11 @@ class ManagementHS {
             } else true)
         }.groupBy { transaksi -> transaksi.idEvent }
 
+        val load:Int = if (event != null && hs != null) {
+            transactions.filter { it.idHomestay == hs.id && it.idEvent == event.id }.size
+        } else 0
+//        val load = aa?.size ?: 0
+
         val b = mutableMapOf<String, List<Penyewa?>>()
         a.forEach { (idEvent, listTransaksi) ->
             b += idEvent to listTransaksi.map { trans ->
@@ -427,6 +432,7 @@ class ManagementHS {
         model["listPenyewa"] = d
         model["selectedEvent"] = event
         model["selectedHs"] = hs
+        model["hsLoad"] = load
         return "manajemen-hs"
     }
 

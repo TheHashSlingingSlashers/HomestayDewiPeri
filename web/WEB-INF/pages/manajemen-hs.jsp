@@ -162,7 +162,8 @@
                                         <c:out value='<input type="text" class="form-control" id="kapasitas" readonly="readonly" '
                                                escapeXml="false"/>
                                         <c:if test="${selectedHs!=null}">
-                                            <c:out value="value='${selectedHs.jumlahBed*selectedHs.jumlahKamar}' />"/>
+                                            <%--@elvariable id="hsLoad" type="java.lang.Integer"--%>
+                                            <c:out value="value='${selectedHs.jumlahBed*selectedHs.jumlahKamar-hsLoad}' />"/>
                                         </c:if>
                                         <c:out value="/>" escapeXml="false"/>
                                     </div>
