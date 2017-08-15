@@ -255,11 +255,18 @@
             // when parsing is done, export the data to PDF
             dataSource.read().then(function (data) {
                 var pdf = new shield.exp.PDFDocument({
-                    author: "PrepBootstrap",
+                    author: "Pemilik Homestay",
                     created: new Date()
                 });
 
                 pdf.addPage("a4", "portrait");
+
+                pdf.header(
+                    {
+                        enable: true,
+                        title: "Test"
+                    }
+                );
 
                 pdf.table(
                     50,
@@ -281,7 +288,7 @@
                 );
 
                 pdf.saveAs({
-                    fileName: "PrepBootstrapPDF"
+                    fileName: "List Penyewa Homestay.pdf"
                 });
             });
         });

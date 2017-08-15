@@ -32,12 +32,15 @@
 
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header"><i class="fa fa-user" aria-hidden="true"></i> Penyewa</h1>
+                <br/><br/>
+                <div class="col-md-4">
+                    <button id="exportButton" class="btn btn-sm btn-danger clearfix"><span class="fa fa-file-pdf-o"></span> Export to PDF</button>
                 </div>
+                <br>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
+            <br/>
             <div class="row">
                 <div class="col-lg-12">
 
@@ -47,9 +50,6 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <div class="col-md-4">
-                                <button id="exportButton" class="btn btn-sm btn-danger clearfix"><span class="fa fa-file-pdf-o"></span> Export to PDF</button>
-                            </div>
                             <div class="dataTable_wrapper">
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>

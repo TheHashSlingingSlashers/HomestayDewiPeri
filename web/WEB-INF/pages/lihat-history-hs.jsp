@@ -76,17 +76,17 @@
                                         <th>Tanggal Event Terakhir</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>A1</td>
-                                            <td>Lorem ipsum dolor sit amet</td>
-                                            <td>8</td>
-                                        </tr>
-                                        <tr>
-                                            <td>A2</td>
-                                            <td>Consectetur adipiscing elit</td>
-                                            <td>7</td>
-                                        </tr>
+                                    <%--<tbody>--%>
+                                        <%--<tr>--%>
+                                            <%--<td>A1</td>--%>
+                                            <%--<td>Lorem ipsum dolor sit amet</td>--%>
+                                            <%--<td>8</td>--%>
+                                        <%--</tr>--%>
+                                        <%--<tr>--%>
+                                            <%--<td>A2</td>--%>
+                                            <%--<td>Consectetur adipiscing elit</td>--%>
+                                            <%--<td>7</td>--%>
+                                        <%--</tr>--%>
                                     </tbody>
                                 </table>
                             </div>

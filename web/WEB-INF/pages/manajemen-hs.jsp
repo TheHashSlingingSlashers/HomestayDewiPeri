@@ -169,11 +169,11 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-offset-2 col-sm-offset-2">
-                                    <button type="button" class="btn btn-labeled btn-info" style="margin-left: 5px;">
-                                        <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span> Cek Cpty
-                                    </button>
-                                </div>
+                                <%--<div class="col-md-offset-2 col-sm-offset-2">--%>
+                                    <%--<button type="button" class="btn btn-labeled btn-info" style="margin-left: 5px;">--%>
+                                        <%--<span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span> Cek Cpty--%>
+                                    <%--</button>--%>
+                                <%--</div>--%>
 
                             </form>
                             <!-- /.form -->
@@ -266,7 +266,7 @@
             responsive: true
         });
 
-        var c = $('#kapasitas').val(8);
+//        var c = $('#kapasitas').val(8);
 
         var capacity = $('#kapasitas').val();
         //var count = $("[type='checkbox']:checked").length;
