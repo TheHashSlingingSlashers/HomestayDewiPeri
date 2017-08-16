@@ -416,13 +416,13 @@ class ManagementHS {
 //        val load = aa?.size ?: 0
 
         val b = mutableMapOf<String, List<Penyewa?>>()
-        a.forEach { (idEvent, listTransaksi) ->
-            b += idEvent to listTransaksi.map { trans ->
-                listPenyewa.find { penyewa ->
-                    penyewa.id == trans.idPenyewa
-                }
-            }
-        }
+//        a.forEach { (idEvent, listTransaksi) ->
+//            b += idEvent to listTransaksi.map { trans ->
+//                listPenyewa.find { penyewa ->
+//                    penyewa.id == trans.idPenyewa
+//                }
+//            }
+//        }
         val d = b[event?.id]
         val c: Set<String> = homestays.map { (it.lokasi) }.toSet()
         model["listEvent"] = events
