@@ -1,6 +1,5 @@
 package app.controller
 
-import app.model.Event
 import app.model.Penyewa
 import app.model.Transaksi
 import app.model.User
@@ -190,7 +189,8 @@ class HomestayController {
     }
 }
 
-@Controller @RequestMapping("/penyewa")
+@Controller
+@RequestMapping("/penyewa")
 class PenyewaController {
     @Autowired private lateinit var dao: PenyewaDAO
     //    @Autowired private lateinit var eventDAO: EventDAO
@@ -253,7 +253,8 @@ class PenyewaController {
 }
 
 
-@Controller @RequestMapping("/event")
+@Controller
+@RequestMapping("/event")
 class EventController {
     @Autowired private lateinit var dao: EventDAO
     @Autowired private lateinit var penyewaDAO: PenyewaDAO
@@ -341,7 +342,8 @@ class EventController {
 
 }
 
-@Controller @RequestMapping("/pengguna")
+@Controller
+@RequestMapping("/pengguna")
 class UserController {
     @Autowired private lateinit var dao: UserDAO
 
@@ -387,7 +389,8 @@ class UserController {
     }
 }
 
-@Controller @RequestMapping("/manajemen")
+@Controller
+@RequestMapping("/manajemen")
 class ManagementHS {
     @Autowired private lateinit var eventDAO: EventDAO
     @Autowired private lateinit var homestayDAO: HomestayDAO
@@ -434,6 +437,24 @@ class ManagementHS {
         model["selectedHs"] = hs
         model["hsLoad"] = load
         return "manajemen-hs"
+    }
+
+    @RequestMapping(method = arrayOf(POST))
+    fun asdSubmit(req: HttpServletRequest): String {
+        val eventId = req["event"]
+        val homestayId = req["lokasi"]
+        val penyewaIds = req.getParameterValues("case[]")
+        assert(eventId != null)
+        assert(homestayId != null)
+        assert(penyewaIds != null)
+        penyewaIds.forEach { id ->
+            transaksiDAO.insert(Transaksi().apply {
+                idEvent = eventId
+                idHomestay = homestayId
+                idPenyewa = id
+            })
+        }
+        return "redirect:/manajemen"
     }
 
     @RequestMapping("/hist-homestay", method = arrayOf(GET))

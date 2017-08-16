@@ -103,7 +103,7 @@
                     <div class="panel panel-primary">
                         <div class="panel-heading">Kelola Penyewa</div>
                         <div class="panel-body">
-                            <form class="form-horizontal" role="form">
+                            <form class="form-horizontal" role="form" method="POST">
 
                                 <div class="form-group">
                                     <label class="col-md-2 col-sm-2 col-xs-12">Event</label>
@@ -197,11 +197,11 @@
                                                         <div class="checkbox checkbox-primary">
                                                             <input type="checkbox"
                                                                    class="styled styled-primary case singleCheckbox"
-                                                                   name="case[]" id="singleCheckbox" value="1">
+                                                                   name="case[]" id="singleCheckbox" value="${p.id}">
                                                             <label></label>
                                                         </div>
                                                     </td>
-                                                    <td>${p.id}</td>
+                                                    <td><label for="singleCheckbox">${p.id}</label> </td>
                                                     <td>${p.nama}</td>
                                                     <td>${p.jenisKelamin}</td>
                                                     <td>${p.jenisMakanan}</td>
