@@ -261,13 +261,6 @@
 
                 pdf.addPage("a4", "portrait");
 
-                pdf.header(
-                    {
-                        enable: true,
-                        title: "Test"
-                    }
-                );
-
                 pdf.table(
                     50,
                     50,

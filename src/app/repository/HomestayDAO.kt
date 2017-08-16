@@ -88,7 +88,7 @@ constructor(jdbcTemplate: JdbcTemplate) : DAO<Homestay>(jdbcTemplate) {
             ps.setInt(5, h.jumlahKamar)
             ps.setInt(6, h.jumlahBed)
             ps.setInt(7, h.jumlahWC)
-            ps.setBoolean(8, false)
+            ps.setBoolean(8, true)
         }
 
         //        try (PreparedStatement ps = DbStarter.getConnection().prepareStatement(sql)) {
@@ -149,9 +149,9 @@ constructor(jdbcTemplate: JdbcTemplate) : DAO<Homestay>(jdbcTemplate) {
 
     @Throws(SQLException::class)
     override fun update(h: Homestay): Int {
-        return jdbcTemplate.update("UPDATE HOMESTAY SET PEMILIK=?,LOKASI=?,JML_KAMAR=?,JML_BED=?,JML_WC=?,STATUS=? WHERE ID=?",
-                arrayOf(h.pemilik, h.lokasi, h.jumlahKamar, h.jumlahBed, h.jumlahWC, h.isAvailable, h.id),
-                intArrayOf(VARCHAR, VARCHAR, INTEGER, INTEGER, INTEGER, BOOLEAN, VARCHAR))
+        return jdbcTemplate.update("UPDATE HOMESTAY SET PEMILIK=?,LOKASI=?,JML_KAMAR=?,JML_BED=?,JML_WC=? WHERE ID_PEMILIK=?",
+                arrayOf(h.pemilik, h.lokasi, h.jumlahKamar, h.jumlahBed, h.jumlahWC, h.id),
+                intArrayOf(VARCHAR, VARCHAR, INTEGER, INTEGER, INTEGER, VARCHAR))
     }
 
 //    @Throws(SQLException::class)

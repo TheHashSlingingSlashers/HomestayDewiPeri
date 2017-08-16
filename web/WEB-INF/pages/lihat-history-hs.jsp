@@ -54,7 +54,7 @@
                                 <div class="form-group">
                                     <label class="col-md-1 col-sm-1 col-xs-12">Lokasi</label>
                                     <div class="col-md-2 col-sm-2 col-xs-12">
-                                        <select name="lokasi" class="form-control" title="Pilih Event yang Diikuti">
+                                        <select name="lokasi" id="lokasi" class="form-control" title="Pilih Event yang Diikuti">
                                             <option value="RT 1">RT 1</option>
                                             <option value="RT 2">RT 2</option>
                                             <option value="RT 3">RT 3</option>
@@ -62,6 +62,12 @@
                                         </select>
                                     </div>
                                 </div>
+
+                                <div class="col-md-offset-1 col-sm-offset-1">
+                                    <button type="button" id="lihatBtn" onclick="lihatHistory();" class="btn btn-labeled btn-success" style="margin-left: 5px;">
+                                        <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span> Lihat</button>
+                                </div>
+                                <br/>
                                 <!-- /.form-group -->
                             </form>
                             <!-- /.form -->
@@ -123,7 +129,16 @@
         $('#dataTables-example').DataTable({
             responsive: true
         });
-    })
+
+        $('#lihatBtn').click(function () {
+            var lokasi = $( "#lokasi" ).val();;
+            lihatHistory(lokasi);
+        });
+    });
+
+    function lihatHistory(lokasi) {
+        window.location = '${path}/manajemen/hist-homestay/'+lokasi;
+    }
 </script>
 
 </body>

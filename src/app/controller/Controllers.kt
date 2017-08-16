@@ -410,7 +410,7 @@ class ManagementHS {
             } else true)
         }.groupBy { transaksi -> transaksi.idEvent }
 
-        val load:Int = if (event != null && hs != null) {
+        val load: Int = if (event != null && hs != null) {
             transactions.filter { it.idHomestay == hs.id && it.idEvent == event.id }.size
         } else 0
 //        val load = aa?.size ?: 0
@@ -438,6 +438,11 @@ class ManagementHS {
 
     @RequestMapping("/hist-homestay", method = arrayOf(GET))
     fun hist() = "lihat-history-hs"
+
+    @RequestMapping("/hist-homestay/{id}", method = arrayOf(GET))
+    fun lihatHist(@PathVariable("id") id: String): String {
+        return "lihat-history-hs"
+    }
 
     @RequestMapping("/list", method = arrayOf(GET))
     fun penyewahs() = "lihat-penyewa-hs"

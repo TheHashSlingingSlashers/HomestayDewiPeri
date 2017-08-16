@@ -301,6 +301,8 @@
         $('#save').click(function (e) {
             e.preventDefault();
             alert(a);
+            //mengambil no id penyewa yang dicentang
+            //b = a.split(',');
         });
     });
 </script>
