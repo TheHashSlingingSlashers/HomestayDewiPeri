@@ -168,59 +168,59 @@
                                 </div>
 
                                 <%--<div class="col-md-offset-2 col-sm-offset-2">--%>
-                                    <%--<button type="button" class="btn btn-labeled btn-info" style="margin-left: 5px;">--%>
-                                        <%--<span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span> Cek Cpty--%>
-                                    <%--</button>--%>
+                                <%--<button type="button" class="btn btn-labeled btn-info" style="margin-left: 5px;">--%>
+                                <%--<span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span> Cek Cpty--%>
+                                <%--</button>--%>
                                 <%--</div>--%>
 
+
+                                <br>
+
+                                <div class="dataTable_wrapper">
+                                    <table class="table table-striped table-bordered table-hover"
+                                           id="dataTables-example">
+                                        <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>No ID</th>
+                                            <th>Nama</th>
+                                            <th>Jenis Kelamin</th>
+                                            <th>Jenis Makanan</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <%--@elvariable id="listPenyewa" type="java.util.List<app.model.Penyewa>"--%>
+                                        <c:if test="${listPenyewa!=null}">
+                                            <c:forEach items="${listPenyewa}" var="p">
+                                                <tr>
+                                                    <td>
+                                                        <div class="checkbox checkbox-primary">
+                                                            <input type="checkbox"
+                                                                   class="styled styled-primary case singleCheckbox"
+                                                                   name="case[]" id="singleCheckbox" value="1">
+                                                            <label></label>
+                                                        </div>
+                                                    </td>
+                                                    <td>${p.id}</td>
+                                                    <td>${p.nama}</td>
+                                                    <td>${p.jenisKelamin}</td>
+                                                    <td>${p.jenisMakanan}</td>
+                                                </tr>
+                                            </c:forEach>
+                                        </c:if>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.table-responsive -->
+
+
+                                <br>
+                                <button type="submit" class="btn btn-labeled btn-success" id="save"
+                                        style="width: 100%"><span class="btn-label"><i
+                                        class="glyphicon glyphicon-floppy-disk"></i></span> Simpan
+                                </button>
                             </form>
                             <!-- /.form -->
-                            <br>
-
-                            <div class="dataTable_wrapper">
-                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                    <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>No ID</th>
-                                        <th>Nama</th>
-                                        <th>Jenis Kelamin</th>
-                                        <th>Jenis Makanan</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <%--@elvariable id="listPenyewa" type="java.util.List<app.model.Penyewa>"--%>
-                                    <c:if test="${listPenyewa!=null}">
-                                        <c:forEach items="${listPenyewa}" var="p">
-                                            <tr>
-                                                <td>
-                                                    <div class="checkbox checkbox-primary">
-                                                        <input type="checkbox"
-                                                               class="styled styled-primary case singleCheckbox"
-                                                               name="case[]" id="singleCheckbox" value="1">
-                                                        <label></label>
-                                                    </div>
-                                                </td>
-                                                <td>${p.id}</td>
-                                                <td>${p.nama}</td>
-                                                <td>${p.jenisKelamin}</td>
-                                                <td>${p.jenisMakanan}</td>
-                                            </tr>
-                                        </c:forEach>
-                                    </c:if>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- /.table-responsive -->
-
-
-                            <br>
-                            <button type="submit" class="btn btn-labeled btn-success" id="save"
-                                    style="width: 100%"><span class="btn-label"><i
-                                    class="glyphicon glyphicon-floppy-disk"></i></span> Simpan
-                            </button>
-
-
                         </div>
                         <!-- /.panel body -->
                     </div>

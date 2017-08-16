@@ -35,9 +35,19 @@ public class DbStarter implements ServletContextListener {
             String url = "jdbc:h2:file:~/pentingsari_db";
             String user = "root";
             String password = "root";
+            //oracle
             //String url = "jdbc:oracle:thin:@172.23.9.185:1521:orcl";
             //String user = "eduardus";
             //String password = "eduardus01";
+            //mysql
+//            String url = "jdbc:mysql://172.23.9.242:3306/mysql";
+//            String user = "root";
+//            String password = "19920501";
+//            String url = "jdbc:mysql://localhost/db_pentingsari";
+//            String user = "root";
+//            String password = "root";
+
+            Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(url, user, password);
             servletContext.setAttribute("connection", conn);
             try (Statement s = conn.createStatement();
