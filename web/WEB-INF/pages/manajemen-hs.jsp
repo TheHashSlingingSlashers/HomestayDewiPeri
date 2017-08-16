@@ -148,8 +148,6 @@
                                                     <c:out value="selected=true"/>
                                                 </c:if>
                                                 <c:out value=">${h.pemilik}</option>" escapeXml="false"/>
-                                                <option value="${h.id}">${h.pemilik}</option>
-
                                             </c:forEach>
                                         </select>
                                     </div>
